@@ -7,15 +7,6 @@ export type WithFieldValue<T> = {
   [key: string]: T
 }
 
-interface getDocsProps {
-  type?: "username" | "id"
-  payload: {
-    collection: string
-    username?: string
-    id?: string
-  }
-}
-
 const useServices = () => {
   const { token, updateToken } = useCredentialStorage()
 

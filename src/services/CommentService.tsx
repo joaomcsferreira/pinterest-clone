@@ -1,4 +1,8 @@
 import React from "react"
+
+import { AxiosError } from "axios"
+import { ErrorProps } from "../components/util/Error"
+
 import { User } from "./UserContext"
 import useServices from "./useServices"
 
@@ -9,23 +13,47 @@ export interface Comment {
 }
 
 const CommentService = () => {
+  const [loading, setLoading] = React.useState(false)
+  const [error, setError] = React.useState("")
   const [comments, setComments] = React.useState<Comment[] | null>(null)
 
   const { addDoc, getDocs } = useServices()
 
   const createComment = async (text: string, id: string) => {
-    await addDoc("comment", { text, pinId: id })
+    try {
+      setError("")
+      setLoading(true)
+
+      await addDoc("comment", { text, pinId: id })
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const getComments = async (pinId: string) => {
-    const config = `/pin/${pinId}/comments`
+    try {
+      setError("")
+      setLoading(true)
 
-    const response = await getDocs(config)
+      const config = `/pin/${pinId}/comments`
 
-    setComments(response)
+      const response = await getDocs(config)
+
+      setComments(response)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  return { comments, createComment, getComments }
+  return { comments, error, loading, createComment, getComments }
 }
 
 export default CommentService

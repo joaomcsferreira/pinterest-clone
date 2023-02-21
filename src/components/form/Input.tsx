@@ -7,6 +7,7 @@ interface InputProps {
   onBlur: () => boolean
   blank?: boolean
   type: string
+  color?: boolean
   value: string
   error: string
   placeholder: string
@@ -18,6 +19,7 @@ const Input = ({
   onBlur,
   blank,
   type,
+  color,
   value,
   error,
   placeholder,
@@ -26,13 +28,13 @@ const Input = ({
   return (
     <>
       <InputContainer
-        style={{ backgroundColor: blank ? "var(--color-gray-search)" : "none" }}
+        style={{ backgroundColor: color ? "var(--color-gray-search)" : "none" }}
         onChange={onChange}
         onBlur={onBlur}
         type={type}
         value={value}
         placeholder={placeholder}
-        color={blank ? "var(--color-gray-search)" : "var(--color-gray-second)"}
+        color={color ? "var(--color-gray-search)" : "var(--color-gray-second)"}
         radius={radius}
       />
       {!blank && <Error error={error} />}

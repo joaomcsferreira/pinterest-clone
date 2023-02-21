@@ -64,7 +64,13 @@ const Signup = ({ setModal }: SignupProps) => {
         </SectionInput>
         <SectionInput>
           <Text size="0.9rem">Age</Text>
-          <Input radius={1.275} type="number" placeholder="Age" {...age} />
+          <Input
+            radius={1.275}
+            type="number"
+            blank
+            placeholder="Age (Optional)"
+            {...age}
+          />
         </SectionInput>
         <Button onClick={() => handleSubmit()} color="red">
           Continue

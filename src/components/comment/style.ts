@@ -13,6 +13,16 @@ const CommentBuilderContainer = styled.div`
   bottom: 0;
   left: 0;
   padding: 0 2.5rem;
+  position: relative;
+`
+
+const ErrorContainer = styled.div`
+  position: absolute;
+  top: -0.8rem;
+
+  & > :nth-child(n) {
+    font-size: 0.9rem;
+  }
 `
 
 const ButtonSend = styled.div`
@@ -70,4 +80,5 @@ export {
   CommentTitle,
   CommentUsername,
   CommentText,
+  ErrorContainer,
 }

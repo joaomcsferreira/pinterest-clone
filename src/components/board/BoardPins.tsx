@@ -1,6 +1,5 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import PinService from "../../services/PinService"
 import { User } from "../../services/UserContext"
 import useServices from "../../services/useServices"
 import Feed from "../feed/Feed"
@@ -8,7 +7,6 @@ import { Avatar } from "../header/style"
 import { BoardTitle, PinsBoardContainer, PinsBoardSection } from "./style"
 
 const BoardPins = () => {
-  const { pins, getPins } = PinService()
   const { username, board } = useParams()
   const [user, setUser] = React.useState<User | null>(null)
 
@@ -23,7 +21,7 @@ const BoardPins = () => {
     }
 
     getUser()
-  }, [])
+  })
 
   return (
     <>

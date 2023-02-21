@@ -1,9 +1,9 @@
 import React from "react"
+
 import { AxiosError } from "axios"
+import { ErrorProps } from "../components/util/Error"
 
 import useServices from "./useServices"
-
-import { ErrorProps } from "../components/util/Error"
 
 export interface Board {
   _id: string
@@ -25,8 +25,6 @@ const BoardService = () => {
     try {
       setLoading(true)
 
-      if (!name) throw new Error("cannot-blank")
-
       await addDoc("board", { name })
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
@@ -38,11 +36,22 @@ const BoardService = () => {
   }
 
   const getBoards = async ({ username }: getBoardsProps) => {
-    const config = `/boards/${username}`
+    try {
+      setError("")
+      setLoading(true)
 
-    const boards: Board[] = await getDocs(config)
+      const config = `/boards/${username}`
 
-    setBoards(boards)
+      const boards: Board[] = await getDocs(config)
+
+      setBoards(boards)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
   }
   return { createBoard, getBoards, error, loading, boards }
 }

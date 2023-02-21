@@ -58,6 +58,7 @@ const Header = () => {
           </Nav>
           <Input
             blank
+            color
             type="text"
             placeholder="Search"
             radius={1.7}

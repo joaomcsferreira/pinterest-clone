@@ -1,11 +1,13 @@
 import React from "react"
 
-import useServices from "./useServices"
+import { AxiosError } from "axios"
+import { ErrorProps } from "../components/util/Error"
 
 import { User } from "./UserContext"
 import { Comment } from "./CommentService"
+import useServices from "./useServices"
 
-interface Pin {
+export interface Pin {
   _id: string
   title: string
   description: string
@@ -37,41 +39,64 @@ const PinService = () => {
       setError("")
       setLoading(true)
 
-      await addDoc("pin", form)
+      return await addDoc("pin", form)
     } catch (error) {
-      const err = (error as Error).message
-      setError(err)
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
     } finally {
       setLoading(false)
     }
   }
 
   const getPins = async ({ type, user, board, total }: getPinsProps) => {
-    let config = `/pins`
+    try {
+      setError("")
+      setLoading(true)
 
-    switch (type) {
-      case "all":
-        config += `?type=all`
-        break
-      case "board":
-        config += `?type=board&board=${board}&user=${user}`
-        break
-      case "user":
-        config += `?type=user&user=${user}`
-        break
+      let config = `/pins`
+
+      switch (type) {
+        case "all":
+          config += `?type=all`
+          break
+        case "board":
+          config += `?type=board&board=${board}&user=${user}`
+          break
+        case "user":
+          config += `?type=user&user=${user}`
+          break
+      }
+
+      const pins: Pin[] = await getDocs(config)
+
+      setPins(pins)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
     }
-
-    const pins: Pin[] = await getDocs(config)
-
-    setPins(pins)
   }
 
   const getPin = async (id: string) => {
-    const config = `/pin/${id}`
+    try {
+      setError("")
+      setLoading(true)
 
-    const pin: Pin = await getDocs(config)
+      const config = `/pin/${id}`
 
-    setPin(pin)
+      const pin: Pin = await getDocs(config)
+
+      setPin(pin)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return {

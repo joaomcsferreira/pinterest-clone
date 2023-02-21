@@ -7,6 +7,11 @@ interface FillContainerProps {
 
 interface DragAreaProps {
   src?: string
+  pinBlank: boolean
+}
+
+interface DragzoneContainerProps {
+  pinBlank: boolean
 }
 
 const rotate = keyframes`
@@ -44,17 +49,17 @@ const LoadingIcon = styled.img`
   animation: ${rotate} 1s linear infinite;
 `
 
-const DragzoneContainer = styled.div`
+const DragzoneContainer = styled.div<DragzoneContainerProps>`
   width: 21.25rem;
   height: 30.875rem;
-  background-color: var(--color-gray-third);
+  background-color: ${({ pinBlank }) =>
+    pinBlank ? "var(--color-red-light)" : "var(--color-gray-third)"};
   border-radius: 5px;
 `
 
 const DragArea = styled.div<DragAreaProps>`
   margin: 1rem;
   height: 28.875rem;
-  border: 1px dashed var(--color-gray-second);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -70,6 +75,11 @@ const DragArea = styled.div<DragAreaProps>`
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 4;
+  border: 1px dashed
+    ${({ pinBlank }) =>
+      pinBlank ? "var(--color-red-danger)" : "var(--color-gray-second)"};
+  color: ${({ pinBlank }) =>
+    pinBlank ? "var(--color-red-danger)" : "var(--color-black)"};
 `
 
 const DragAreaInput = styled.input`

@@ -30,6 +30,10 @@ const SelectOptions = styled.div`
   text-align: center;
 `
 
+const ErrorContainer = styled.div`
+  position: absolute;
+`
+
 const SelectOptionsItems = styled.div`
   max-height: 17rem;
   overflow: auto;
@@ -134,4 +138,5 @@ export {
   PinsBoardContainer,
   BoardTitle,
   PinsBoardSection,
+  ErrorContainer,
 }

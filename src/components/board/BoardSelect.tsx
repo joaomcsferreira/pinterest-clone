@@ -10,6 +10,7 @@ import Input from "../form/Input"
 import Error from "../util/Error"
 
 import {
+  ErrorContainer,
   Select,
   SelectOption,
   SelectOptions,
@@ -72,7 +73,6 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
             radius={1.5}
             {...nameBoard}
           />
-          {error && <Error error={error} />}
           <Button onClick={handleSubmit} color="red">
             Create
           </Button>

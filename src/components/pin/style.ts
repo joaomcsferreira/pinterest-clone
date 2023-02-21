@@ -179,6 +179,23 @@ const PinAuthorInfo = styled.div`
   }
 `
 
+const ErrorPostion = styled.div`
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: block;
+  left: 25%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > :nth-child(n) {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+`
+
 export {
   Container,
   Wraper,
@@ -201,4 +218,5 @@ export {
   PinInfoText,
   PinAuthor,
   PinAuthorInfo,
+  ErrorPostion,
 }

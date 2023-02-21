@@ -11,13 +11,16 @@ import {
 } from "./style"
 
 import arrow from "../../assets/svg/arrowUp.svg"
+import alert from "../../assets/svg/alert.svg"
+
 import { pinProps } from "../pin/PinBuilder"
 
 interface DrapzoneProps {
   setPin: React.Dispatch<React.SetStateAction<pinProps | null>>
+  pinBlank: boolean
 }
 
-const Drapzone = ({ setPin }: DrapzoneProps) => {
+const Drapzone = ({ setPin, pinBlank }: DrapzoneProps) => {
   const [url, setUrl] = React.useState("")
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -33,13 +36,17 @@ const Drapzone = ({ setPin }: DrapzoneProps) => {
   })
 
   return (
-    <DragzoneContainer>
-      <DragArea {...getRootProps()} src={url}>
+    <DragzoneContainer pinBlank={pinBlank}>
+      <DragArea {...getRootProps()} src={url} pinBlank={pinBlank}>
         <DragAreaInput {...getInputProps()} />
         {!url && (
           <>
-            <DragAreaLogo src={arrow} />
-            <DragAreaMessage>"Drag on drop or click to upload"</DragAreaMessage>
+            <DragAreaLogo src={pinBlank ? alert : arrow} />
+            <DragAreaMessage>
+              {pinBlank
+                ? "An image is required to create a Pin."
+                : "Drag on drop or click to upload"}
+            </DragAreaMessage>
             <DragAreaAlert>
               Recommendation: Use high-quality .jpg images less than 20MB
             </DragAreaAlert>

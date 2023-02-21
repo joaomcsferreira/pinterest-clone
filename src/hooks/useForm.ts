@@ -15,7 +15,7 @@ const useForm = (type?: string) => {
 
   const validate = (value: string) => {
     if (value.length === 0) {
-      setError("blank-field")
+      setError("The field cannot be blank")
 
       return false
     } else if (

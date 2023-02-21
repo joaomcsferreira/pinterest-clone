@@ -1,6 +1,6 @@
 import React from "react"
 import { Avatar } from "../header/style"
-import CommentService, { Comment } from "../../services/CommentService"
+import { Comment } from "../../services/CommentService"
 import {
   CommentContainer,
   CommentsViewContainer,

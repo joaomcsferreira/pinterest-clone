@@ -6,11 +6,17 @@ import useForm from "../../hooks/useForm"
 import { useUserContext } from "../../services/UserContext"
 
 import { Avatar } from "../header/style"
-import { ButtonIcon, ButtonSend, CommentBuilderContainer } from "./style"
+import {
+  ButtonIcon,
+  ButtonSend,
+  CommentBuilderContainer,
+  ErrorContainer,
+} from "./style"
 
 import send from "../../assets/svg/send.svg"
 import CommentService from "../../services/CommentService"
 import { useParams } from "react-router-dom"
+import Error from "../util/Error"
 
 const CommentBuilder = () => {
   const comment = useForm()
@@ -18,10 +24,10 @@ const CommentBuilder = () => {
 
   const { id } = useParams()
 
-  const { createComment } = CommentService()
+  const { createComment, error } = CommentService()
 
   function handleSubmit() {
-    if (id && comment.value) createComment(comment.value, id)
+    if (id) createComment(comment.value, id)
 
     comment.clearValue()
   }
@@ -30,6 +36,7 @@ const CommentBuilder = () => {
     <>
       {user && (
         <CommentBuilderContainer>
+          <ErrorContainer>{error && <Error error={error} />}</ErrorContainer>
           <Avatar
             size="3"
             src={

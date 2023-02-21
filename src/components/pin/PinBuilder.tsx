@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useUserContext } from "../../services/UserContext"
+import { Pin } from "../../services/PinService"
 
 import { Avatar } from "../header/style"
 import {
@@ -12,6 +13,7 @@ import {
   InfoText,
   ButtonSave,
   WraperPinBuilder,
+  ErrorPostion,
 } from "./style"
 
 import Dragzone from "../util/Dragzone"
@@ -21,6 +23,7 @@ import Loading from "../util/Loading"
 import FillMode from "../util/FillMode"
 import { useNavigate } from "react-router-dom"
 import BoardSelect from "../board/BoardSelect"
+import Error from "../util/Error"
 
 export interface pinProps {
   preview: string
@@ -36,23 +39,33 @@ const PinBuilder = () => {
   const [pin, setPin] = React.useState<pinProps | null>(null)
 
   const { user, logged } = useUserContext()
-  const { loading, createPin } = PinService()
+  const { loading, error, createPin } = PinService()
+
+  const [pinBlank, setPinBlank] = React.useState(false)
 
   const navigate = useNavigate()
 
   async function handleSubmit() {
-    const form = new FormData()
+    if (pin) {
+      const form = new FormData()
 
-    form.append("title", title.value)
-    form.append("description", description.value)
-    form.append("website", website.value)
-    form.append("board", board)
-    form.append("src", pin!.raw, pin!.raw.name)
+      form.append("title", title.value)
+      form.append("description", description.value)
+      form.append("website", website.value)
+      form.append("board", board)
+      form.append("src", pin!.raw, pin!.raw.name)
 
-    await createPin(form)
+      const result: Pin | null = await createPin(form)
 
-    if (pin) navigate("/")
+      if (result?._id) navigate("/")
+    } else {
+      setPinBlank(true)
+    }
   }
+
+  React.useEffect(() => {
+    setPinBlank(false)
+  }, [pin])
 
   return (
     <>
@@ -60,10 +73,11 @@ const PinBuilder = () => {
         <Container>
           <WraperPinBuilder>
             <Actions>
+              <ErrorPostion>{error && <Error error={error} />}</ErrorPostion>
               <BoardSelect board={board} setBoard={setBoard} />
               <ButtonSave onClick={handleSubmit}>Save</ButtonSave>
             </Actions>
-            <Dragzone setPin={setPin} />
+            <Dragzone pinBlank={pinBlank} setPin={setPin} />
             <InfoContainer>
               <InfoContainer>
                 <InfoInput
