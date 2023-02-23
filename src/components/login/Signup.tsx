@@ -72,13 +72,17 @@ const Signup = ({ setModal }: SignupProps) => {
             {...age}
           />
         </SectionInput>
-        <Button onClick={() => handleSubmit()} color="red">
+        <Button size="full" onClick={() => handleSubmit()} color="red">
           Continue
         </Button>
         <Text style={{ margin: ".5rem 0" }} bold="700" size="0.95rem">
           OR
         </Text>
-        <Button onClick={() => console.log("entrando")} color="blue">
+        <Button
+          size="full"
+          onClick={() => console.log("entrando")}
+          color="blue"
+        >
           Continue with Facebook
         </Button>
       </Section>

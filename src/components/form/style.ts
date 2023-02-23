@@ -5,6 +5,7 @@ interface ButtonProps {
   invisible?: boolean
   active?: boolean
   radius?: number
+  size?: string
 }
 
 interface InputContainerProps {
@@ -14,12 +15,13 @@ interface InputContainerProps {
 
 const ButtonContainer = styled.button<ButtonProps>`
   display: grid;
-  place-items: center;
+  align-items: center;
   border: none;
-  padding: 0.8rem;
+  padding: ${({ size }) => (size === "full" ? "0.8rem" : "0.5rem")};
   border-radius: ${({ radius }) => (radius ? `${radius}rem` : "1.875rem")};
   font-weight: 700;
-  width: 100%;
+  width: ${({ size }) => size === "full" && "100%"};
+  height: fit-content;
   white-space: nowrap;
   position: relative;
   cursor: pointer;
@@ -30,11 +32,11 @@ const ButtonContainer = styled.button<ButtonProps>`
 
   &:after {
     content: "";
-    width: 70%;
+    width: 90%;
     height: 3px;
     position: absolute;
     bottom: 0;
-    left: 15%;
+    left: 5%;
     border-radius: 3px;
     background-color: ${({ active }) => (active ? "var(--color-black)" : "")};
   }

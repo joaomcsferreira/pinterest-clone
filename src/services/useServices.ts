@@ -16,7 +16,7 @@ const useServices = () => {
   ) => {
     const response = await api.post("/user/token", { email, password })
 
-    updateToken(response.data.token)
+    updateToken(response.data.result)
   }
 
   const createUserWithEmailAndPassword = async (
@@ -34,7 +34,7 @@ const useServices = () => {
         headers: { Authorization: token },
       })
 
-      if (userToken) return userToken.data.user
+      if (userToken) return userToken.data.result
       updateToken("")
     }
   }
@@ -42,7 +42,7 @@ const useServices = () => {
   const getProfile = async (username: string) => {
     const response = await api.get(`/user/${username}`)
 
-    return response.data.user
+    return response.data.result
   }
 
   const hasToken = () => {

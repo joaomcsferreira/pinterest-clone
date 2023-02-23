@@ -57,13 +57,13 @@ const Login = ({ setModal }: LoginProps) => {
             </Text>
           </Link>
         </SectionInput>
-        <Button onClick={() => handleSubmit()} color="red">
+        <Button size="full" onClick={() => handleSubmit()} color="red">
           Log in
         </Button>
         <Text style={{ margin: ".5rem 0" }} bold="700" size="0.95rem">
           OR
         </Text>
-        <Button onClick={() => {}} color="blue">
+        <Button size="full" onClick={() => {}} color="blue">
           Continue with Facebook
         </Button>
       </Section>

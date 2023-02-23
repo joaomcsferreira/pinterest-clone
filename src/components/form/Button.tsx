@@ -6,6 +6,7 @@ interface ButtonProps {
   invisible?: boolean
   active?: boolean
   radius?: number
+  size?: string
   children: React.ReactNode
   onClick?: () => void
 }
@@ -15,6 +16,7 @@ const Button = ({
   invisible,
   active,
   radius,
+  size,
   children,
   onClick,
 }: ButtonProps) => {
@@ -23,6 +25,7 @@ const Button = ({
       invisible={invisible}
       active={active}
       radius={radius}
+      size={size}
       color={color}
       onClick={onClick}
     >

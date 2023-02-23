@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useParams } from "react-router-dom"
-import { User } from "../../services/UserContext"
+import { User, useUserContext } from "../../services/UserContext"
 import useServices from "../../services/useServices"
 import BoardGroup from "../board/BoardList"
 import Feed from "../feed/Feed"
@@ -16,9 +16,10 @@ import {
 
 const UserProfile = () => {
   const { username } = useParams()
+  const { user } = useUserContext()
 
   const [feedType, setFeedType] = React.useState("created")
-  const [user, setUser] = useState<User | null>(null)
+  const [profile, setProfile] = useState<User | null>(null)
 
   const { getProfile } = useServices()
 
@@ -26,7 +27,7 @@ const UserProfile = () => {
     async function getUser() {
       if (username) {
         const userData = await getProfile(username)
-        setUser(userData)
+        setProfile(userData)
       }
     }
 
@@ -35,18 +36,18 @@ const UserProfile = () => {
 
   return (
     <>
-      {user && (
+      {profile && (
         <ProfileContainer>
           <ProfileInfo>
             <Avatar
               size="8"
               src={
-                user.avatar
-                  ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
+                profile.avatar
+                  ? `${process.env.REACT_APP_BASE_URL}${profile.avatar}`
                   : ""
               }
             >
-              <p>{user.avatar ? "" : user.username.charAt(0)}</p>
+              <p>{profile.avatar ? "" : profile.username.charAt(0)}</p>
             </Avatar>
             <ProfileUsername
               color="var(--color-black)"
@@ -54,12 +55,12 @@ const UserProfile = () => {
               bold="500"
               capitalize
             >
-              {user.firstName
-                ? `${user.firstName} ${user.lastName}`
-                : user.username}
+              {profile.firstName
+                ? `${profile.firstName} ${profile.lastName}`
+                : profile.username}
             </ProfileUsername>
             <ProfileUsername color="var(--color-gray)" size="0.9" bold="400">
-              {`@${user.username}`}
+              {`@${profile.username}`}
             </ProfileUsername>
             <ProfileUsername
               color="var(--color-black)"
@@ -70,12 +71,14 @@ const UserProfile = () => {
               0 following
             </ProfileUsername>
             <ProfileActions>
-              <Button color="gray" invisible>
+              <Button size="full" color="gray" invisible>
                 Share
               </Button>
-              <Button color="gray" invisible>
-                Edit Profile
-              </Button>
+              {user?.username === profile.username && (
+                <Button size="full" color="gray" invisible>
+                  Edit Profile
+                </Button>
+              )}
             </ProfileActions>
           </ProfileInfo>
 
@@ -101,9 +104,9 @@ const UserProfile = () => {
               </ProfileActions>
             </ProfileInfo>
             {feedType === "created" ? (
-              <Feed type="user" user={user.username} />
+              <Feed type="user" user={profile.username} />
             ) : (
-              <BoardGroup username={user.username} />
+              <BoardGroup username={profile.username} />
             )}
           </ProfilePins>
         </ProfileContainer>

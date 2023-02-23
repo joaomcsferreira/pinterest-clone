@@ -163,10 +163,15 @@ const Header = () => {
             <NavItem>About</NavItem>
             <NavItem>Business</NavItem>
             <NavItem>Blog</NavItem>
-            <Button onClick={() => setModal("login")} color="red">
+            <Button size="full" onClick={() => setModal("login")} color="red">
               Log in
             </Button>
-            <Button color="gray" invisible onClick={() => setModal("signup")}>
+            <Button
+              size="full"
+              color="gray"
+              invisible
+              onClick={() => setModal("signup")}
+            >
               Sign up
             </Button>
           </Nav>
