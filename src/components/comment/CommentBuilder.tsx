@@ -3,7 +3,7 @@ import React from "react"
 import Input from "../form/Input"
 import useForm from "../../hooks/useForm"
 
-import { useUserContext } from "../../services/UserContext"
+import { useUserContext } from "../../UserContext"
 
 import { Avatar } from "../header/style"
 import {

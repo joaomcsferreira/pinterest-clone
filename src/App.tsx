@@ -2,7 +2,7 @@ import React from "react"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-import { UserProvider } from "./services/UserContext"
+import { UserProvider } from "./UserContext"
 import Header from "./components/header/Header"
 import Home from "./components/feed/Home"
 import PinBuilder from "./components/pin/PinBuilder"

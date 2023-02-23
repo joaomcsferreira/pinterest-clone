@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useUserContext } from "../../services/UserContext"
+import { useUserContext } from "../../UserContext"
 import { Pin } from "../../services/PinService"
 
 import { Avatar } from "../header/style"

@@ -3,7 +3,7 @@ import React from "react"
 import { AxiosError } from "axios"
 import { ErrorProps } from "../components/util/Error"
 
-import { User } from "./UserContext"
+import { User } from "../UserContext"
 import useServices from "./useServices"
 
 export interface Comment {

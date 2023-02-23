@@ -9,9 +9,14 @@ const useCredentialStorage = () => {
     localStorage.setItem("token", token)
   }
 
+  const getToken = () => {
+    return localStorage.getItem("token")
+  }
+
   return {
     token,
     updateToken,
+    getToken,
   }
 }
 

@@ -6,7 +6,7 @@ import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
 
 import { Container, Text, Icon, Section, SectionInput, Link } from "./style"
-import { useUserContext } from "../../services/UserContext"
+import { useUserContext } from "../../UserContext"
 
 import logo from "../../assets/svg/logo.svg"
 import Error from "../util/Error"

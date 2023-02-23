@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { User } from "../../services/UserContext"
+import { User } from "../../UserContext"
 import useServices from "../../services/useServices"
 import Feed from "../feed/Feed"
 import { Avatar } from "../header/style"

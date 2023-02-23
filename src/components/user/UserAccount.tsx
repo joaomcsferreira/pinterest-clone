@@ -1,6 +1,6 @@
 import React from "react"
 import { useFormProps } from "../../hooks/useForm"
-import { User } from "../../services/UserContext"
+import { User } from "../../UserContext"
 import Button from "../form/Button"
 import Input from "../form/Input"
 import {

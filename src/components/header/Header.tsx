@@ -17,7 +17,7 @@ import {
   Avatar,
   NavProfile,
 } from "./style"
-import { useUserContext } from "../../services/UserContext"
+import { useUserContext } from "../../UserContext"
 
 import logo from "../../assets/svg/logo.svg"
 import bell from "../../assets/svg/bell.svg"

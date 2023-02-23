@@ -1,9 +1,10 @@
 import React from "react"
 import { AxiosError } from "axios"
 
-import useServices from "./useServices"
+import useServices from "./services/useServices"
 
-import { ErrorProps } from "../components/util/Error"
+import { ErrorProps } from "./components/util/Error"
+import useCredentialStorage from "./services/useCredentialStorage"
 
 export interface User {
   _id: string
@@ -17,6 +18,7 @@ export interface User {
 interface UserContextValue {
   login: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
+  updateUserData: (form: FormData) => Promise<User | null>
   logOut: () => void
   reUpUser: () => void
   user: User | null
@@ -33,21 +35,17 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [error, setError] = React.useState("")
   const [loading, setLoading] = React.useState(false)
 
-  const {
-    token,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    hasToken,
-    getUser,
-    signOut,
-  } = useServices()
+  const { getUser, signOut, addDoc, updateDoc } = useServices()
+
+  const { token, updateToken, getToken } = useCredentialStorage()
 
   const login = async (email: string, password: string) => {
     try {
       setError("")
       setLoading(true)
 
-      await signInWithEmailAndPassword(email, password)
+      const response = await addDoc("user/token", { email, password })
+      updateToken(response)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -62,7 +60,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setError("")
       setLoading(true)
 
-      const response = await createUserWithEmailAndPassword(email, password)
+      const response = await addDoc("user", { email, password })
 
       if (response) login(email, password)
     } catch (error) {
@@ -72,6 +70,24 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
     } finally {
       setLoading(false)
     }
+  }
+
+  const updateUserData = async (form: FormData) => {
+    let response: User | null = null
+
+    try {
+      setError("")
+      setLoading(true)
+
+      response = await updateDoc("user", form)
+    } catch (error) {
+      const errorMessage = (error as AxiosError).response?.data as ErrorProps
+
+      setError(errorMessage.error)
+    } finally {
+      setLoading(false)
+    }
+    return response
   }
 
   const logOut = () => {
@@ -96,7 +112,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setError("")
       setLoading(true)
 
-      const user = await getUser()
+      const user = await getUser(token)
 
       setUser(user)
       setLogged(true)
@@ -105,18 +121,29 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
       setError(errorMessage.error)
       setLogged(false)
+      updateToken("")
     } finally {
       setLoading(false)
     }
   }
 
   React.useEffect(() => {
-    if (hasToken()) autoLogin()
+    if (getToken()) autoLogin()
   }, [token])
 
   return (
     <UserContext.Provider
-      value={{ user, logged, error, loading, login, logOut, signUp, reUpUser }}
+      value={{
+        user,
+        logged,
+        error,
+        loading,
+        login,
+        logOut,
+        signUp,
+        reUpUser,
+        updateUserData,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -1,5 +1,5 @@
 import React from "react"
-import { useUserContext } from "../../services/UserContext"
+import { useUserContext } from "../../UserContext"
 import Welcome from "../welcome/Welcome"
 import Feed from "./Feed"
 

@@ -8,34 +8,15 @@ export type WithFieldValue<T> = {
 }
 
 const useServices = () => {
-  const { token, updateToken } = useCredentialStorage()
+  const { updateToken, getToken } = useCredentialStorage()
 
-  const signInWithEmailAndPassword = async (
-    email: string,
-    password: string
-  ) => {
-    const response = await api.post("/user/token", { email, password })
-
-    updateToken(response.data.result)
-  }
-
-  const createUserWithEmailAndPassword = async (
-    email: string,
-    password: string
-  ) => {
-    const response = await api.post("/user", { email, password })
-
-    return response
-  }
-
-  const getUser = async () => {
+  const getUser = async (token: string | null) => {
     if (token) {
       const userToken = await api.get("/validate", {
         headers: { Authorization: token },
       })
 
-      if (userToken) return userToken.data.result
-      updateToken("")
+      return userToken.data.result
     }
   }
 
@@ -45,23 +26,18 @@ const useServices = () => {
     return response.data.result
   }
 
-  const hasToken = () => {
-    return token ? true : false
-  }
-
   const signOut = () => {
     updateToken("")
   }
 
   const addDoc = async (
     collection: string,
-    data: WithFieldValue<any> | FormData,
-    formdata?: string
+    data: WithFieldValue<any> | FormData
   ) => {
     const response = await api.post(`/${collection}`, data, {
       headers: {
         "Content-Type": "Application/json",
-        Authorization: token,
+        Authorization: getToken(),
       },
     })
 
@@ -81,7 +57,7 @@ const useServices = () => {
     const response = await api.put(`/${collection}`, data, {
       headers: {
         "Content-Type": "Application/json",
-        Authorization: token,
+        Authorization: getToken(),
       },
     })
 
@@ -89,12 +65,8 @@ const useServices = () => {
   }
 
   return {
-    token,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
     getUser,
     getProfile,
-    hasToken,
     signOut,
     addDoc,
     getDocs,

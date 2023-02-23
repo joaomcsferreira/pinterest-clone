@@ -1,12 +1,13 @@
 import React from "react"
 
 import {
+  ErrorContainer,
   UserProfileActionsContainer,
   UserSettingContainer,
   UserSettingMenuContainer,
 } from "./style"
 
-import { User, useUserContext } from "../../services/UserContext"
+import { User, useUserContext } from "../../UserContext"
 import { imageProps } from "../pin/PinBuilder"
 import { useNavigate } from "react-router-dom"
 
@@ -15,15 +16,14 @@ import Button from "../form/Button"
 import UserAccount from "./UserAccount"
 import UserPublicProfile from "./UserPublicProfile"
 import NotImplementeded from "../notFound/NotImplementeded"
-import useServices from "../../services/useServices"
+import Error from "../util/Error"
 
 const UserEditProfile = () => {
   const [typeSetting, setTypeSetting] = React.useState("public")
   const [image, setImage] = React.useState<imageProps | null>(null)
   const [modal, setModal] = React.useState("")
 
-  const { user, reUpUser } = useUserContext()
-  const { updateDoc } = useServices()
+  const { user, error, reUpUser, updateUserData } = useUserContext()
   const navigate = useNavigate()
 
   const firstName = useForm()
@@ -84,7 +84,7 @@ const UserEditProfile = () => {
     form.append("email", email.value)
     if (image) form.append("avatar", image.raw)
 
-    const result: User | null = await updateDoc("user", form)
+    const result: User | null = await updateUserData(form)
 
     if (result?._id) {
       reUpUser()
@@ -128,6 +128,7 @@ const UserEditProfile = () => {
           </>
 
           <UserProfileActionsContainer>
+            <ErrorContainer>{error && <Error error={error} />}</ErrorContainer>
             <Button
               onClick={() => handleResetInitialValue()}
               color="gray"

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
-import { User, useUserContext } from "../../services/UserContext"
+import { User, useUserContext } from "../../UserContext"
 import useServices from "../../services/useServices"
 import BoardGroup from "../board/BoardList"
 import Feed from "../feed/Feed"

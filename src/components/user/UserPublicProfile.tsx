@@ -8,7 +8,7 @@ import {
 
 import { useFormProps } from "../../hooks/useForm"
 import { imageProps } from "../pin/PinBuilder"
-import { User } from "../../services/UserContext"
+import { User } from "../../UserContext"
 import { Avatar } from "../header/style"
 
 import Button from "../form/Button"

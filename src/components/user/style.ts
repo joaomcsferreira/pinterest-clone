@@ -119,6 +119,12 @@ const UserProfileActionsContainer = styled.div`
 
 const ErrorContainer = styled.div`
   position: absolute;
+  top: 0.5rem;
+
+  & > :nth-child(1) {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
 `
 
 export {
