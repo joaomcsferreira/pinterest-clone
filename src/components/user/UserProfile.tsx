@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { User, useUserContext } from "../../services/UserContext"
 import useServices from "../../services/useServices"
@@ -75,9 +76,11 @@ const UserProfile = () => {
                 Share
               </Button>
               {user?.username === profile.username && (
-                <Button size="full" color="gray" invisible>
-                  Edit Profile
-                </Button>
+                <Link to={"/settings/edit-profile"}>
+                  <Button size="full" color="gray" invisible>
+                    Edit Profile
+                  </Button>
+                </Link>
               )}
             </ProfileActions>
           </ProfileInfo>

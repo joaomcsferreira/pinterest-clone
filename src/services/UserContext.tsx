@@ -18,6 +18,7 @@ interface UserContextValue {
   login: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
   logOut: () => void
+  reUpUser: () => void
   user: User | null
   logged: boolean
   error: string
@@ -86,32 +87,36 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }
   }
 
-  React.useEffect(() => {
-    const autoLogin = async () => {
-      try {
-        setError("")
-        setLoading(true)
+  const reUpUser = async () => {
+    await autoLogin()
+  }
 
-        const user = await getUser()
+  const autoLogin = async () => {
+    try {
+      setError("")
+      setLoading(true)
 
-        setUser(user)
-        setLogged(true)
-      } catch (error) {
-        const errorMessage = (error as AxiosError).response?.data as ErrorProps
+      const user = await getUser()
 
-        setError(errorMessage.error)
-        setLogged(false)
-      } finally {
-        setLoading(false)
-      }
+      setUser(user)
+      setLogged(true)
+    } catch (error) {
+      const errorMessage = (error as AxiosError).response?.data as ErrorProps
+
+      setError(errorMessage.error)
+      setLogged(false)
+    } finally {
+      setLoading(false)
     }
+  }
 
+  React.useEffect(() => {
     if (hasToken()) autoLogin()
   }, [token])
 
   return (
     <UserContext.Provider
-      value={{ user, logged, error, loading, login, logOut, signUp }}
+      value={{ user, logged, error, loading, login, logOut, signUp, reUpUser }}
     >
       {children}
     </UserContext.Provider>

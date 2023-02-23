@@ -25,7 +25,7 @@ import { useNavigate } from "react-router-dom"
 import BoardSelect from "../board/BoardSelect"
 import Error from "../util/Error"
 
-export interface pinProps {
+export interface imageProps {
   preview: string
   raw: File
 }
@@ -36,7 +36,7 @@ const PinBuilder = () => {
   const website = useForm()
 
   const [board, setBoard] = React.useState("")
-  const [pin, setPin] = React.useState<pinProps | null>(null)
+  const [pin, setPin] = React.useState<imageProps | null>(null)
 
   const { user, logged } = useUserContext()
   const { loading, error, createPin } = PinService()

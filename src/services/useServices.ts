@@ -60,9 +60,7 @@ const useServices = () => {
   ) => {
     const response = await api.post(`/${collection}`, data, {
       headers: {
-        "Content-Type": `${
-          formdata ? "multipart/form-data" : "Application/json"
-        }`,
+        "Content-Type": "Application/json",
         Authorization: token,
       },
     })
@@ -72,6 +70,20 @@ const useServices = () => {
 
   const getDocs = async (config: string) => {
     const response = await api.get(config)
+
+    return response.data.result
+  }
+
+  const updateDoc = async (
+    collection: string,
+    data: WithFieldValue<any> | FormData
+  ) => {
+    const response = await api.put(`/${collection}`, data, {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: token,
+      },
+    })
 
     return response.data.result
   }
@@ -86,6 +98,7 @@ const useServices = () => {
     signOut,
     addDoc,
     getDocs,
+    updateDoc,
   }
 }
 

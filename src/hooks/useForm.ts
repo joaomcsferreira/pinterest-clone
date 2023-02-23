@@ -9,7 +9,17 @@ const validationRules = {
   },
 }
 
-const useForm = (type?: string) => {
+export interface useFormProps {
+  value: string
+  error: string
+  onChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void
+  clearValue: () => void
+  setInitialValue: (value: string | undefined) => void
+  onBlur: () => boolean
+  validate: () => boolean
+}
+
+const useForm = (type?: string): useFormProps => {
   const [value, setValue] = React.useState("")
   const [error, setError] = React.useState("")
 
@@ -42,12 +52,17 @@ const useForm = (type?: string) => {
     setValue("")
   }
 
+  const setInitialValue = (value: string | undefined) => {
+    if (value) setValue(value)
+  }
+
   return {
-    onChange,
-    onBlur: () => validate(value),
     value,
     error,
+    onChange,
     clearValue,
+    setInitialValue,
+    onBlur: () => validate(value),
     validate: () => validate(value),
   }
 }

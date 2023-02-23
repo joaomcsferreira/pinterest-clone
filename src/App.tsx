@@ -9,6 +9,7 @@ import PinBuilder from "./components/pin/PinBuilder"
 import PinViewer from "./components/pin/PinViewer"
 import UserProfile from "./components/user/UserProfile"
 import BoardPins from "./components/board/BoardPins"
+import UserEditProfile from "./components/user/UserEditProfile"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/pin/:id" element={<PinViewer />} />
           <Route path="/:username" element={<UserProfile />} />
           <Route path="/:username/:board" element={<BoardPins />} />
+          <Route path="/settings/edit-profile" element={<UserEditProfile />} />
         </Routes>
       </UserProvider>
     </Router>

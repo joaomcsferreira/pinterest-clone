@@ -13,10 +13,10 @@ import {
 import arrow from "../../assets/svg/arrowUp.svg"
 import alert from "../../assets/svg/alert.svg"
 
-import { pinProps } from "../pin/PinBuilder"
+import { imageProps } from "../pin/PinBuilder"
 
 interface DrapzoneProps {
-  setPin: React.Dispatch<React.SetStateAction<pinProps | null>>
+  setPin: React.Dispatch<React.SetStateAction<imageProps | null>>
   pinBlank: boolean
 }
 
