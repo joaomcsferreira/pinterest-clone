@@ -3,19 +3,20 @@ import { useUserContext } from "../../UserContext"
 
 import BoardService from "../../services/BoardService"
 
-import useForm from "../../hooks/useForm"
-
-import Button from "../form/Button"
-import Input from "../form/Input"
-import Error from "../util/Error"
+import BoardCreate from "./BoardCreate"
 
 import {
-  ErrorContainer,
+  BoardCreateButtonContainer,
+  BoardIcon,
   Select,
   SelectOption,
   SelectOptions,
   SelectOptionsItems,
+  Text,
 } from "./style"
+
+import plus from "../../assets/svg/plus.svg"
+import FillMode from "../util/FillMode"
 
 interface BoardSelectProps {
   board: string
@@ -23,23 +24,11 @@ interface BoardSelectProps {
 }
 
 const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
-  const [modal, setModal] = React.useState(false)
-
-  const nameBoard = useForm()
+  const [modal, setModal] = React.useState("")
 
   const { user } = useUserContext()
 
-  const { createBoard, getBoards, boards, error } = BoardService()
-
-  const handleClick = () => {
-    setModal((modal) => !modal)
-  }
-
-  const handleSubmit = async () => {
-    createBoard(nameBoard.value)
-
-    nameBoard.clearValue()
-  }
+  const { getBoards, boards } = BoardService()
 
   React.useEffect(() => {
     if (user) getBoards({ username: user.username })
@@ -47,9 +36,12 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
 
   return (
     <>
-      <Select onClick={handleClick}>{!board ? "Select a board" : board}</Select>
-      {modal && (
+      <Select onClick={() => setModal("select")}>
+        {!board ? "Select a board" : board}
+      </Select>
+      {modal === "select" && (
         <SelectOptions>
+          <FillMode full setModal={setModal} />
           <SelectOptionsItems>
             <>
               {boards &&
@@ -58,7 +50,7 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
                     key={board.name}
                     onClick={() => {
                       setBoard(board.name)
-                      handleClick()
+                      setModal("")
                     }}
                   >
                     {board.name}
@@ -66,17 +58,16 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
                 ))}
             </>
           </SelectOptionsItems>
-          Create another one
-          <Input
-            type="text"
-            placeholder="Name the new board"
-            radius={1.5}
-            {...nameBoard}
-          />
-          <Button onClick={handleSubmit} color="red">
-            Create
-          </Button>
+          <BoardCreateButtonContainer onClick={() => setModal("create")}>
+            <BoardIcon src={plus} />
+            <Text fontSize={1} fontWeight={500}>
+              Create board
+            </Text>
+          </BoardCreateButtonContainer>
         </SelectOptions>
+      )}
+      {modal === "create" && (
+        <BoardCreate setBoard={setBoard} setModal={setModal} />
       )}
     </>
   )

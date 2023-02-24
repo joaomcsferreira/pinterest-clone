@@ -25,7 +25,7 @@ const BoardService = () => {
     try {
       setLoading(true)
 
-      await addDoc("board", { name })
+      return await addDoc("board", { name })
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 

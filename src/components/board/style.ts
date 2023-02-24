@@ -4,6 +4,11 @@ interface BoardItemImgProps {
   src: string
 }
 
+interface TextProps {
+  fontSize: number
+  fontWeight: number
+}
+
 const Select = styled.div`
   padding: 0 1rem;
   background-color: var(--color-gray-third);
@@ -26,12 +31,9 @@ const SelectOptions = styled.div`
   gap: 0.5rem;
   box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
   border-radius: 0.8rem;
-  padding: 0.3rem;
+  padding: 0.05rem;
   text-align: center;
-`
-
-const ErrorContainer = styled.div`
-  position: absolute;
+  overflow: hidden;
 `
 
 const SelectOptionsItems = styled.div`
@@ -39,7 +41,9 @@ const SelectOptionsItems = styled.div`
   overflow: auto;
   display: flex;
   flex-direction: column;
+  padding: 0.3rem;
   gap: 0.5rem;
+  z-index: 6;
 `
 
 const SelectOption = styled.p`
@@ -125,6 +129,80 @@ const PinsBoardSection = styled.div`
   align-items: center;
 `
 
+const BoardCreateButtonContainer = styled.div`
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--color-gray-second);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 6;
+
+  &:hover {
+    background-color: var(--color-gray-second);
+    cursor: pointer;
+  }
+`
+
+const BoardIcon = styled.img`
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--color-red);
+`
+
+const Text = styled.p<TextProps>`
+  font-size: ${({ fontSize }) => `${fontSize}rem`};
+  font-weight: ${({ fontWeight }) => fontWeight};
+  justify-self: start;
+`
+
+const BoardCreateContainer = styled.div`
+  width: 40rem;
+  height: 20rem;
+  background-color: var(--color-white);
+  padding: 1rem 0 0 0;
+  position: fixed;
+  z-index: 7;
+  top: calc(50% - 10rem);
+  left: calc(50% - 20rem);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+`
+
+const BoardCreateSection = styled.div`
+  display: grid;
+  gap: 0.5rem;
+  justify-content: stretch;
+  padding: 1rem;
+`
+
+const BoardCreateActions = styled.div`
+  width: 100%;
+  height: 7rem;
+  box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+`
+
+const ErrorContainer = styled.div`
+  position: absolute;
+  left: 0;
+  width: 70%;
+
+  & > :nth-child(1) {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+`
+
 export {
   Select,
   SelectOptions,
@@ -139,4 +217,10 @@ export {
   BoardTitle,
   PinsBoardSection,
   ErrorContainer,
+  BoardCreateButtonContainer,
+  BoardIcon,
+  Text,
+  BoardCreateContainer,
+  BoardCreateSection,
+  BoardCreateActions,
 }
