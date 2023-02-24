@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components"
 
 interface FillContainerProps {
   color: string
-  fullScreen?: boolean
+  position: string
 }
 
 interface DragAreaProps {
@@ -21,9 +21,9 @@ const rotate = keyframes`
 `
 
 const FillContainer = styled.div<FillContainerProps>`
-  position: absolute;
+  position: ${({ position }) => position};
   width: 100%;
-  height: ${({ fullScreen }) => (fullScreen ? "100vh" : "100%")};
+  height: 100%;
   top: 0;
   left: 0;
   background-color: ${({ color }) => color};

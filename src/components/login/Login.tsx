@@ -94,7 +94,7 @@ const Login = ({ setModal }: LoginProps) => {
 
       {loading && (
         <>
-          <FillMode color="rgba(255,255,255,0.6)" setModal={() => {}}>
+          <FillMode color="rgba(255,255,255,0.6)">
             <Loading />
           </FillMode>
         </>

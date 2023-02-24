@@ -345,6 +345,15 @@ const FourthSectionPhotos = styled(ContainerColumn)`
   }
 `
 
+const Fill = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 0;
+  top: 0;
+`
+
 const Footer = styled.div`
   position: absolute;
   bottom: 0;
@@ -400,6 +409,7 @@ export {
   ThirdSectionPhoto,
   ThirdSectionPhotoText,
   FourthSectionPhotos,
+  Fill,
   Footer,
   FooterNav,
   FooterNavLink,

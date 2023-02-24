@@ -3,17 +3,17 @@ import { FillContainer } from "./style"
 
 interface FillModeProps {
   color?: string
-  setModal: (value: string) => void
+  setModal?: (value: string) => void
+  full?: boolean
   children?: React.ReactNode
-  fullScreen?: boolean
 }
 
-const FillMode = ({ color, setModal, children }: FillModeProps) => {
+const FillMode = ({ color, setModal, full, children }: FillModeProps) => {
   return (
     <FillContainer
-      onClick={() => setModal("")}
+      onClick={() => setModal && setModal("")}
       color={color ? color : "rgba(0, 0, 0, 0)"}
-      fullScreen
+      position={full ? "fixed" : "absolute"}
     >
       {children && children}
     </FillContainer>

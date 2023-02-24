@@ -22,6 +22,7 @@ import {
   SecondSectionPhotosSearch,
   SectionText,
   ThirdSectionPhotoText,
+  Fill,
   Footer,
   FooterNav,
   FooterNavLink,
@@ -32,7 +33,6 @@ import { Gallery, GalleryAnimated } from "./Gallery"
 import arrow from "../../assets/svg/arrowDown.svg"
 import magnifier from "../../assets/svg/magnifier.svg"
 
-import FillMode from "../util/FillMode"
 import Signup from "../../components/login/Signup"
 
 const Welcome = () => {
@@ -201,8 +201,8 @@ const Welcome = () => {
 
       {/* fifth page */}
       <Container>
+        <Fill />
         <Gallery />
-        <FillMode color="rgba(0,0,0,0.6)" setModal={() => {}} />
         <SectionPage color="var(--color-white)">
           <SectionTitle style={{ zIndex: "11" }}>
             Sign up to get your ideias

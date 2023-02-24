@@ -96,7 +96,7 @@ const Header = () => {
             </NavIcon>
             {modal === "profileOptions" && (
               <>
-                <FillMode fullScreen setModal={setModal} />
+                <FillMode full setModal={setModal} />
                 <ProfileOptions>
                   <ProfileOptionsSection>
                     <ProfileOptionsTitle>Currently in</ProfileOptionsTitle>
@@ -177,21 +177,13 @@ const Header = () => {
           </Nav>
           {modal === "login" && (
             <>
-              <FillMode
-                fullScreen
-                color="rgba(0,0,0,0.6)"
-                setModal={setModal}
-              />
+              <FillMode full color="rgba(0,0,0,0.6)" setModal={setModal} />
               <Login setModal={setModal} />
             </>
           )}
           {modal === "signup" && (
             <>
-              <FillMode
-                fullScreen
-                color="rgba(0,0,0,0.6)"
-                setModal={setModal}
-              />
+              <FillMode full color="rgba(0,0,0,0.6)" setModal={setModal} />
               <Signup setModal={setModal} />
             </>
           )}
