@@ -21,6 +21,7 @@ interface UserContextValue {
   updateUserData: (form: FormData) => Promise<User | null>
   logOut: () => void
   reUpUser: () => void
+  getProfile: (username: string) => Promise<User | null>
   user: User | null
   logged: boolean
   error: string
@@ -35,7 +36,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [error, setError] = React.useState("")
   const [loading, setLoading] = React.useState(false)
 
-  const { getUser, signOut, addDoc, updateDoc } = useServices()
+  const { getUser, getUserData, signOut, addDoc, updateDoc } = useServices()
 
   const { token, updateToken, getToken } = useCredentialStorage()
 
@@ -80,6 +81,24 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setLoading(true)
 
       response = await updateDoc("user", form)
+    } catch (error) {
+      const errorMessage = (error as AxiosError).response?.data as ErrorProps
+
+      setError(errorMessage.error)
+    } finally {
+      setLoading(false)
+    }
+    return response
+  }
+
+  const getProfile = async (username: string) => {
+    let response: User | null = null
+
+    try {
+      setError("")
+      setLoading(true)
+
+      response = await getUserData(username)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -143,6 +162,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
         signUp,
         reUpUser,
         updateUserData,
+        getProfile,
       }}
     >
       {children}

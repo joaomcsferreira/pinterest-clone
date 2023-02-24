@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { User, useUserContext } from "../../UserContext"
 import useServices from "../../services/useServices"
@@ -17,17 +17,20 @@ import {
 
 const UserProfile = () => {
   const { username } = useParams()
-  const { user } = useUserContext()
+  const { user, getProfile } = useUserContext()
 
   const [feedType, setFeedType] = React.useState("created")
   const [profile, setProfile] = useState<User | null>(null)
 
-  const { getProfile } = useServices()
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     async function getUser() {
       if (username) {
         const userData = await getProfile(username)
+
+        if (!userData) navigate("/notfound", { replace: true })
+
         setProfile(userData)
       }
     }

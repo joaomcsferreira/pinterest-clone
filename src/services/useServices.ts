@@ -20,7 +20,7 @@ const useServices = () => {
     }
   }
 
-  const getProfile = async (username: string) => {
+  const getUserData = async (username: string) => {
     const response = await api.get(`/user/${username}`)
 
     return response.data.result
@@ -74,7 +74,7 @@ const useServices = () => {
 
   return {
     getUser,
-    getProfile,
+    getUserData,
     signOut,
     addDoc,
     getDocs,

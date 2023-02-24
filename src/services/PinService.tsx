@@ -83,6 +83,7 @@ const PinService = () => {
   }
 
   const getPin = async (id: string) => {
+    let response: Pin | null = null
     try {
       setError("")
       setLoading(true)
@@ -92,6 +93,8 @@ const PinService = () => {
       const pin: Pin = await getDocs(config)
 
       setPin(pin)
+
+      return pin
     } catch (error) {
       const err = (error as AxiosError).response?.data as ErrorProps
 
@@ -99,6 +102,8 @@ const PinService = () => {
     } finally {
       setLoading(false)
     }
+
+    return response
   }
 
   const updatePinData = async (form: WithFieldValue<any>) => {

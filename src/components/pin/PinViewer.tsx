@@ -1,11 +1,4 @@
 import React from "react"
-import { useParams } from "react-router-dom"
-import CommentBuilder from "../comment/CommentBuilder"
-import CommentViewer from "../comment/CommentViewer"
-import { Avatar, ProfileInfoItem } from "../header/style"
-import PinService from "../../services/PinService"
-
-import { Link } from "react-router-dom"
 
 import {
   PinInfo,
@@ -17,14 +10,19 @@ import {
   PinAuthorInfo,
   PinInfoSection,
   PinImg,
-  WraperPinEdit,
-  InfoContainer,
-  InfoSection,
 } from "./style"
+
+import { Avatar, ProfileInfoItem } from "../header/style"
+
+import { useNavigate, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+
 import { useUserContext } from "../../UserContext"
+
+import CommentBuilder from "../comment/CommentBuilder"
+import CommentViewer from "../comment/CommentViewer"
+import PinService from "../../services/PinService"
 import Button from "../form/Button"
-import FillMode from "../util/FillMode"
-import BoardSelect from "../board/BoardSelect"
 import PinEdit from "./PinEdit"
 
 const PinViewer = () => {
@@ -35,8 +33,18 @@ const PinViewer = () => {
 
   const { user } = useUserContext()
 
+  const navigate = useNavigate()
+
   React.useEffect(() => {
-    if (id) getPin(id)
+    async function getPinData() {
+      if (id) {
+        const pinData = await getPin(id)
+
+        if (!pinData) navigate("/notfound", { replace: true })
+      }
+    }
+
+    getPinData()
   }, [])
 
   return (

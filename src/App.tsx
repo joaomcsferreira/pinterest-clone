@@ -1,6 +1,11 @@
 import React from "react"
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom"
 
 import { UserProvider } from "./UserContext"
 import Header from "./components/header/Header"
@@ -10,6 +15,7 @@ import PinViewer from "./components/pin/PinViewer"
 import UserProfile from "./components/user/UserProfile"
 import BoardPins from "./components/board/BoardPins"
 import UserEditProfile from "./components/user/UserEditProfile"
+import NotFound from "./components/notFound/NotFound"
 
 function App() {
   return (
@@ -17,12 +23,14 @@ function App() {
       <UserProvider>
         <Header />
         <Routes>
-          <Route path="" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/pin-builder" element={<PinBuilder />} />
           <Route path="/pin/:id" element={<PinViewer />} />
           <Route path="/:username" element={<UserProfile />} />
           <Route path="/:username/:board" element={<BoardPins />} />
           <Route path="/settings/edit-profile" element={<UserEditProfile />} />
+          <Route path="notfound" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/notfound" replace />} />
         </Routes>
       </UserProvider>
     </Router>

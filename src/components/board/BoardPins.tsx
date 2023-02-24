@@ -1,21 +1,29 @@
 import React from "react"
-import { useParams } from "react-router-dom"
-import { User } from "../../UserContext"
-import useServices from "../../services/useServices"
-import Feed from "../feed/Feed"
-import { Avatar } from "../header/style"
+
 import { BoardTitle, PinsBoardContainer, PinsBoardSection } from "./style"
+
+import { useNavigate, useParams } from "react-router-dom"
+
+import { User, useUserContext } from "../../UserContext"
+import { Avatar } from "../header/style"
+
+import Feed from "../feed/Feed"
 
 const BoardPins = () => {
   const { username, board } = useParams()
   const [user, setUser] = React.useState<User | null>(null)
 
-  const { getProfile } = useServices()
+  const { getProfile } = useUserContext()
+
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     async function getUser() {
       if (username) {
         const userData = await getProfile(username)
+
+        if (!userData) navigate("/notfound", { replace: true })
+
         setUser(userData)
       }
     }
