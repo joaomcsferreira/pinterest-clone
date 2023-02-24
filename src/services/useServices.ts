@@ -64,6 +64,14 @@ const useServices = () => {
     return response.data.result
   }
 
+  const deleteDoc = async (collection: string, id: string) => {
+    await api.delete(`/${collection}/${id}`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+  }
+
   return {
     getUser,
     getProfile,
@@ -71,6 +79,7 @@ const useServices = () => {
     addDoc,
     getDocs,
     updateDoc,
+    deleteDoc,
   }
 }
 

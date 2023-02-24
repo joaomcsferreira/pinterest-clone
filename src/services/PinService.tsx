@@ -5,11 +5,13 @@ import { ErrorProps } from "../components/util/Error"
 
 import { User } from "../UserContext"
 import { Comment } from "./CommentService"
-import useServices from "./useServices"
+import { Board } from "./BoardService"
+import useServices, { WithFieldValue } from "./useServices"
 
 export interface Pin {
   _id: string
   title: string
+  board: Board
   description: string
   website: string
   src: string
@@ -32,7 +34,7 @@ const PinService = () => {
   const [pins, setPins] = React.useState<Pin[] | null>(null)
   const [pin, setPin] = React.useState<Pin | null>(null)
 
-  const { addDoc, getDocs } = useServices()
+  const { addDoc, getDocs, updateDoc, deleteDoc } = useServices()
 
   const createPin = async (form: FormData) => {
     try {
@@ -99,6 +101,40 @@ const PinService = () => {
     }
   }
 
+  const updatePinData = async (form: WithFieldValue<any>) => {
+    let response: Pin | null = null
+
+    try {
+      setError("")
+      setLoading(true)
+
+      response = await updateDoc("pin", form)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
+
+    return response
+  }
+
+  const deletePin = async (id: string) => {
+    try {
+      setError("")
+      setLoading(true)
+
+      await deleteDoc("pin", id)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as ErrorProps
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     pin,
     pins,
@@ -108,6 +144,8 @@ const PinService = () => {
     getPins,
     getPin,
     setError,
+    updatePinData,
+    deletePin,
   }
 }
 

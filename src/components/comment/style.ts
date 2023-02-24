@@ -8,7 +8,7 @@ const CommentBuilderContainer = styled.div`
   justify-content: center;
   gap: 0.3rem;
   background-color: var(--color-white);
-  z-index: 10;
+  z-index: 5;
   position: absolute;
   bottom: 0;
   left: 0;

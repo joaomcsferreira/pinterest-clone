@@ -6,6 +6,11 @@ interface InfoInputProps {
   message?: string
 }
 
+interface TextProps {
+  fontSize: number
+  fontWeight: number
+}
+
 const Container = styled.div`
   background-color: var(--color-gray-fifth);
   height: 100%;
@@ -46,6 +51,40 @@ const WraperPinView = styled(Wraper)`
   box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
 `
 
+const WraperPinEdit = styled(WraperPinView)`
+  width: 70vw;
+  height: 80vh;
+  position: absolute;
+  top: calc(50% - 40vh);
+  left: calc(50% - 35vw);
+  z-index: 11;
+  padding: 2rem;
+
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: 1fr 7fr 1fr;
+
+  & > :nth-child(1) {
+    grid-column: 1 / 3;
+  }
+
+  & > :nth-child(2) {
+    grid-column: 1;
+  }
+
+  & > :nth-child(3) {
+    grid-row: 2;
+    grid-column: 2;
+    max-width: 100%;
+    align-self: center;
+    border-radius: 0.4rem;
+  }
+
+  & > :nth-child(4) {
+    grid-column: 1 / 3;
+  }
+`
+
 const Actions = styled.div`
   width: 100%;
   position: absolute;
@@ -68,8 +107,10 @@ const ButtonSave = styled.button`
   background-color: var(--color-red-button);
   font-weight: 1.1rem;
   font-weight: 700;
+  margin-left: -1rem;
   padding: 0 1rem;
   border-radius: 0 10px 10px 0;
+  z-index: 4;
   cursor: pointer;
 
   &:hover {
@@ -139,6 +180,7 @@ const PinInfo = styled.div`
   width: 100%;
   max-height: 100%;
   position: relative;
+  display: grid;
 `
 
 const PinInfoSection = styled.div`
@@ -196,6 +238,36 @@ const ErrorPostion = styled.div`
   }
 `
 
+const PinEditSection = styled(InfoSection)`
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+`
+
+const Text = styled.p<TextProps>`
+  font-size: ${({ fontSize }) => `${fontSize}rem`};
+  font-weight: ${({ fontWeight }) => fontWeight};
+`
+
+const PinDeleteContainer = styled.div`
+  width: 30rem;
+  height: 15rem;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  gap: 1rem;
+  position: absolute;
+  top: calc(50% - 7.5rem);
+  left: calc(50% - 15rem);
+  padding: 1rem;
+  z-index: 7;
+`
+
 export {
   Container,
   Wraper,
@@ -219,4 +291,8 @@ export {
   PinAuthor,
   PinAuthorInfo,
   ErrorPostion,
+  WraperPinEdit,
+  PinEditSection,
+  Text,
+  PinDeleteContainer,
 }

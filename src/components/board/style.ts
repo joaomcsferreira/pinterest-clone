@@ -17,11 +17,11 @@ const Select = styled.div`
   min-width: 10rem;
   cursor: pointer;
   position: relative;
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px;
 `
 
 const SelectOptions = styled.div`
-  min-width: 14.5rem;
+  min-width: 13rem;
   position: absolute;
   top: 3rem;
   right: 3rem;
