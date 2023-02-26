@@ -5,11 +5,13 @@ import useForm from "../../hooks/useForm"
 import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
 
-import { Container, Text, Icon, Section, SectionInput, Link } from "./style"
+import { Container, Icon, Section, SectionInput, Link } from "./style"
 import { useUserContext } from "../../UserContext"
 
 import logo from "../../assets/svg/logo.svg"
 import Error from "../util/Error"
+import Title from "../form/Title"
+import Text from "../form/Text"
 
 interface LoginProps {
   setModal: (value: string) => void
@@ -31,18 +33,16 @@ const Login = ({ setModal }: LoginProps) => {
         <Icon src={logo} />
       </Section>
       <Section>
-        <Text bold="500" size="2rem">
-          Welcome to Pinterest
-        </Text>
+        <Title size={2}>Welcome to Pinterest</Title>
         <>{error && <Error error={error} />}</>
       </Section>
       <Section>
         <SectionInput>
-          <Text size="0.9rem">Email</Text>
+          <Text size={0.9}>Email</Text>
           <Input radius={1.275} type="text" placeholder="Email" {...email} />
         </SectionInput>
         <SectionInput>
-          <Text size="0.9rem">Password</Text>
+          <Text size={0.9}>Password</Text>
           <Input
             radius={1.275}
             type="password"
@@ -52,35 +52,35 @@ const Login = ({ setModal }: LoginProps) => {
         </SectionInput>
         <SectionInput>
           <Link>
-            <Text bold="500" size="0.9rem">
+            <Text weight={500} size={0.9}>
               Forgot your password?
             </Text>
           </Link>
         </SectionInput>
-        <Button size="full" onClick={() => handleSubmit()} color="red">
+        <Button full onClick={() => handleSubmit()} color="--color-button-red">
           Log in
         </Button>
-        <Text style={{ margin: ".5rem 0" }} bold="700" size="0.95rem">
+        <Text weight={700} size={0.9}>
           OR
         </Text>
-        <Button size="full" onClick={() => {}} color="blue">
+        <Button full onClick={() => {}} color="--color-button-blue">
           Continue with Facebook
         </Button>
       </Section>
 
       <Section>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           By continuing, you agree to Pinterest's
         </Text>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           Terms of Service and acknowledge you've read our
         </Text>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           Privacy Policy. Notice at collection
         </Text>
       </Section>
       <Section>
-        <Text bold="700" size="0.8rem">
+        <Text weight={700} size={0.8}>
           Not on Pinterest?{" "}
           <Link
             onClick={() => {
@@ -94,7 +94,7 @@ const Login = ({ setModal }: LoginProps) => {
 
       {loading && (
         <>
-          <FillMode color="rgba(255,255,255,0.6)">
+          <FillMode color="--g-colorTransparentWhite60">
             <Loading />
           </FillMode>
         </>

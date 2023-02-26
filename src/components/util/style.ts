@@ -8,6 +8,7 @@ interface FillContainerProps {
 interface DragAreaProps {
   src?: string
   pinBlank: boolean
+  isOver?: boolean
 }
 
 interface DragzoneContainerProps {
@@ -32,7 +33,7 @@ const FillContainer = styled.div<FillContainerProps>`
 
 const ErrorContainer = styled.p`
   font-size: 0.75rem;
-  color: var(--color-red);
+  color: var(--g-color-red);
   margin-left: 1rem;
 `
 
@@ -53,7 +54,7 @@ const DragzoneContainer = styled.div<DragzoneContainerProps>`
   width: 21.25rem;
   height: 30.875rem;
   background-color: ${({ pinBlank }) =>
-    pinBlank ? "var(--color-red-light)" : "var(--color-gray-third)"};
+    pinBlank ? "var(--g-color-lightCoral)" : "var(--g-colorGray25)"};
   border-radius: 5px;
 `
 
@@ -70,16 +71,17 @@ const DragArea = styled.div<DragAreaProps>`
   padding: 0.5rem;
   text-align: center;
   cursor: pointer;
-  background: url(${({ src }) => src});
+  background: url(${({ src }) => src})
+    ${({ isOver }) => isOver && `var(--g-color-lightCyan)`};
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 4;
   border: 1px dashed
     ${({ pinBlank }) =>
-      pinBlank ? "var(--color-red-danger)" : "var(--color-gray-second)"};
+      pinBlank ? "var(--g-color-danger)" : "var(--g-colorGray150)"};
   color: ${({ pinBlank }) =>
-    pinBlank ? "var(--color-red-danger)" : "var(--color-black)"};
+    pinBlank ? "var(--g-color-danger)" : "var(--g-color-black)"};
 `
 
 const DragAreaInput = styled.input`

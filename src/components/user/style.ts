@@ -7,12 +7,6 @@ interface ProfileUsernameProps {
   color: string
 }
 
-interface UserTextProps {
-  fontSize: number
-  fontWeight: number
-  color?: boolean
-}
-
 interface UserPublicProfileSectionProps {
   column?: boolean
 }
@@ -40,6 +34,7 @@ const ProfileUsername = styled.h3<ProfileUsernameProps>`
 const ProfileActions = styled.div`
   display: flex;
   gap: 0.5rem;
+  margin-top: 1rem;
 `
 
 const ProfilePins = styled.div`
@@ -81,14 +76,8 @@ const UserEditProfileSection = styled.div<UserPublicProfileSectionProps>`
   align-items: ${({ column }) => column && "center"};
 `
 
-const UserText = styled.p<UserTextProps>`
-  font-size: ${({ fontSize }) => `${fontSize}rem`};
-  font-weight: ${({ fontWeight }) => fontWeight};
-  color: ${({ color }) => (color ? `var(--color-gray)` : `var(--color-black)`)};
-`
-
 const UserChangeAvatarContainer = styled.div`
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -108,7 +97,7 @@ const UserProfileActionsContainer = styled.div`
   height: 6rem;
   position: fixed;
   bottom: 0;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
   display: flex;
   gap: 0.5rem;
@@ -137,7 +126,6 @@ export {
   UserSettingMenuContainer,
   UserEditProfileContainer,
   UserEditProfileSection,
-  UserText,
   UserChangeAvatarContainer,
   UserProfileActionsContainer,
   ErrorContainer,

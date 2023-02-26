@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components"
 
-interface subtitleProps {
+interface ContainerProps {
   color: string
 }
 
@@ -12,10 +12,6 @@ interface ItemItemProps {
 interface GalleryColumnContainerProps {
   marginTop: string
   delay?: string
-}
-
-interface SectionPageProps {
-  color: string
 }
 
 const animeUp = keyframes`
@@ -53,17 +49,21 @@ const ContainerAllPages = styled.div`
   }
 `
 
-const Container = styled.div`
+const Container = styled.div<ContainerProps>`
   height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  background-color: ${({ color }) => `var(${color})`};
+`
+
+const ContainerFirstPage = styled.div`
+  height: calc(100vh - 5rem);
   display: flex;
+  flex-direction: column;
   align-items: center;
   position: relative;
   overflow: hidden;
-`
-
-const ContainerFirstPage = styled(Container)`
-  height: calc(100vh - 5rem);
-  flex-direction: column;
 
   &:before {
     content: "";
@@ -82,22 +82,11 @@ const ContainerFirstPage = styled(Container)`
     width: 100%;
     height: 60px;
     font-weight: 500;
-    background-color: var(--color-yellow);
+    background-color: var(--g-color-yellow);
     position: absolute;
     bottom: 0;
     left: 0;
   }
-`
-
-const Title = styled.h1`
-  font-size: 4rem;
-`
-
-const Subtitle = styled.h1<subtitleProps>`
-  font-size: 4rem;
-  font-weight: 500;
-  color: ${({ color }) => color};
-  animation: ${animeUp} 0.6s forwards;
 `
 
 const NavCircle = styled.div`
@@ -113,7 +102,7 @@ const NavCircleItem = styled.button<ItemItemProps>`
   height: 10px;
   border: none;
   border-radius: 50%;
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }) => `var(${color})`};
   cursor: pointer;
 `
 
@@ -125,8 +114,8 @@ const ArrowDown = styled.a<ItemItemProps>`
   display: flex;
   place-items: center;
   border-radius: 50%;
-  color: var(--color-white);
-  background-color: ${({ color }) => color};
+  color: var(--g-color-white);
+  background-color: ${({ color }) => `var(${color})`};
   padding: 0.5rem;
   cursor: pointer;
   z-index: 9;
@@ -178,13 +167,14 @@ const ContainerColumn = styled.div`
   position: relative;
 `
 
-const SectionPage = styled(ContainerColumn)<SectionPageProps>`
-  color: ${({ color }) => color};
+const SectionPage = styled(ContainerColumn)`
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
+  max-width: 85%;
+  margin: 0 auto;
   gap: 1.2rem;
 `
 
@@ -205,15 +195,8 @@ const SectionButton = styled.div`
   background-color: currentColor;
 `
 
-const SectionButtonText = styled.p`
-  color: var(--color-white);
-`
-
 const SectionPhoto = styled.img`
   position: absolute;
-`
-const SectionText = styled.p`
-  font-size: 100%;
 `
 
 const SecondSectionPhotos = styled(ContainerColumn)`
@@ -244,7 +227,7 @@ const SecondSectionPhotos = styled(ContainerColumn)`
 `
 
 const SecondSectionPhotosSearch = styled.div`
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   padding: 2rem;
   border-radius: 4rem;
   position: absolute;
@@ -309,9 +292,9 @@ const ThirdSectionPhoto = styled.div`
   }
 `
 
-const ThirdSectionPhotoText = styled(SectionText)`
+const ThirdSectionPhotoText = styled.p`
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--g-color-white);
   z-index: 1;
   width: 75%;
   margin: 65% 0 0 10%;
@@ -345,22 +328,13 @@ const FourthSectionPhotos = styled(ContainerColumn)`
   }
 `
 
-const Fill = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  left: 0;
-  top: 0;
-`
-
 const Footer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2.5rem;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   z-index: 11;
 `
 
@@ -386,8 +360,6 @@ export {
   ContainerAllPages,
   Container,
   ContainerFirstPage,
-  Title,
-  Subtitle,
   NavCircle,
   NavCircleItem,
   ArrowDown,
@@ -400,16 +372,13 @@ export {
   SectionTitle,
   SectionParagraph,
   SectionButton,
-  SectionButtonText,
   SectionPhoto,
-  SectionText,
   SecondSectionPhotos,
   SecondSectionPhotosSearch,
   ThirdSectionPhotos,
   ThirdSectionPhoto,
   ThirdSectionPhotoText,
   FourthSectionPhotos,
-  Fill,
   Footer,
   FooterNav,
   FooterNavLink,

@@ -1,13 +1,9 @@
 import React from "react"
 import { Avatar } from "../header/style"
 import { Comment } from "../../services/CommentService"
-import {
-  CommentContainer,
-  CommentsViewContainer,
-  CommentText,
-  CommentTitle,
-  CommentUsername,
-} from "./style"
+import { CommentContainer, CommentsViewContainer } from "./style"
+import Title from "../form/Title"
+import Text from "../form/Text"
 
 interface CommentViewerProps {
   comments: Comment[]
@@ -18,7 +14,7 @@ const CommentViewer = ({ comments }: CommentViewerProps) => {
     <>
       {comments && (
         <CommentsViewContainer>
-          <CommentTitle>{`${comments.length} Comments`}</CommentTitle>
+          <Title size={1.8} weight={700}>{`${comments.length} Comments`}</Title>
           {comments.map((comment) => (
             <CommentContainer key={comment._id}>
               <Avatar
@@ -33,8 +29,10 @@ const CommentViewer = ({ comments }: CommentViewerProps) => {
                   {comment.user.avatar ? "" : comment.user.username?.charAt(0)}
                 </p>
               </Avatar>
-              <CommentUsername>{comment.user.username}</CommentUsername>
-              <CommentText>{comment.text}</CommentText>
+              <Text weight={500} capitalize>
+                {comment.user.username}
+              </Text>
+              <Text>{comment.text}</Text>
             </CommentContainer>
           ))}
         </CommentsViewContainer>

@@ -7,41 +7,36 @@ import {
   ContainerFirstPage,
   NavCircle,
   NavCircleItem,
-  SectionButton,
-  SectionButtonText,
   SectionPage,
-  SectionParagraph,
   SectionPhoto,
   SecondSectionPhotos,
   ThirdSectionPhotos,
   ThirdSectionPhoto,
   FourthSectionPhotos,
-  SectionTitle,
-  Subtitle,
-  Title,
   SecondSectionPhotosSearch,
-  SectionText,
   ThirdSectionPhotoText,
-  Fill,
   Footer,
   FooterNav,
   FooterNavLink,
 } from "./style"
 
-import { Gallery, GalleryAnimated } from "./Gallery"
+import { GalleryAnimated } from "./Gallery"
 
 import arrow from "../../assets/svg/arrowDown.svg"
 import magnifier from "../../assets/svg/magnifier.svg"
 
 import Signup from "../../components/login/Signup"
+import Title from "../form/Title"
+import Text from "../form/Text"
+import Button from "../form/Button"
 
 const Welcome = () => {
   const [active, setActive] = React.useState(0)
   const subtitles = [
-    { id: 0, message: "summer outfit idea", color: "#0076D3" },
-    { id: 1, message: "activity for kids", color: "#618C7B" },
-    { id: 2, message: "idea for special dinner", color: "#C28B00" },
-    { id: 3, message: "Do it yourself project", color: "#407A57" },
+    { id: 0, message: "summer outfit idea", color: "--g-color-celeste" },
+    { id: 1, message: "activity for kids", color: "--g-color-olive" },
+    { id: 2, message: "idea for special dinner", color: "--g-color-pumpkin" },
+    { id: 3, message: "Do it yourself project", color: "--g-color-aspargo" },
   ]
 
   const photos = [
@@ -100,11 +95,11 @@ const Welcome = () => {
   return (
     <ContainerAllPages>
       <ContainerFirstPage>
-        <Title>Get your next</Title>
+        <Title size={4}>Get your next</Title>
 
-        <Subtitle color={subtitles[active].color}>
+        <Title size={4} color={subtitles[active].color}>
           {subtitles[active].message}
-        </Subtitle>
+        </Title>
 
         <NavCircle>
           {subtitles.map((subtitle) => (
@@ -116,7 +111,7 @@ const Welcome = () => {
               color={
                 subtitle.id === active
                   ? subtitle.color
-                  : `var(--color-gray-light)`
+                  : "--g-colorGray100Hovered"
               }
             />
           ))}
@@ -128,7 +123,7 @@ const Welcome = () => {
       </ContainerFirstPage>
 
       {/* second page */}
-      <Container style={{ backgroundColor: "var(--color-yellow)" }} id="second">
+      <Container color={"--g-color-yellow"} id="second">
         <ContainerColumn>
           <SecondSectionPhotos>
             {photos[0].urls.map((photo, index) => (
@@ -138,32 +133,46 @@ const Welcome = () => {
 
           <SecondSectionPhotosSearch>
             <img src={magnifier} alt="" />
-            <SectionText>easy chicken dinner</SectionText>
+            <Text size={1.3} weight={700}>
+              easy chicken dinner
+            </Text>
           </SecondSectionPhotosSearch>
         </ContainerColumn>
 
-        <SectionPage color="var(--color-pink)">
-          <SectionTitle>Search for an idea</SectionTitle>
-          <SectionParagraph>
+        <SectionPage>
+          <Title size={4} weight={700} color={"--g-color-deepPink"}>
+            Search for an idea
+          </Title>
+          <Text size={1.5} color={"--g-color-deepPink"}>
             What do you want to try next? Think of something you're into — like
             “easy chicken dinner” — and see what you find.
-          </SectionParagraph>
-          <SectionButton>
-            <SectionButtonText>Explore</SectionButtonText>
-          </SectionButton>
+          </Text>
+          <Button
+            radius={2}
+            color={"--color-button-deepPink"}
+            padding={"0.8rem 1rem"}
+          >
+            Explore
+          </Button>
         </SectionPage>
       </Container>
 
       {/* third page */}
-      <Container style={{ backgroundColor: "var(--color-mint)" }}>
-        <SectionPage color="var(--color-green)">
-          <SectionTitle>Save ideas you like</SectionTitle>
-          <SectionParagraph>
+      <Container color="--g-color-mint">
+        <SectionPage>
+          <Title size={4} weight={700} color={"--g-color-pine"}>
+            Save ideas you like
+          </Title>
+          <Text size={1.5} color={"--g-color-pine"}>
             Collect your favorites so you can get back to them later.
-          </SectionParagraph>
-          <SectionButton>
-            <SectionButtonText>Explore</SectionButtonText>
-          </SectionButton>
+          </Text>
+          <Button
+            radius={2}
+            color={"--color-button-pine"}
+            padding={"0.8rem 1rem"}
+          >
+            Explore
+          </Button>
         </SectionPage>
 
         <ContainerColumn>
@@ -179,7 +188,7 @@ const Welcome = () => {
       </Container>
 
       {/* fourth page */}
-      <Container style={{ backgroundColor: "var(--color-light-pink)" }}>
+      <Container color="--g-color-pink">
         <ContainerColumn>
           <FourthSectionPhotos>
             {photos[2].urls.map((photo, index) => (
@@ -187,26 +196,34 @@ const Welcome = () => {
             ))}
           </FourthSectionPhotos>
         </ContainerColumn>
-        <SectionPage color="var(--color-orange)">
-          <SectionTitle>See it, make it, try it, do it</SectionTitle>
-          <SectionParagraph>
+
+        <SectionPage>
+          <Title size={4} weight={700} color={"--g-color-coral"}>
+            See it, make it, try it, do it
+          </Title>
+          <Text size={1.5} color={"--g-color-coral"}>
             The best part of Pinterest is discovering new things and ideas from
             people around the world.
-          </SectionParagraph>
-          <SectionButton>
-            <SectionButtonText>Explore</SectionButtonText>
-          </SectionButton>
+          </Text>
+          <Button
+            radius={2}
+            color={"--color-button-coral"}
+            padding={"0.8rem 1rem"}
+          >
+            Explore
+          </Button>
         </SectionPage>
       </Container>
 
       {/* fifth page */}
-      <Container>
-        <Fill />
-        <Gallery />
-        <SectionPage color="var(--color-white)">
-          <SectionTitle style={{ zIndex: "11" }}>
+      <Container
+        style={{ background: "url(/images/background-set-photos.PNG)" }}
+        color=""
+      >
+        <SectionPage color="--g-color-white">
+          <Title size={4} weight={700} color={"--g-color-white"}>
             Sign up to get your ideias
-          </SectionTitle>
+          </Title>
         </SectionPage>
         <ContainerColumn>
           <Signup setModal={() => {}} />

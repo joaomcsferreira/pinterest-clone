@@ -17,13 +17,15 @@ import UserAccount from "./UserAccount"
 import UserPublicProfile from "./UserPublicProfile"
 import NotImplementeded from "../notFound/NotImplementeded"
 import Error from "../util/Error"
+import FillMode from "../util/FillMode"
+import Loading from "../util/Loading"
 
 const UserEditProfile = () => {
   const [typeSetting, setTypeSetting] = React.useState("public")
   const [image, setImage] = React.useState<imageProps | null>(null)
   const [modal, setModal] = React.useState("")
 
-  const { user, error, reUpUser, updateUserData } = useUserContext()
+  const { loading, user, error, reUpUser, updateUserData } = useUserContext()
   const navigate = useNavigate()
 
   const firstName = useForm()
@@ -104,11 +106,12 @@ const UserEditProfile = () => {
             {typesSetting.map((type, index) => (
               <Button
                 key={index}
-                size="strech"
                 onClick={() => setTypeSetting(type.type)}
                 active={typeSetting === type.type}
-                invisible
                 radius={0.5}
+                color={"--color-button-invisible"}
+                textDark
+                padding="0.5rem"
               >
                 {type.title}
               </Button>
@@ -131,15 +134,28 @@ const UserEditProfile = () => {
             <ErrorContainer>{error && <Error error={error} />}</ErrorContainer>
             <Button
               onClick={() => handleResetInitialValue()}
-              color="gray"
-              invisible
+              color="--color-button-gray"
+              textDark
+              padding="0.5rem 0.8rem"
             >
               Reset
             </Button>
-            <Button onClick={() => handleSubmit()} color="red">
+            <Button
+              onClick={() => handleSubmit()}
+              color="--color-button-red"
+              padding="0.5rem 0.8rem"
+            >
               Save
             </Button>
           </UserProfileActionsContainer>
+
+          {loading && (
+            <>
+              <FillMode color="--g-colorTransparentWhite60" setModal={() => {}}>
+                <Loading />
+              </FillMode>
+            </>
+          )}
         </UserSettingContainer>
       )}
     </>

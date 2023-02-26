@@ -6,19 +6,14 @@ interface InfoInputProps {
   message?: string
 }
 
-interface TextProps {
-  fontSize: number
-  fontWeight: number
-}
-
 const Container = styled.div`
-  background-color: var(--color-gray-fifth);
+  background-color: var(--g-colorGray100);
   height: 100%;
   padding: 5vh 0;
 `
 
 const Wraper = styled.div`
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   max-width: 85%;
   border-radius: 1rem;
   position: relative;
@@ -48,7 +43,7 @@ const WraperPinView = styled(Wraper)`
 
   max-width: 80vw;
 
-  box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
 `
 
 const WraperPinEdit = styled(WraperPinView)`
@@ -103,8 +98,8 @@ const ActionsItems = styled.div`
 
 const ButtonSave = styled.button`
   border: none;
-  color: var(--color-white);
-  background-color: var(--color-red-button);
+  color: var(--g-color-white);
+  background-color: var(--color-button-red);
   font-weight: 1.1rem;
   font-weight: 700;
   margin-left: -1rem;
@@ -114,7 +109,7 @@ const ButtonSave = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-red-button-second);
+    background-color: var(--color-button-red50);
   }
 `
 
@@ -122,7 +117,7 @@ const ActionOptions = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
 `
 
 const ActionOption = styled.p`
@@ -134,7 +129,7 @@ const ActionOption = styled.p`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-gray-second);
+    background-color: var(--g-colorGray150);
   }
 `
 
@@ -154,19 +149,15 @@ const InfoSection = styled.div`
 
 const InfoInput = styled.input<InfoInputProps>`
   border: none;
-  border-bottom: 1px solid var(--color-gray-fifth);
+  border-bottom: 1px solid var(--g-colorGray100);
   font-size: ${({ size }) => `${size}rem`};
   padding: 0.5rem;
   font-weight: ${({ bold }) => (bold ? "700" : "400")};
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid var(--color-blue);
+    border-bottom: 2px solid var(--g-color-info);
   }
-`
-
-const InfoText = styled.p`
-  font-weight: 500;
 `
 
 const PinImg = styled.img`
@@ -195,15 +186,6 @@ const PinInfoLink = styled.a`
   cursor: pointer;
 `
 
-const PinInfoTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: 500;
-`
-
-const PinInfoText = styled.p`
-  font-size: 0.9rem;
-`
-
 const PinAuthor = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -211,14 +193,9 @@ const PinAuthor = styled.div`
 `
 
 const PinAuthorInfo = styled.div`
-  & > :first-child {
-    font-weight: 700;
-  }
-
-  &:nth-child(n) :not(:first-child) {
-    font-size: 0.8rem;
-    font-weight: 100;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const ErrorPostion = styled.div`
@@ -246,15 +223,10 @@ const PinEditSection = styled(InfoSection)`
   grid-template-rows: 1fr;
 `
 
-const Text = styled.p<TextProps>`
-  font-size: ${({ fontSize }) => `${fontSize}rem`};
-  font-weight: ${({ fontWeight }) => fontWeight};
-`
-
 const PinDeleteContainer = styled.div`
   width: 30rem;
   height: 15rem;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -280,19 +252,15 @@ export {
   InfoContainer,
   InfoSection,
   InfoInput,
-  InfoText,
   ButtonSave,
   PinImg,
   PinInfo,
   PinInfoSection,
   PinInfoLink,
-  PinInfoTitle,
-  PinInfoText,
   PinAuthor,
   PinAuthorInfo,
   ErrorPostion,
   WraperPinEdit,
   PinEditSection,
-  Text,
   PinDeleteContainer,
 }

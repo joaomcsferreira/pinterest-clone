@@ -2,31 +2,34 @@ import React from "react"
 import { ButtonContainer } from "./style"
 
 interface ButtonProps {
-  color?: string
-  invisible?: boolean
+  color: string
   active?: boolean
   radius?: number
-  size?: string
+  full?: boolean
+  textDark?: boolean
+  padding?: string
   children: React.ReactNode
   onClick?: () => void
 }
 
 const Button = ({
   color,
-  invisible,
   active,
   radius,
-  size,
+  full,
+  textDark,
+  padding,
   children,
   onClick,
 }: ButtonProps) => {
   return (
     <ButtonContainer
-      invisible={invisible}
       active={active}
       radius={radius}
-      size={size}
+      full={full}
+      textDark={textDark}
       color={color}
+      padding={padding}
       onClick={onClick}
     >
       {children}

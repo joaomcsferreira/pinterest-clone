@@ -113,7 +113,7 @@ const PinService = () => {
       setError("")
       setLoading(true)
 
-      response = await updateDoc("pin", form)
+      response = await updateDoc(`pin/${form.id}`, form)
     } catch (error) {
       const err = (error as AxiosError).response?.data as ErrorProps
 

@@ -12,11 +12,11 @@ import {
   SelectOption,
   SelectOptions,
   SelectOptionsItems,
-  Text,
 } from "./style"
 
 import plus from "../../assets/svg/plus.svg"
 import FillMode from "../util/FillMode"
+import Text from "../form/Text"
 
 interface BoardSelectProps {
   board: string
@@ -60,9 +60,7 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
           </SelectOptionsItems>
           <BoardCreateButtonContainer onClick={() => setModal("create")}>
             <BoardIcon src={plus} />
-            <Text fontSize={1} fontWeight={500}>
-              Create board
-            </Text>
+            <Text weight={500}>Create board</Text>
           </BoardCreateButtonContainer>
         </SelectOptions>
       )}

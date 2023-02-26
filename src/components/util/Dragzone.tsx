@@ -22,6 +22,7 @@ interface DrapzoneProps {
 
 const Drapzone = ({ setPin, pinBlank }: DrapzoneProps) => {
   const [url, setUrl] = React.useState("")
+  const [isOver, setIsOver] = React.useState(false)
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -32,12 +33,24 @@ const Drapzone = ({ setPin, pinBlank }: DrapzoneProps) => {
         setPin({ preview, raw })
         setUrl(preview)
       }
+      setIsOver(false)
+    },
+    onDragOver: () => {
+      setIsOver(true)
+    },
+    onDragLeave: () => {
+      setIsOver(false)
     },
   })
 
   return (
     <DragzoneContainer pinBlank={pinBlank}>
-      <DragArea {...getRootProps()} src={url} pinBlank={pinBlank}>
+      <DragArea
+        {...getRootProps()}
+        src={url}
+        pinBlank={pinBlank}
+        isOver={isOver}
+      >
         <DragAreaInput {...getInputProps()} />
         {!url && (
           <>

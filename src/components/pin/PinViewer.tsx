@@ -2,9 +2,7 @@ import React from "react"
 
 import {
   PinInfo,
-  PinInfoText,
   PinInfoLink,
-  PinInfoTitle,
   WraperPinView,
   PinAuthor,
   PinAuthorInfo,
@@ -12,7 +10,7 @@ import {
   PinImg,
 } from "./style"
 
-import { Avatar, ProfileInfoItem } from "../header/style"
+import { Avatar } from "../header/style"
 
 import { useNavigate, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
@@ -24,6 +22,8 @@ import CommentViewer from "../comment/CommentViewer"
 import PinService from "../../services/PinService"
 import Button from "../form/Button"
 import PinEdit from "./PinEdit"
+import Title from "../form/Title"
+import Text from "../form/Text"
 
 const PinViewer = () => {
   const [modal, setModal] = React.useState("")
@@ -56,16 +56,20 @@ const PinViewer = () => {
             <PinInfo>
               <PinInfoSection>
                 {user?.username === pin.user.username && (
-                  <Button onClick={() => setModal("edit")} invisible>
+                  <Button
+                    onClick={() => setModal("edit")}
+                    color={"--color-button-invisible"}
+                    textDark
+                  >
                     Edit pin
                   </Button>
                 )}
 
                 <PinInfoLink>{pin.website}</PinInfoLink>
 
-                <PinInfoTitle>{pin.title}</PinInfoTitle>
+                <Title size={2.2}>{pin.title}</Title>
 
-                <PinInfoText>{pin.description}</PinInfoText>
+                <Text size={0.9}>{pin.description}</Text>
 
                 <Link to={`/${pin.user.username}`}>
                   <PinAuthor>
@@ -82,13 +86,14 @@ const PinViewer = () => {
                       </p>
                     </Avatar>
                     <PinAuthorInfo>
-                      <ProfileInfoItem>
+                      <Text weight={500} capitalize>
                         {pin.user.firstName
                           ? `${pin.user.firstName} ${pin.user.lastName}`
                           : pin.user.username}
-                      </ProfileInfoItem>
-                      <ProfileInfoItem>Personal</ProfileInfoItem>
-                      <ProfileInfoItem>{pin.user.email}</ProfileInfoItem>
+                      </Text>
+                      <Text size={0.8} weight={100}>
+                        0 followers
+                      </Text>
                     </PinAuthorInfo>
                   </PinAuthor>
                 </Link>

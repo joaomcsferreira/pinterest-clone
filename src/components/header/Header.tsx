@@ -9,11 +9,9 @@ import {
   Logo,
   ProfileOptions,
   ProfileOptionsSection,
-  ProfileOptionsTitle,
   ProfileOptionsItem,
   ProfileInfo,
   Profile,
-  ProfileInfoItem,
   Avatar,
   NavProfile,
 } from "./style"
@@ -31,6 +29,7 @@ import FillMode from "../util/FillMode"
 import Input from "../form/Input"
 import useForm from "../../hooks/useForm"
 import { Link } from "react-router-dom"
+import Text from "../form/Text"
 
 const Header = () => {
   const [modal, setModal] = React.useState("")
@@ -51,14 +50,17 @@ const Header = () => {
                 </Logo>
               </Link>
             </NavIcon>
-            <Button color="black">Home</Button>
+            <Button color="--color-button-black">Home</Button>
             <Link to={"/pin-builder"}>
-              <Button invisible>Create</Button>
+              <Button textDark color="--color-button-invisible">
+                Create
+              </Button>
             </Link>
           </Nav>
           <Input
             blank
             color
+            background="--g-colorGray75"
             type="text"
             placeholder="Search"
             radius={1.7}
@@ -99,7 +101,9 @@ const Header = () => {
                 <FillMode full setModal={setModal} />
                 <ProfileOptions>
                   <ProfileOptionsSection>
-                    <ProfileOptionsTitle>Currently in</ProfileOptionsTitle>
+                    <Text padding="0.2rem 0.4rem" size={0.75}>
+                      Currently in
+                    </Text>
                     <Link to={`/${user.username}`}>
                       <Profile>
                         <Avatar
@@ -113,24 +117,28 @@ const Header = () => {
                           <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
                         </Avatar>
                         <ProfileInfo>
-                          <ProfileInfoItem>
+                          <Text weight={500} capitalize>
                             {user.firstName
                               ? `${user.firstName} ${user.lastName}`
                               : user.username}
-                          </ProfileInfoItem>
-                          <ProfileInfoItem>Personal</ProfileInfoItem>
-                          <ProfileInfoItem>{user.email}</ProfileInfoItem>
+                          </Text>
+                          <Text>Personal</Text>
+                          <Text>{user.email}</Text>
                         </ProfileInfo>
                       </Profile>
                     </Link>
                   </ProfileOptionsSection>
                   <ProfileOptionsSection>
-                    <ProfileOptionsTitle>Your accounts</ProfileOptionsTitle>
+                    <Text padding="0.2rem 0.4rem" size={0.75}>
+                      Your accounts
+                    </Text>
                     <ProfileOptionsItem>Add account</ProfileOptionsItem>
                     <ProfileOptionsItem>Convert to business</ProfileOptionsItem>
                   </ProfileOptionsSection>
                   <ProfileOptionsSection>
-                    <ProfileOptionsTitle>More options</ProfileOptionsTitle>
+                    <Text padding="0.2rem 0.4rem" size={0.75}>
+                      More options
+                    </Text>
                     <ProfileOptionsItem>Settings</ProfileOptionsItem>
                     <ProfileOptionsItem>Tune your home feed</ProfileOptionsItem>
                     <ProfileOptionsItem>
@@ -163,13 +171,17 @@ const Header = () => {
             <NavItem>About</NavItem>
             <NavItem>Business</NavItem>
             <NavItem>Blog</NavItem>
-            <Button size="full" onClick={() => setModal("login")} color="red">
+            <Button
+              full
+              onClick={() => setModal("login")}
+              color="--color-button-red"
+            >
               Log in
             </Button>
             <Button
-              size="full"
-              color="gray"
-              invisible
+              full
+              color="--color-button-gray"
+              textDark
               onClick={() => setModal("signup")}
             >
               Sign up
@@ -177,13 +189,21 @@ const Header = () => {
           </Nav>
           {modal === "login" && (
             <>
-              <FillMode full color="rgba(0,0,0,0.6)" setModal={setModal} />
+              <FillMode
+                full
+                color="--g-colorTransparentBlack60"
+                setModal={setModal}
+              />
               <Login setModal={setModal} />
             </>
           )}
           {modal === "signup" && (
             <>
-              <FillMode full color="rgba(0,0,0,0.6)" setModal={setModal} />
+              <FillMode
+                full
+                color="--g-colorTransparentBlack60"
+                setModal={setModal}
+              />
               <Signup setModal={setModal} />
             </>
           )}

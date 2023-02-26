@@ -6,18 +6,12 @@ import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
 
 import { useUserContext } from "../../UserContext"
-import {
-  Container,
-  Text,
-  Icon,
-  Section,
-  SectionInput,
-  Footer,
-  Link,
-} from "./style"
+import { Container, Icon, Section, SectionInput, Footer, Link } from "./style"
 
 import logo from "../../assets/svg/logo.svg"
 import Error from "../util/Error"
+import Title from "../form/Title"
+import Text from "../form/Text"
 
 interface SignupProps {
   setModal: (value: string) => void
@@ -40,21 +34,17 @@ const Signup = ({ setModal }: SignupProps) => {
         <Icon src={logo} />
       </Section>
       <Section>
-        <Text bold="500" size="2rem">
-          Welcome to Pinterest
-        </Text>
-        <Text bold="500" size="1rem">
-          Find new ideas to try
-        </Text>
+        <Title size={2}>Welcome to Pinterest</Title>
+        <Text>Find new ideas to try</Text>
         <>{error && <Error error={error} />}</>
       </Section>
       <Section>
         <SectionInput>
-          <Text size="0.9rem">Email</Text>
+          <Text size={0.9}>Email</Text>
           <Input radius={1.275} type="text" placeholder="Email" {...email} />
         </SectionInput>
         <SectionInput>
-          <Text size="0.9rem">Password</Text>
+          <Text size={0.9}>Password</Text>
           <Input
             radius={1.275}
             type="password"
@@ -63,7 +53,7 @@ const Signup = ({ setModal }: SignupProps) => {
           />
         </SectionInput>
         <SectionInput>
-          <Text size="0.9rem">Age</Text>
+          <Text size={0.9}>Age</Text>
           <Input
             radius={1.275}
             type="number"
@@ -72,34 +62,34 @@ const Signup = ({ setModal }: SignupProps) => {
             {...age}
           />
         </SectionInput>
-        <Button size="full" onClick={() => handleSubmit()} color="red">
+        <Button full onClick={() => handleSubmit()} color="--color-button-red">
           Continue
         </Button>
-        <Text style={{ margin: ".5rem 0" }} bold="700" size="0.95rem">
+        <Text size={0.9} weight={700}>
           OR
         </Text>
         <Button
-          size="full"
+          full
           onClick={() => console.log("entrando")}
-          color="blue"
+          color="--color-button-blue"
         >
           Continue with Facebook
         </Button>
       </Section>
 
       <Section>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           By continuing, you agree to Pinterest's
         </Text>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           Terms of Service and acknowledge you've read our
         </Text>
-        <Text bold="500" size="0.75rem">
+        <Text weight={500} size={0.75}>
           Privacy Policy. Notice at collection
         </Text>
       </Section>
       <Section>
-        <Text bold="700" size="0.8rem">
+        <Text weight={700} size={0.8}>
           Already a member?{" "}
           <Link
             onClick={() => {
@@ -113,13 +103,13 @@ const Signup = ({ setModal }: SignupProps) => {
 
       <Footer>
         <Link>
-          <Text bold="600">Create a free business account</Text>
+          <Text weight={600}>Create a free business account</Text>
         </Link>
       </Footer>
 
       {loading && (
         <>
-          <FillMode color="rgba(255,255,255,0.6)">
+          <FillMode color="--g-colorTransparentWhite60">
             <Loading />
           </FillMode>
         </>

@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import PinService, { getTypesProps } from "../../services/PinService"
+import FillMode from "../util/FillMode"
+import Loading from "../util/Loading"
 import { FeedContainer, Img, ImgContainer } from "./style"
 
 interface FeedProps {
@@ -11,7 +13,7 @@ interface FeedProps {
 }
 
 const Feed = ({ type, user, board, total }: FeedProps) => {
-  const { pins, getPins } = PinService()
+  const { loading, pins, getPins } = PinService()
 
   React.useEffect(() => {
     getPins({ type, user, board, total })
@@ -27,7 +29,13 @@ const Feed = ({ type, user, board, total }: FeedProps) => {
             </ImgContainer>
           </Link>
         ))}
-      {/* There aren’t any Pins on this board yet */}
+      {loading && (
+        <>
+          <FillMode color="--g-colorTransparentWhite60">
+            <Loading />
+          </FillMode>
+        </>
+      )}
     </FeedContainer>
   )
 }

@@ -2,10 +2,11 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { User, useUserContext } from "../../UserContext"
-import useServices from "../../services/useServices"
 import BoardGroup from "../board/BoardList"
 import Feed from "../feed/Feed"
 import Button from "../form/Button"
+import Text from "../form/Text"
+import Title from "../form/Title"
 import { Avatar } from "../header/style"
 import {
   ProfileActions,
@@ -53,34 +54,25 @@ const UserProfile = () => {
             >
               <p>{profile.avatar ? "" : profile.username.charAt(0)}</p>
             </Avatar>
-            <ProfileUsername
-              color="var(--color-black)"
-              size="2.5"
-              bold="500"
-              capitalize
-            >
+
+            <Title size={2.5} capitalize>
               {profile.firstName
                 ? `${profile.firstName} ${profile.lastName}`
                 : profile.username}
-            </ProfileUsername>
-            <ProfileUsername color="var(--color-gray)" size="0.9" bold="400">
-              {`@${profile.username}`}
-            </ProfileUsername>
-            <ProfileUsername
-              color="var(--color-black)"
-              size="1"
-              bold="400"
-              capitalize
-            >
-              0 following
-            </ProfileUsername>
+            </Title>
+            <Text
+              size={0.9}
+              color={"--g-colorGray200"}
+            >{`@${profile.username}`}</Text>
+            <Text capitalize>0 following</Text>
+
             <ProfileActions>
-              <Button size="full" color="gray" invisible>
+              <Button full color="--color-button-gray" textDark>
                 Share
               </Button>
               {user?.username === profile.username && (
                 <Link to={"/settings/edit-profile"}>
-                  <Button size="full" color="gray" invisible>
+                  <Button full color="--color-button-gray" textDark>
                     Edit Profile
                   </Button>
                 </Link>
@@ -93,17 +85,21 @@ const UserProfile = () => {
               <ProfileActions>
                 <Button
                   onClick={() => setFeedType("created")}
-                  invisible
                   active={feedType === "created"}
                   radius={0.5}
+                  color={"--color-button-invisible"}
+                  textDark
+                  padding="0.5rem"
                 >
                   Created
                 </Button>
                 <Button
                   onClick={() => setFeedType("saved")}
-                  invisible
                   active={feedType === "saved"}
                   radius={0.5}
+                  color={"--color-button-invisible"}
+                  textDark
+                  padding="0.5rem"
                 >
                   Saved
                 </Button>

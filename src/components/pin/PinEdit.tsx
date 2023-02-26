@@ -5,15 +5,16 @@ import PinService, { Pin } from "../../services/PinService"
 import BoardSelect from "../board/BoardSelect"
 import Button from "../form/Button"
 import Input from "../form/Input"
+import Text from "../form/Text"
+import Title from "../form/Title"
 import Error from "../util/Error"
 import FillMode from "../util/FillMode"
+import Loading from "../util/Loading"
 import {
   InfoSection,
   PinEditSection,
   PinImg,
   PinInfo,
-  PinInfoTitle,
-  Text,
   WraperPinEdit,
   PinDeleteContainer,
 } from "./style"
@@ -31,7 +32,7 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
   const description = useForm()
   const website = useForm()
 
-  const { updatePinData, deletePin, error } = PinService()
+  const { updatePinData, deletePin, error, loading } = PinService()
 
   const navigate = useNavigate()
 
@@ -69,22 +70,18 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
 
   return (
     <>
-      <FillMode setModal={setModal} full color="rgba(0,0,0,0.6)" />
+      <FillMode setModal={setModal} full color="--g-colorTransparentBlack60" />
       <WraperPinEdit>
-        <PinInfoTitle style={{ justifySelf: "center" }}>
+        <Title justify="center" size={2.5}>
           Edit this Pin
-        </PinInfoTitle>
+        </Title>
         <PinInfo style={{ gap: "0rem" }}>
           <PinEditSection>
-            <Text fontSize={1} fontWeight={400}>
-              Organize to a board
-            </Text>
+            <Text weight={400}>Organize to a board</Text>
             <BoardSelect board={board} setBoard={setBoard} />
           </PinEditSection>
           <PinEditSection>
-            <Text fontSize={1} fontWeight={400}>
-              Define what your Pin is about.
-            </Text>
+            <Text weight={400}>Define what your Pin is about.</Text>
             <Input
               type="text"
               placeholder="Add your title"
@@ -93,9 +90,7 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
             />
           </PinEditSection>
           <PinEditSection>
-            <Text fontSize={1} fontWeight={400}>
-              Describe it
-            </Text>
+            <Text weight={400}>Describe it</Text>
             <Input
               type="text"
               placeholder="Tell everyone what yout Pin is about"
@@ -104,9 +99,7 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
             />
           </PinEditSection>
           <PinEditSection>
-            <Text fontSize={1} fontWeight={400}>
-              Add a link for further information.
-            </Text>
+            <Text weight={400}>Add a link for further information.</Text>
             <Input
               type="text"
               placeholder="Add a destination link"
@@ -121,17 +114,21 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
         <InfoSection style={{ justifyContent: "space-between" }}>
           <Button
             onClick={() => setSurfaceModal("surface")}
-            color="gray"
-            invisible
+            color="--color-button-gray"
+            textDark
           >
             Delete
           </Button>
           {error && <Error error={error} />}
           <PinEditSection>
-            <Button onClick={() => setModal("")} color="gray" invisible>
+            <Button
+              onClick={() => setModal("")}
+              color="--color-button-gray"
+              textDark
+            >
               Cancel
             </Button>
-            <Button onClick={() => handleSubmit()} color="red">
+            <Button onClick={() => handleSubmit()} color="--color-button-red">
               Save
             </Button>
           </PinEditSection>
@@ -139,24 +136,39 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
 
         {surfaceModal && (
           <>
-            <FillMode color="rgba(0,0,0,0.6)" full setModal={setSurfaceModal} />
+            <FillMode
+              color="--g-colorTransparentBlack60"
+              full
+              setModal={setSurfaceModal}
+            />
             <PinDeleteContainer>
-              <Text fontSize={1} fontWeight={500}>
+              <Text weight={500}>
                 Are you sure you want to delete this Pin?
               </Text>
               <PinEditSection>
                 <Button
                   onClick={() => setSurfaceModal("")}
-                  color="gray"
-                  invisible
+                  color="--color-button-gray"
+                  textDark
                 >
                   Cancel
                 </Button>
-                <Button onClick={() => handleDeletePin()} color="red">
+                <Button
+                  onClick={() => handleDeletePin()}
+                  color="--color-button-red"
+                >
                   Delete
                 </Button>
               </PinEditSection>
             </PinDeleteContainer>
+          </>
+        )}
+
+        {loading && (
+          <>
+            <FillMode color="--g-colorTransparentWhite60" setModal={() => {}}>
+              <Loading />
+            </FillMode>
           </>
         )}
       </WraperPinEdit>

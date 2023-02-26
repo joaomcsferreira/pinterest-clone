@@ -11,7 +11,7 @@ interface TextProps {
 
 const Select = styled.div`
   padding: 0 1rem;
-  background-color: var(--color-gray-third);
+  background-color: var(--g-colorGray25);
   display: flex;
   place-items: center;
   min-width: 10rem;
@@ -25,11 +25,11 @@ const SelectOptions = styled.div`
   position: absolute;
   top: 3rem;
   right: 3rem;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
   border-radius: 0.8rem;
   padding: 0.05rem;
   text-align: center;
@@ -56,7 +56,7 @@ const SelectOption = styled.p`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-gray-second);
+    background-color: var(--g-colorGray150);
   }
 `
 
@@ -102,7 +102,7 @@ const BoardItemImgGroup = styled.div`
 `
 
 const BoardItemImg = styled.div<BoardItemImgProps>`
-  background: ${({ src }) => `url(${src})` || ""} var(--color-gray-fifth);
+  background: ${({ src }) => `url(${src})` || ""} var(--g-colorGray100);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -131,7 +131,7 @@ const PinsBoardSection = styled.div`
 
 const BoardCreateButtonContainer = styled.div`
   padding: 0.8rem 1rem;
-  border-top: 1px solid var(--color-gray-second);
+  border-top: 1px solid var(--g-colorGray150);
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
@@ -140,7 +140,7 @@ const BoardCreateButtonContainer = styled.div`
   z-index: 6;
 
   &:hover {
-    background-color: var(--color-gray-second);
+    background-color: var(--g-colorGray150);
     cursor: pointer;
   }
 `
@@ -150,19 +150,13 @@ const BoardIcon = styled.img`
   width: 2rem;
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: var(--color-red);
-`
-
-const Text = styled.p<TextProps>`
-  font-size: ${({ fontSize }) => `${fontSize}rem`};
-  font-weight: ${({ fontWeight }) => fontWeight};
-  justify-self: start;
+  background-color: var(--g-color-red);
 `
 
 const BoardCreateContainer = styled.div`
   width: 40rem;
   height: 20rem;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   padding: 1rem 0 0 0;
   position: fixed;
   z-index: 7;
@@ -184,7 +178,7 @@ const BoardCreateSection = styled.div`
 const BoardCreateActions = styled.div`
   width: 100%;
   height: 7rem;
-  box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 5px 2px var(-g-colorTransparentGray20);
   display: flex;
   justify-content: end;
   align-items: center;
@@ -219,7 +213,6 @@ export {
   ErrorContainer,
   BoardCreateButtonContainer,
   BoardIcon,
-  Text,
   BoardCreateContainer,
   BoardCreateSection,
   BoardCreateActions,

@@ -3,11 +3,9 @@ import { useFormProps } from "../../hooks/useForm"
 import { User } from "../../UserContext"
 import Button from "../form/Button"
 import Input from "../form/Input"
-import {
-  UserEditProfileContainer,
-  UserEditProfileSection,
-  UserText,
-} from "./style"
+import Text from "../form/Text"
+import Title from "../form/Title"
+import { UserEditProfileContainer, UserEditProfileSection } from "./style"
 
 interface UserAccountProps {
   user: User
@@ -21,26 +19,26 @@ const UserAccount = ({ user, email, password }: UserAccountProps) => {
       {user && (
         <UserEditProfileContainer>
           <UserEditProfileSection>
-            <UserText fontSize={1.7} fontWeight={500}>
+            <Title size={1.7} weight={500}>
               Account management
-            </UserText>
-            <UserText fontSize={1} fontWeight={400}>
+            </Title>
+            <Text size={1} weight={400}>
               Make changes to your email, password and account type. This
               information is private and won’t show up in your public profile.
-            </UserText>
+            </Text>
           </UserEditProfileSection>
 
           <UserEditProfileSection>
-            <UserText fontSize={0.75} fontWeight={400}>
+            <Text size={0.75} weight={400}>
               Email • Private
-            </UserText>
+            </Text>
             <Input type="text" placeholder="" radius={1.2} {...email} />
           </UserEditProfileSection>
 
           <UserEditProfileSection>
-            <UserText fontSize={0.75} fontWeight={400}>
+            <Text size={0.75} weight={400}>
               Password
-            </UserText>
+            </Text>
             <UserEditProfileSection column>
               <Input
                 type="password"
@@ -48,26 +46,26 @@ const UserAccount = ({ user, email, password }: UserAccountProps) => {
                 radius={1.2}
                 {...password}
               />
-              <Button color="gray" invisible>
+              <Button color="--color-button-gray" textDark>
                 Change
               </Button>
             </UserEditProfileSection>
           </UserEditProfileSection>
 
-          <UserText fontSize={1.7} fontWeight={500}>
+          <Text size={1.7} weight={500}>
             Account changes
-          </UserText>
+          </Text>
 
           <UserEditProfileSection column>
             <UserEditProfileSection>
-              <UserText fontSize={1.1} fontWeight={500}>
+              <Text size={1.1} weight={500}>
                 Delete your data and account
-              </UserText>
-              <UserText fontSize={1} fontWeight={400}>
+              </Text>
+              <Text size={1} weight={400}>
                 Delete your account and account data
-              </UserText>
+              </Text>
             </UserEditProfileSection>
-            <Button color="gray" invisible>
+            <Button color="--color-button-gray" textDark>
               Delete account
             </Button>
           </UserEditProfileSection>

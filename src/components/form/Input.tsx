@@ -10,6 +10,7 @@ interface InputProps {
   color?: boolean
   value: string
   error: string
+  background?: string
   placeholder: string
   radius: number
 }
@@ -22,19 +23,20 @@ const Input = ({
   color,
   value,
   error,
+  background,
   placeholder,
   radius,
 }: InputProps) => {
   return (
     <>
       <InputContainer
-        style={{ backgroundColor: color ? "var(--color-gray-search)" : "none" }}
         onChange={onChange}
         onBlur={onBlur}
+        background={background}
         type={type}
         value={value}
         placeholder={placeholder}
-        color={color ? "var(--color-gray-search)" : "var(--color-gray-second)"}
+        color={color ? "var(--g-colorGray50)" : "var(--g-colorGray150)"}
         radius={radius}
       />
       {!blank && <Error error={error} />}

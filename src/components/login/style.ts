@@ -1,13 +1,8 @@
 import styled from "styled-components"
 
-interface TextProps {
-  size?: string
-  bold?: string
-}
-
 const Container = styled.div`
   width: 30.25em;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -18,12 +13,6 @@ const Container = styled.div`
   position: absolute;
   gap: 0.3rem;
   z-index: 10;
-`
-
-const Text = styled.p<TextProps>`
-  font-size: ${({ size }) => (size ? size : "1rem")};
-  font-weight: ${({ bold }) => (bold ? bold : "normal")};
-  color: var(--color-black);
 `
 
 const Icon = styled.img`
@@ -61,7 +50,7 @@ const SectionInput = styled.div`
 `
 
 const Footer = styled.div`
-  background-color: var(--color-gray-fifth);
+  background-color: var(--g-colorGray100);
   width: 30.25em;
   height: 3.2rem;
   position: relative;
@@ -71,4 +60,4 @@ const Footer = styled.div`
   place-items: center;
 `
 
-export { Container, Section, SectionInput, Text, Footer, Icon, Link }
+export { Container, Section, SectionInput, Footer, Icon, Link }

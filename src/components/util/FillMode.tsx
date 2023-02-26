@@ -12,7 +12,7 @@ const FillMode = ({ color, setModal, full, children }: FillModeProps) => {
   return (
     <FillContainer
       onClick={() => setModal && setModal("")}
-      color={color ? color : "rgba(0, 0, 0, 0)"}
+      color={color ? `var(${color})` : "rgba(0, 0, 0, 0)"}
       position={full ? "fixed" : "absolute"}
     >
       {children && children}

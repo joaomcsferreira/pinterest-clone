@@ -33,7 +33,7 @@ const Logo = styled.div`
   width: 2.8rem;
   height: 2.8rem;
   letter-spacing: -2.5px;
-  color: var(--color-red);
+  color: var(--g-color-red);
   display: flex;
   align-items: center;
   gap: 2px;
@@ -72,7 +72,7 @@ const NavIcon = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-gray-light);
+    background-color: var(--g-colorGray125);
   }
 
   & .arrow {
@@ -100,7 +100,7 @@ const Avatar = styled.div<AvatarProps>`
     width: ${({ size }) => `calc(${size}rem - 0.3rem)`};
     height: ${({ size }) => `calc(${size}rem - 0.3rem)`};
     border-radius: 50%;
-    background: url(${({ src }) => src}) var(--color-gray-fifth);
+    background: url(${({ src }) => src}) var(--g-colorGray100);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -118,13 +118,13 @@ const Avatar = styled.div<AvatarProps>`
 
 const ProfileOptions = styled.div`
   position: absolute;
-  background-color: white;
+  background-color: var(--g-color-white);
   top: 5rem;
   right: 1rem;
   width: 17rem;
   padding: 0.4rem;
   border-radius: 5px;
-  box-shadow: 0 0 5px 2px rgba(130, 130, 130, 0.2);
+  box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
   z-index: 6;
   animation: ${animeDown} 0.2s linear forwards;
 `
@@ -157,8 +157,8 @@ const ProfileOptionsItem = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-gray-fifth);
-    border-color: var(--color-blue-third);
+    background-color: var(--g-colorGray100);
+    border-color: var(--g-color-skyblue);
   }
 `
 

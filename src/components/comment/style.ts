@@ -7,7 +7,7 @@ const CommentBuilderContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  background-color: var(--color-white);
+  background-color: var(--g-color-white);
   z-index: 5;
   position: absolute;
   bottom: 0;
@@ -28,7 +28,7 @@ const ErrorContainer = styled.div`
 const ButtonSend = styled.div`
   position: absolute;
   right: 3rem;
-  background-color: var(--color-red-button);
+  background-color: var(--color-button-red);
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -38,7 +38,7 @@ const ButtonSend = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-red-button-second);
+    background-color: var(--color-button-red50);
   }
 `
 
@@ -53,23 +53,11 @@ const CommentsViewContainer = styled.div`
   overflow: scroll;
 `
 
-const CommentTitle = styled.h3`
-  font-size: 1.8rem;
-  font-weight: 700;
-`
-
 const CommentContainer = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
 `
-
-const CommentUsername = styled.h2`
-  font-size: 1rem;
-  font-weight: 700;
-`
-
-const CommentText = styled.p``
 
 export {
   CommentBuilderContainer,
@@ -77,8 +65,5 @@ export {
   ButtonIcon,
   CommentsViewContainer,
   CommentContainer,
-  CommentTitle,
-  CommentUsername,
-  CommentText,
   ErrorContainer,
 }

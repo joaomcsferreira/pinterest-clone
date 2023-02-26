@@ -10,7 +10,6 @@ import {
   InfoContainer,
   InfoInput,
   InfoSection,
-  InfoText,
   ButtonSave,
   WraperPinBuilder,
   ErrorPostion,
@@ -24,6 +23,7 @@ import FillMode from "../util/FillMode"
 import { useNavigate } from "react-router-dom"
 import BoardSelect from "../board/BoardSelect"
 import Error from "../util/Error"
+import Text from "../form/Text"
 
 export interface imageProps {
   preview: string
@@ -98,7 +98,7 @@ const PinBuilder = () => {
                   >
                     <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
                   </Avatar>
-                  <InfoText>{user.username}</InfoText>
+                  <Text>{user.username}</Text>
                 </InfoSection>
                 <InfoInput
                   type="text"
@@ -118,7 +118,7 @@ const PinBuilder = () => {
             </InfoContainer>
             {loading && (
               <>
-                <FillMode color="rgba(255,255,255,0.6)" setModal={() => {}}>
+                <FillMode color="--g-colorTransparentWhite60" full>
                   <Loading />
                 </FillMode>
               </>

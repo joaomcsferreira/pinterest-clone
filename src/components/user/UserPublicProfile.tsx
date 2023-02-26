@@ -1,10 +1,6 @@
 import React from "react"
 
-import {
-  UserEditProfileContainer,
-  UserEditProfileSection,
-  UserText,
-} from "./style"
+import { UserEditProfileContainer, UserEditProfileSection } from "./style"
 
 import { useFormProps } from "../../hooks/useForm"
 import { imageProps } from "../pin/PinBuilder"
@@ -15,6 +11,8 @@ import Button from "../form/Button"
 import Input from "../form/Input"
 
 import UserProfileAvatar from "./ChangeAvatarProfile"
+import Title from "../form/Title"
+import Text from "../form/Text"
 
 interface UserPublicProfileProps {
   user: User
@@ -46,18 +44,18 @@ const UserPublicProfile = ({
   return (
     <UserEditProfileContainer>
       <UserEditProfileSection>
-        <UserText fontSize={1.7} fontWeight={500}>
+        <Title size={1.7} weight={500}>
           Public profile
-        </UserText>
-        <UserText fontSize={1} fontWeight={400}>
+        </Title>
+        <Text size={1} weight={400}>
           People visiting your profile will see the following info
-        </UserText>
+        </Text>
       </UserEditProfileSection>
 
       <UserEditProfileSection>
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           Photo
-        </UserText>
+        </Text>
         <UserEditProfileSection column>
           <Avatar
             size="5"
@@ -73,7 +71,11 @@ const UserPublicProfile = ({
           >
             <p>{user.avatar || image ? "" : user.username?.charAt(0)}</p>
           </Avatar>
-          <Button onClick={() => setModal("modal")} color="gray" invisible>
+          <Button
+            onClick={() => setModal("modal")}
+            color="--color-button-gray"
+            textDark
+          >
             Change
           </Button>
         </UserEditProfileSection>
@@ -81,23 +83,23 @@ const UserPublicProfile = ({
 
       <UserEditProfileSection column>
         <UserEditProfileSection>
-          <UserText fontSize={0.75} fontWeight={400}>
+          <Text size={0.75} weight={400}>
             First Name
-          </UserText>
+          </Text>
           <Input type="text" placeholder="" radius={1.2} {...firstName} />
         </UserEditProfileSection>
         <UserEditProfileSection>
-          <UserText fontSize={0.75} fontWeight={400}>
+          <Text size={0.75} weight={400}>
             Last name
-          </UserText>
+          </Text>
           <Input type="text" placeholder="" radius={1.2} {...lastName} />
         </UserEditProfileSection>
       </UserEditProfileSection>
 
       <UserEditProfileSection>
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           About
-        </UserText>
+        </Text>
         <Input
           type="text"
           placeholder="Tell your story"
@@ -107,25 +109,25 @@ const UserPublicProfile = ({
       </UserEditProfileSection>
 
       <UserEditProfileSection>
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           Pronoums
-        </UserText>
+        </Text>
         <Input
           type="text"
           placeholder="Add your pronoums"
           radius={1.2}
           {...pronoums}
         />
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           Choose up to 2 sets of pronouns to appear on your profile so others
           know how to refer to you. You can edit or remove these any time.
-        </UserText>
+        </Text>
       </UserEditProfileSection>
 
       <UserEditProfileSection>
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           Website
-        </UserText>
+        </Text>
         <Input
           type="text"
           placeholder="Add a link to drive traffic to your site"
@@ -135,13 +137,13 @@ const UserPublicProfile = ({
       </UserEditProfileSection>
 
       <UserEditProfileSection>
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           Username
-        </UserText>
+        </Text>
         <Input type="text" placeholder="" radius={1.2} {...username} />
-        <UserText fontSize={0.75} fontWeight={400}>
+        <Text size={0.75} weight={400}>
           {`www.pinterest.com/${username.value}`}
-        </UserText>
+        </Text>
       </UserEditProfileSection>
       {modal && <UserProfileAvatar setImage={setImage} setModal={setModal} />}
     </UserEditProfileContainer>

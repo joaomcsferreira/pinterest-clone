@@ -8,12 +8,14 @@ import { User, useUserContext } from "../../UserContext"
 import { Avatar } from "../header/style"
 
 import Feed from "../feed/Feed"
+import FillMode from "../util/FillMode"
+import Loading from "../util/Loading"
 
 const BoardPins = () => {
   const { username, board } = useParams()
   const [user, setUser] = React.useState<User | null>(null)
 
-  const { getProfile } = useUserContext()
+  const { loading, getProfile } = useUserContext()
 
   const navigate = useNavigate()
 
@@ -29,7 +31,7 @@ const BoardPins = () => {
     }
 
     getUser()
-  })
+  }, [])
 
   return (
     <>
@@ -52,6 +54,14 @@ const BoardPins = () => {
             <BoardTitle>pins</BoardTitle>
           </PinsBoardSection>
           <Feed type="board" user={username} board={board} />
+
+          {loading && (
+            <>
+              <FillMode color="--g-colorTransparentWhite60" setModal={() => {}}>
+                <Loading />
+              </FillMode>
+            </>
+          )}
         </PinsBoardContainer>
       )}
     </>

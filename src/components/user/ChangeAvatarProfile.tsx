@@ -1,11 +1,12 @@
 import React from "react"
 
-import { UserChangeAvatarContainer, UserText } from "./style"
+import { UserChangeAvatarContainer } from "./style"
 
 import Button from "../form/Button"
 import FillMode from "../util/FillMode"
 
 import { imageProps } from "../pin/PinBuilder"
+import Text from "../form/Text"
 
 interface ChangeAvatarProfileProps {
   setImage: React.Dispatch<React.SetStateAction<imageProps | null>>
@@ -31,12 +32,12 @@ const ChangeAvatarProfile = ({
 
   return (
     <>
-      <FillMode color="rgba(0,0,0,.8)" setModal={setModal} />
+      <FillMode color="--g-colorTransparentBlack80" setModal={setModal} />
       <UserChangeAvatarContainer>
-        <UserText fontSize={1.7} fontWeight={500}>
+        <Text size={1.7} weight={500}>
           Change your picture
-        </UserText>
-        <Button color="red">
+        </Text>
+        <Button color="--color-button-red">
           Choose photo
           <input
             type="file"

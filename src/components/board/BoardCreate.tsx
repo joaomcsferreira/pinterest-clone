@@ -3,6 +3,7 @@ import useForm from "../../hooks/useForm"
 import BoardService, { Board } from "../../services/BoardService"
 import Button from "../form/Button"
 import Input from "../form/Input"
+import Text from "../form/Text"
 import Error from "../util/Error"
 import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
@@ -11,7 +12,6 @@ import {
   BoardCreateContainer,
   BoardCreateSection,
   ErrorContainer,
-  Text,
 } from "./style"
 
 interface BoardCreateProps {
@@ -36,15 +36,17 @@ const BoardCreate = ({ setModal, setBoard }: BoardCreateProps) => {
 
   return (
     <>
-      <FillMode full setModal={setModal} color={"rgba(0,0,0,0.6)"} />
+      <FillMode
+        full
+        setModal={setModal}
+        color={"--g-colorTransparentBlack60"}
+      />
       <BoardCreateContainer>
-        <Text style={{ justifySelf: "center" }} fontSize={1.8} fontWeight={500}>
+        <Text justify="center" size={1.8} weight={500}>
           Create Board
         </Text>
         <BoardCreateSection>
-          <Text fontSize={0.8} fontWeight={400}>
-            Name
-          </Text>
+          <Text size={0.8}>Name</Text>
           <Input
             type="text"
             placeholder='Like "Places to go" or "Recipes to make"'
@@ -54,14 +56,14 @@ const BoardCreate = ({ setModal, setBoard }: BoardCreateProps) => {
         </BoardCreateSection>
         <BoardCreateActions>
           <ErrorContainer>{error && <Error error={error} />}</ErrorContainer>
-          <Button onClick={() => handleSubmit()} color="red">
+          <Button onClick={() => handleSubmit()} color="--color-button-red">
             Create
           </Button>
         </BoardCreateActions>
 
         {loading && (
           <>
-            <FillMode color="rgba(255,255,255,0.6)" setModal={() => {}}>
+            <FillMode color="--g-colorTransparentWhite60" setModal={() => {}}>
               <Loading />
             </FillMode>
           </>
