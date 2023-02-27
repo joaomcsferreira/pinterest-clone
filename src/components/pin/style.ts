@@ -6,6 +6,10 @@ interface InfoInputProps {
   message?: string
 }
 
+interface PinInfoProps {
+  height?: number
+}
+
 const Container = styled.div`
   background-color: var(--g-colorGray100);
   height: 100%;
@@ -14,7 +18,7 @@ const Container = styled.div`
 
 const Wraper = styled.div`
   background-color: var(--g-color-white);
-  max-width: 85%;
+  max-width: 85vw;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
@@ -40,8 +44,6 @@ const WraperPinBuilder = styled(Wraper)`
 
 const WraperPinView = styled(Wraper)`
   margin: 5vh auto;
-
-  max-width: 80vw;
 
   box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
 `
@@ -161,24 +163,23 @@ const InfoInput = styled.input<InfoInputProps>`
 `
 
 const PinImg = styled.img`
-  max-width: 40vw;
-  display: block;
-  object-fit: contain;
+  max-height: 100vh;
+  object-fit: cover;
 `
 
-const PinInfo = styled.div`
-  padding: 2rem 2rem 0 2rem;
+const PinInfo = styled.div<PinInfoProps>`
   width: 100%;
-  max-height: 100%;
-  position: relative;
+  height: ${({ height }) => height && `${height}px`};
   display: grid;
+  grid-template-rows: 1fr 10vh;
 `
 
 const PinInfoSection = styled.div`
-  padding-bottom: 3rem;
+  padding: 2rem 2rem 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow: scroll;
 `
 
 const PinInfoLink = styled.a`

@@ -33,6 +33,8 @@ const PinViewer = () => {
 
   const { user } = useUserContext()
 
+  const imageRef = React.useRef(null)
+
   const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -52,55 +54,63 @@ const PinViewer = () => {
       {pin && (
         <>
           <WraperPinView>
-            <PinImg src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
-            <PinInfo>
-              <PinInfoSection>
-                {user?.username === pin.user.username && (
-                  <Button
-                    onClick={() => setModal("edit")}
-                    color={"--color-button-invisible"}
-                    textDark
-                  >
-                    Edit pin
-                  </Button>
-                )}
+            <PinImg
+              ref={imageRef}
+              src={`${process.env.REACT_APP_BASE_URL}${pin.src}`}
+            />
 
-                <PinInfoLink>{pin.website}</PinInfoLink>
-
-                <Title size={2.2}>{pin.title}</Title>
-
-                <Text size={0.9}>{pin.description}</Text>
-
-                <Link to={`/${pin.user.username}`}>
-                  <PinAuthor>
-                    <Avatar
-                      size="4"
-                      src={
-                        pin.user.avatar
-                          ? `${process.env.REACT_APP_BASE_URL}${pin.user.avatar}`
-                          : ""
-                      }
+            {imageRef.current && (
+              <PinInfo
+                height={(imageRef.current as HTMLImageElement)?.clientHeight}
+              >
+                <PinInfoSection>
+                  {user?.username === pin.user.username && (
+                    <Button
+                      onClick={() => setModal("edit")}
+                      color={"--color-button-invisible"}
+                      textDark
                     >
-                      <p>
-                        {pin.user.avatar ? "" : pin.user.username?.charAt(0)}
-                      </p>
-                    </Avatar>
-                    <PinAuthorInfo>
-                      <Text weight={500} capitalize>
-                        {pin.user.firstName
-                          ? `${pin.user.firstName} ${pin.user.lastName}`
-                          : pin.user.username}
-                      </Text>
-                      <Text size={0.8} weight={100}>
-                        0 followers
-                      </Text>
-                    </PinAuthorInfo>
-                  </PinAuthor>
-                </Link>
-                <CommentViewer comments={pin.comments} />
-              </PinInfoSection>
-              <CommentBuilder />
-            </PinInfo>
+                      Edit pin
+                    </Button>
+                  )}
+
+                  <PinInfoLink>{pin.website}</PinInfoLink>
+
+                  <Title size={2.2}>{pin.title}</Title>
+
+                  <Text size={0.9}>{pin.description}</Text>
+
+                  <Link to={`/${pin.user.username}`}>
+                    <PinAuthor>
+                      <Avatar
+                        size="4"
+                        src={
+                          pin.user.avatar
+                            ? `${process.env.REACT_APP_BASE_URL}${pin.user.avatar}`
+                            : ""
+                        }
+                      >
+                        <p>
+                          {pin.user.avatar ? "" : pin.user.username?.charAt(0)}
+                        </p>
+                      </Avatar>
+                      <PinAuthorInfo>
+                        <Text weight={500} capitalize>
+                          {pin.user.firstName
+                            ? `${pin.user.firstName} ${pin.user.lastName}`
+                            : pin.user.username}
+                        </Text>
+                        <Text size={0.8} weight={100}>
+                          0 followers
+                        </Text>
+                      </PinAuthorInfo>
+                    </PinAuthor>
+                  </Link>
+                  <CommentViewer comments={pin.comments} />
+                </PinInfoSection>
+                <CommentBuilder />
+              </PinInfo>
+            )}
           </WraperPinView>
           {modal && <PinEdit pin={pin} setModal={setModal} />}
         </>

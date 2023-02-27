@@ -9,11 +9,8 @@ const CommentBuilderContainer = styled.div`
   gap: 0.3rem;
   background-color: var(--g-color-white);
   z-index: 5;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 0 2.5rem;
-  position: relative;
+  box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
 `
 
 const ErrorContainer = styled.div`
@@ -48,9 +45,7 @@ const CommentsViewContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 50vh;
   padding-bottom: 3rem;
-  overflow: scroll;
 `
 
 const CommentContainer = styled.div`
