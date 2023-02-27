@@ -1,11 +1,7 @@
 import React from "react"
 import PinService from "../../services/PinService"
-import {
-  BoardItemContainer,
-  BoardItemImg,
-  BoardItemImgGroup,
-  BoardItemName,
-} from "./style"
+import Text from "../form/Text"
+import { BoardItemContainer, BoardItemImg, BoardItemImgGroup } from "./style"
 
 interface BoardItemProps {
   username: string
@@ -35,7 +31,9 @@ const BoardItem = ({ username, name }: BoardItemProps) => {
                 <BoardItemImg src="" key={index}></BoardItemImg>
               ))}
           </BoardItemImgGroup>
-          <BoardItemName>{name}</BoardItemName>
+          <Text weight={500} capitalize>
+            {name}
+          </Text>
         </BoardItemContainer>
       )}
     </>

@@ -163,6 +163,7 @@ const InfoInput = styled.input<InfoInputProps>`
 `
 
 const PinImg = styled.img`
+  max-width: 60vw;
   max-height: 100vh;
   object-fit: cover;
 `
@@ -188,8 +189,7 @@ const PinInfoLink = styled.a`
 `
 
 const PinAuthor = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
   gap: 1rem;
 `
 

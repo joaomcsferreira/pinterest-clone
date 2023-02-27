@@ -1,6 +1,6 @@
 import React from "react"
 
-import { BoardTitle, PinsBoardContainer, PinsBoardSection } from "./style"
+import { PinsBoardContainer, PinsBoardSection } from "./style"
 
 import { useNavigate, useParams } from "react-router-dom"
 
@@ -10,6 +10,7 @@ import { Avatar } from "../header/style"
 import Feed from "../feed/Feed"
 import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
+import Title from "../form/Title"
 
 const BoardPins = () => {
   const { username, board } = useParams()
@@ -38,7 +39,7 @@ const BoardPins = () => {
       {user && board && (
         <PinsBoardContainer>
           <PinsBoardSection>
-            <BoardTitle>{board}</BoardTitle>
+            <Title capitalize>{board}</Title>
             <Avatar
               size="4"
               src={
@@ -51,7 +52,9 @@ const BoardPins = () => {
             </Avatar>
           </PinsBoardSection>
           <PinsBoardSection>
-            <BoardTitle>pins</BoardTitle>
+            <Title capitalize size={1.8}>
+              pins
+            </Title>
           </PinsBoardSection>
           <Feed type="board" user={username} board={board} />
 

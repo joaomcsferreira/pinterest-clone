@@ -101,6 +101,11 @@ const DragAreaAlert = styled.p`
   bottom: 1rem;
   font-size: 0.9rem;
 `
+const MansoryContainer = styled.div`
+  width: 95vw;
+  margin: 2rem auto;
+  display: flex;
+`
 
 export {
   FillContainer,
@@ -113,4 +118,5 @@ export {
   DragAreaLogo,
   DragAreaMessage,
   DragAreaAlert,
+  MansoryContainer,
 }

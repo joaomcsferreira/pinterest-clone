@@ -13,7 +13,6 @@ import {
   ProfileContainer,
   ProfileInfo,
   ProfilePins,
-  ProfileUsername,
 } from "./style"
 
 const UserProfile = () => {
@@ -64,7 +63,6 @@ const UserProfile = () => {
               size={0.9}
               color={"--g-colorGray200"}
             >{`@${profile.username}`}</Text>
-            <Text capitalize>0 following</Text>
 
             <ProfileActions>
               <Button full color="--color-button-gray" textDark>

@@ -4,11 +4,6 @@ interface BoardItemImgProps {
   src: string
 }
 
-interface TextProps {
-  fontSize: number
-  fontWeight: number
-}
-
 const Select = styled.div`
   padding: 0 1rem;
   background-color: var(--g-colorGray25);
@@ -61,13 +56,10 @@ const SelectOption = styled.p`
 `
 
 const BoardsListContainer = styled.div`
-  width: 95%;
-  margin: 0.2rem auto;
-  padding: 0.9rem;
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  margin-top: 2rem;
 `
 
 const BoardItemContainer = styled.div`
@@ -80,11 +72,6 @@ const BoardItemContainer = styled.div`
   overflow: hidden;
   gap: 1rem;
   cursor: pointer;
-`
-
-const BoardItemName = styled.h3`
-  text-transform: capitalize;
-  font-weight: 700;
 `
 
 const BoardItemImgGroup = styled.div`
@@ -115,12 +102,6 @@ const PinsBoardContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-`
-
-const BoardTitle = styled.h2`
-  text-transform: capitalize;
-  font-size: 3rem;
-  font-weight: 500;
 `
 
 const PinsBoardSection = styled.div`
@@ -203,12 +184,10 @@ export {
   SelectOptionsItems,
   SelectOption,
   BoardsListContainer,
-  BoardItemName,
   BoardItemContainer,
   BoardItemImgGroup,
   BoardItemImg,
   PinsBoardContainer,
-  BoardTitle,
   PinsBoardSection,
   ErrorContainer,
   BoardCreateButtonContainer,

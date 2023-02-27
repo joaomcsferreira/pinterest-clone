@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 import PinService, { getTypesProps } from "../../services/PinService"
 import FillMode from "../util/FillMode"
 import Loading from "../util/Loading"
-import { FeedContainer, Img, ImgContainer } from "./style"
+import MansoryLayout from "../util/MansoryLayout"
+import { Img, ImgContainer } from "./style"
 
 interface FeedProps {
   type: getTypesProps
@@ -20,15 +21,17 @@ const Feed = ({ type, user, board, total }: FeedProps) => {
   }, [user])
 
   return (
-    <FeedContainer>
-      {pins &&
-        pins.map((pin) => (
-          <Link to={`/pin/${pin._id}`} key={pin._id}>
-            <ImgContainer>
-              <Img src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
-            </ImgContainer>
-          </Link>
-        ))}
+    <>
+      <MansoryLayout columnCount={5} gap={14.4}>
+        {pins &&
+          pins.map((pin) => (
+            <Link to={`/pin/${pin._id}`} key={pin._id}>
+              <ImgContainer>
+                <Img src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
+              </ImgContainer>
+            </Link>
+          ))}
+      </MansoryLayout>
       {loading && (
         <>
           <FillMode color="--g-colorTransparentWhite60">
@@ -36,7 +39,7 @@ const Feed = ({ type, user, board, total }: FeedProps) => {
           </FillMode>
         </>
       )}
-    </FeedContainer>
+    </>
   )
 }
 

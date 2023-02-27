@@ -101,7 +101,7 @@ const PinViewer = () => {
                             : pin.user.username}
                         </Text>
                         <Text size={0.8} weight={100}>
-                          0 followers
+                          {`@${pin.user.username}`}
                         </Text>
                       </PinAuthorInfo>
                     </PinAuthor>
