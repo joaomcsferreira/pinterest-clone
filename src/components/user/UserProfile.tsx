@@ -38,6 +38,10 @@ const UserProfile = () => {
     getUser()
   }, [username])
 
+  React.useEffect(() => {
+    if (!user) navigate("/", { replace: true })
+  }, [user])
+
   return (
     <>
       {profile && (

@@ -96,6 +96,8 @@ const UserEditProfile = () => {
 
   React.useEffect(() => {
     handleResetInitialValue()
+
+    if (!user) navigate("/", { replace: true })
   }, [user])
 
   return (

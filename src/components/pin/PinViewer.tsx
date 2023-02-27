@@ -49,6 +49,10 @@ const PinViewer = () => {
     getPinData()
   }, [])
 
+  React.useEffect(() => {
+    if (!user) navigate("/", { replace: true })
+  }, [user])
+
   return (
     <>
       {pin && (

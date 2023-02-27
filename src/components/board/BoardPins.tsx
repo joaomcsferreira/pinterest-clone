@@ -34,6 +34,10 @@ const BoardPins = () => {
     getUser()
   }, [])
 
+  React.useEffect(() => {
+    if (!user) navigate("/", { replace: true })
+  }, [user])
+
   return (
     <>
       {user && board && (

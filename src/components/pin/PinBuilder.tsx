@@ -67,6 +67,10 @@ const PinBuilder = () => {
     setPinBlank(false)
   }, [pin])
 
+  React.useEffect(() => {
+    if (!user) navigate("/", { replace: true })
+  }, [user])
+
   return (
     <>
       {logged && user && (
