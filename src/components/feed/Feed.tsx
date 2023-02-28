@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import PinService, { getTypesProps } from "../../services/PinService"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
-import MansoryLayout from "../util/MansoryLayout"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
+import MansoryLayout from "../helper/MansoryLayout"
 import { Img, ImgContainer } from "./style"
 
 interface FeedProps {

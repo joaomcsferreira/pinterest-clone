@@ -8,8 +8,8 @@ import { User, useUserContext } from "../../UserContext"
 import { Avatar } from "../header/style"
 
 import Feed from "../feed/Feed"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
 import Title from "../form/Title"
 
 const BoardPins = () => {
@@ -33,10 +33,6 @@ const BoardPins = () => {
 
     getUser()
   }, [])
-
-  React.useEffect(() => {
-    if (!user) navigate("/", { replace: true })
-  }, [user])
 
   return (
     <>

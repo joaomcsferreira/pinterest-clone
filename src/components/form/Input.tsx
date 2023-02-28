@@ -1,5 +1,5 @@
 import React from "react"
-import Error from "../util/Error"
+import Error from "../helper/Error"
 import { InputContainer } from "./style"
 
 interface InputProps {

@@ -23,6 +23,7 @@ interface TextProps {
   padding?: string
   animation?: string
   justify?: string
+  isLink?: boolean
 }
 
 interface TitleProps {
@@ -49,6 +50,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   height: fit-content;
   white-space: nowrap;
   position: relative;
+  z-index: 5;
   cursor: pointer;
 
   &:after {
@@ -96,6 +98,12 @@ const TextContainer = styled.p<TextProps>`
   padding: ${({ padding }) => padding && padding};
   text-align: ${({ justify }) => justify && justify};
   text-justify: inter-word;
+
+  cursor: ${({ isLink }) => (isLink ? "pointer" : "text")};
+
+  &:hover {
+    text-decoration: ${({ isLink }) => (isLink ? "underline" : "none")};
+  }
 `
 
 const TitleContainer = styled.h2<TitleProps>`
@@ -103,7 +111,7 @@ const TitleContainer = styled.h2<TitleProps>`
   font-weight: ${({ weight }) => (weight ? weight : "500")};
   color: ${({ color }) => (color ? `var(${color})` : "var(--g-color-black)")};
   text-transform: ${({ capitalize }) => capitalize && "capitalize"};
-  justify-self: ${({ justify }) => justify && justify};
+  text-align: ${({ justify }) => justify && justify};
 `
 
 export {

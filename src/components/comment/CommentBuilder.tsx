@@ -16,7 +16,7 @@ import {
 import send from "../../assets/svg/send.svg"
 import CommentService from "../../services/CommentService"
 import { useParams } from "react-router-dom"
-import Error from "../util/Error"
+import Error from "../helper/Error"
 
 const CommentBuilder = () => {
   const comment = useForm()

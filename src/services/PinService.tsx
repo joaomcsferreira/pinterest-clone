@@ -1,7 +1,7 @@
 import React from "react"
 
 import { AxiosError } from "axios"
-import { ErrorProps } from "../components/util/Error"
+import { ErrorProps } from "../components/helper/Error"
 
 import { User } from "../UserContext"
 import { Comment } from "./CommentService"

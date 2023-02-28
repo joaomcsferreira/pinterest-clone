@@ -1,7 +1,7 @@
 import React from "react"
 import { useUserContext } from "../../UserContext"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
 import Welcome from "../welcome/Welcome"
 import Feed from "./Feed"
 

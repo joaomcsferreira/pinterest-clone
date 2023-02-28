@@ -3,7 +3,7 @@ import React from "react"
 import { UserChangeAvatarContainer } from "./style"
 
 import Button from "../form/Button"
-import FillMode from "../util/FillMode"
+import FillMode from "../helper/FillMode"
 
 import { imageProps } from "../pin/PinBuilder"
 import Text from "../form/Text"

@@ -9,6 +9,8 @@ interface TextProps {
   padding?: string
   children: React.ReactNode
   justify?: string
+  isLink?: boolean
+  onClick?: () => void
 }
 
 const Text = ({
@@ -18,6 +20,8 @@ const Text = ({
   capitalize,
   padding,
   justify,
+  isLink,
+  onClick,
   children,
 }: TextProps) => {
   return (
@@ -28,6 +32,8 @@ const Text = ({
       capitalize={capitalize}
       padding={padding}
       justify={justify}
+      isLink={isLink}
+      onClick={() => onClick && onClick()}
     >
       {children}
     </TextContainer>

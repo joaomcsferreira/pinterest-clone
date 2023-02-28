@@ -24,6 +24,7 @@ import Button from "../form/Button"
 import PinEdit from "./PinEdit"
 import Title from "../form/Title"
 import Text from "../form/Text"
+import ButtonFollow from "../form/ButtonFollow"
 
 const PinViewer = () => {
   const [modal, setModal] = React.useState("")
@@ -31,7 +32,7 @@ const PinViewer = () => {
   const { id } = useParams()
   const { pin, getPin } = PinService()
 
-  const { user } = useUserContext()
+  const { user, reUpUser } = useUserContext()
 
   const imageRef = React.useRef(null)
 
@@ -50,12 +51,12 @@ const PinViewer = () => {
   }, [])
 
   React.useEffect(() => {
-    if (!user) navigate("/", { replace: true })
-  }, [user])
+    reUpUser()
+  }, [user?.following])
 
   return (
     <>
-      {pin && (
+      {pin && user && (
         <>
           <WraperPinView>
             <PinImg
@@ -84,8 +85,11 @@ const PinViewer = () => {
 
                   <Text size={0.9}>{pin.description}</Text>
 
-                  <Link to={`/${pin.user.username}`}>
-                    <PinAuthor>
+                  <PinAuthor>
+                    <Link
+                      to={`/${pin.user.username}`}
+                      style={{ display: "flex", gap: "1rem" }}
+                    >
                       <Avatar
                         size="4"
                         src={
@@ -99,17 +103,23 @@ const PinViewer = () => {
                         </p>
                       </Avatar>
                       <PinAuthorInfo>
-                        <Text weight={500} capitalize>
+                        <Text isLink weight={500} capitalize>
                           {pin.user.firstName
                             ? `${pin.user.firstName} ${pin.user.lastName}`
                             : pin.user.username}
                         </Text>
-                        <Text size={0.8} weight={100}>
-                          {`@${pin.user.username}`}
-                        </Text>
+
+                        <Text
+                          size={0.8}
+                          weight={100}
+                          capitalize
+                        >{`${pin.user.followers?.length} followers`}</Text>
                       </PinAuthorInfo>
-                    </PinAuthor>
-                  </Link>
+                    </Link>
+
+                    <ButtonFollow userFollow={pin.user} />
+                  </PinAuthor>
+
                   <CommentViewer comments={pin.comments} />
                 </PinInfoSection>
                 <CommentBuilder />

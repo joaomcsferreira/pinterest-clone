@@ -189,7 +189,9 @@ const PinInfoLink = styled.a`
 `
 
 const PinAuthor = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
   gap: 1rem;
 `
 

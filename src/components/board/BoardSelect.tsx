@@ -15,7 +15,7 @@ import {
 } from "./style"
 
 import plus from "../../assets/svg/plus.svg"
-import FillMode from "../util/FillMode"
+import FillMode from "../helper/FillMode"
 import Text from "../form/Text"
 
 interface BoardSelectProps {

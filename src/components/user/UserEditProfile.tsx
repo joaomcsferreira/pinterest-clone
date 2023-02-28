@@ -16,9 +16,9 @@ import Button from "../form/Button"
 import UserAccount from "./UserAccount"
 import UserPublicProfile from "./UserPublicProfile"
 import NotImplementeded from "../notFound/NotImplementeded"
-import Error from "../util/Error"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
+import Error from "../helper/Error"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
 
 const UserEditProfile = () => {
   const [typeSetting, setTypeSetting] = React.useState("public")
@@ -96,8 +96,6 @@ const UserEditProfile = () => {
 
   React.useEffect(() => {
     handleResetInitialValue()
-
-    if (!user) navigate("/", { replace: true })
   }, [user])
 
   return (

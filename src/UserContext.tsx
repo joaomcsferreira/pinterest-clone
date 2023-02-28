@@ -3,7 +3,7 @@ import { AxiosError } from "axios"
 
 import useServices from "./services/useServices"
 
-import { ErrorProps } from "./components/util/Error"
+import { ErrorProps } from "./components/helper/Error"
 import useCredentialStorage from "./services/useCredentialStorage"
 
 export interface User {
@@ -13,12 +13,16 @@ export interface User {
   firstName?: string
   lastName?: string
   avatar?: string
+  followers: Array<User>
+  following: Array<User>
 }
 
 interface UserContextValue {
   login: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
   updateUserData: (form: FormData) => Promise<User | null>
+  updateFollowing: (username: string) => void
+  updateUnfollowing: (username: string) => void
   logOut: () => void
   reUpUser: () => void
   getProfile: (username: string) => Promise<User | null>
@@ -89,6 +93,36 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setLoading(false)
     }
     return response
+  }
+
+  const updateFollowing = async (username: string) => {
+    try {
+      setError("")
+      setLoading(true)
+
+      await updateDoc("follow", { usernameFollowing: username })
+    } catch (error) {
+      const errorMessage = (error as AxiosError).response?.data as ErrorProps
+
+      setError(errorMessage.error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const updateUnfollowing = async (username: string) => {
+    try {
+      setError("")
+      setLoading(true)
+
+      await updateDoc("unfollow", { usernameFollowing: username })
+    } catch (error) {
+      const errorMessage = (error as AxiosError).response?.data as ErrorProps
+
+      setError(errorMessage.error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const getProfile = async (username: string) => {
@@ -162,6 +196,8 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
         signUp,
         reUpUser,
         updateUserData,
+        updateFollowing,
+        updateUnfollowing,
         getProfile,
       }}
     >

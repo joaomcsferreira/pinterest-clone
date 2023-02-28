@@ -4,9 +4,9 @@ import BoardService, { Board } from "../../services/BoardService"
 import Button from "../form/Button"
 import Input from "../form/Input"
 import Text from "../form/Text"
-import Error from "../util/Error"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
+import Error from "../helper/Error"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
 import {
   BoardCreateActions,
   BoardCreateContainer,

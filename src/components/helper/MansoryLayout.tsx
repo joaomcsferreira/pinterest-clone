@@ -20,9 +20,11 @@ const MansoryLayout = ({ columnCount, gap, children }: MansoryLayoutProps) => {
     )
 
     let index = 0
-    children.forEach((value) => {
+    children.forEach((value, i) => {
       columns[index].push(
-        <div style={{ marginBottom: `${gap}px` }}>{value}</div>
+        <div key={i} style={{ marginBottom: `${gap}px` }}>
+          {value}
+        </div>
       )
       index = (index + 1) % 5
     })
@@ -30,6 +32,7 @@ const MansoryLayout = ({ columnCount, gap, children }: MansoryLayoutProps) => {
     for (let index = 0; index < columnCount; index++) {
       result.push(
         <div
+          key={index}
           style={{
             marginLeft: `${index > 0 ? gap : 0}px`,
             flex: 1,

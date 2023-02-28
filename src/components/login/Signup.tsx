@@ -2,14 +2,14 @@ import React from "react"
 import Button from "../form/Button"
 import Input from "../form/Input"
 import useForm from "../../hooks/useForm"
-import FillMode from "../util/FillMode"
-import Loading from "../util/Loading"
+import FillMode from "../helper/FillMode"
+import Loading from "../helper/Loading"
 
 import { useUserContext } from "../../UserContext"
 import { Container, Icon, Section, SectionInput, Footer, Link } from "./style"
 
 import logo from "../../assets/svg/logo.svg"
-import Error from "../util/Error"
+import Error from "../helper/Error"
 import Title from "../form/Title"
 import Text from "../form/Text"
 

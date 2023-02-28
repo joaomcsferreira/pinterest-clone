@@ -15,14 +15,14 @@ import {
   ErrorPostion,
 } from "./style"
 
-import Dragzone from "../util/Dragzone"
+import Dragzone from "../helper/Dragzone"
 import useForm from "../../hooks/useForm"
 import PinService from "../../services/PinService"
-import Loading from "../util/Loading"
-import FillMode from "../util/FillMode"
+import Loading from "../helper/Loading"
+import FillMode from "../helper/FillMode"
 import { useNavigate } from "react-router-dom"
 import BoardSelect from "../board/BoardSelect"
-import Error from "../util/Error"
+import Error from "../helper/Error"
 import Text from "../form/Text"
 
 export interface imageProps {
@@ -66,10 +66,6 @@ const PinBuilder = () => {
   React.useEffect(() => {
     setPinBlank(false)
   }, [pin])
-
-  React.useEffect(() => {
-    if (!user) navigate("/", { replace: true })
-  }, [user])
 
   return (
     <>

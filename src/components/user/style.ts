@@ -37,6 +37,37 @@ const ProfileActions = styled.div`
   margin-top: 1rem;
 `
 
+const ProfileModal = styled.div`
+  position: absolute;
+  width: 35rem;
+  height: 35rem;
+  top: calc(50% - 17.5rem);
+  left: calc(50% - 17.5rem);
+  background-color: var(--g-color-white);
+  border-radius: 1rem;
+  padding: 2rem 0.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+`
+
+const ProfileModalSection = styled.div``
+
+const ProfileModalSectionItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+
+  & > :nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+  }
+`
+
 const ProfilePins = styled.div`
   margin-top: 3rem;
 `
@@ -121,6 +152,9 @@ export {
   ProfileInfo,
   ProfileUsername,
   ProfileActions,
+  ProfileModal,
+  ProfileModalSection,
+  ProfileModalSectionItem,
   ProfilePins,
   UserSettingContainer,
   UserSettingMenuContainer,
