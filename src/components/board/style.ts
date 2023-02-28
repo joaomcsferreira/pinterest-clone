@@ -4,22 +4,29 @@ interface BoardItemImgProps {
   src: string
 }
 
+const SelectContainer = styled.div`
+  min-width: 10rem;
+  height: 3.125rem;
+  position: relative;
+`
+
 const Select = styled.div`
   padding: 0 1rem;
   background-color: var(--g-colorGray25);
   display: flex;
   place-items: center;
-  min-width: 10rem;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
-  position: relative;
   border-radius: 10px;
 `
 
 const SelectOptions = styled.div`
   min-width: 13rem;
+  width: 100%;
   position: absolute;
-  top: 3rem;
-  right: 3rem;
+  top: 3.125rem;
+  right: 0rem;
   background-color: var(--g-color-white);
   display: flex;
   flex-direction: column;
@@ -179,6 +186,7 @@ const ErrorContainer = styled.div`
 `
 
 export {
+  SelectContainer,
   Select,
   SelectOptions,
   SelectOptionsItems,

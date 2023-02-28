@@ -14,9 +14,10 @@ import {
   InfoSection,
   PinEditSection,
   PinImg,
-  PinInfo,
   WraperPinEdit,
   PinDeleteContainer,
+  PinEditInfo,
+  DisplayImage,
 } from "./style"
 
 interface PinEditProps {
@@ -75,7 +76,8 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
         <Title justify="center" size={2.5}>
           Edit this Pin
         </Title>
-        <PinInfo style={{ gap: "0rem" }}>
+
+        <PinEditInfo>
           <PinEditSection>
             <Text weight={400}>Organize to a board</Text>
             <BoardSelect board={board} setBoard={setBoard} />
@@ -107,9 +109,9 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
               {...website}
             />
           </PinEditSection>
-        </PinInfo>
+        </PinEditInfo>
 
-        <PinImg src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
+        <DisplayImage src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
 
         <InfoSection style={{ justifyContent: "space-between" }}>
           <Button

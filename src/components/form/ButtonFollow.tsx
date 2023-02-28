@@ -31,7 +31,6 @@ const ButtonFollow = ({ userFollow }: ButtonFollowProps) => {
           textDark
         >
           Unfollow
-          <>{console.log(userFollow)}</>
         </Button>
       )
 

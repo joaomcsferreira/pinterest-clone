@@ -10,6 +10,10 @@ interface PinInfoProps {
   height?: number
 }
 
+interface DisplayImageProps {
+  src: string
+}
+
 const Container = styled.div`
   background-color: var(--g-colorGray100);
   height: 100%;
@@ -59,10 +63,12 @@ const WraperPinEdit = styled(WraperPinView)`
 
   display: grid;
   grid-template-columns: 4fr 2fr;
-  grid-template-rows: 1fr 7fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
+
+  gap: 0.5rem;
 
   & > :nth-child(1) {
-    grid-column: 1 / 3;
+    grid-column: 1 / span 2;
   }
 
   & > :nth-child(2) {
@@ -72,13 +78,17 @@ const WraperPinEdit = styled(WraperPinView)`
   & > :nth-child(3) {
     grid-row: 2;
     grid-column: 2;
-    max-width: 100%;
+    /* max-width: 100%; */
     align-self: center;
     border-radius: 0.4rem;
   }
 
   & > :nth-child(4) {
-    grid-column: 1 / 3;
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -218,12 +228,28 @@ const ErrorPostion = styled.div`
   }
 `
 
-const PinEditSection = styled(InfoSection)`
+const PinEditInfo = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+`
+
+const DisplayImage = styled.div<DisplayImageProps>`
+  width: 100%;
+  height: 100%;
+  background: url(${({ src }) => src}) var(--g-colorGray200);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+`
+
+const PinEditSection = styled.div`
   display: grid;
   justify-content: space-between;
   align-items: center;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr;
 `
 
 const PinDeleteContainer = styled.div`
@@ -258,6 +284,8 @@ export {
   ButtonSave,
   PinImg,
   PinInfo,
+  PinEditInfo,
+  DisplayImage,
   PinInfoSection,
   PinInfoLink,
   PinAuthor,

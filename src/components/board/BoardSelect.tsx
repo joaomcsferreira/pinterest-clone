@@ -9,6 +9,7 @@ import {
   BoardCreateButtonContainer,
   BoardIcon,
   Select,
+  SelectContainer,
   SelectOption,
   SelectOptions,
   SelectOptionsItems,
@@ -35,7 +36,7 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
   }, [boards])
 
   return (
-    <>
+    <SelectContainer>
       <Select onClick={() => setModal("select")}>
         {!board ? "Select a board" : board}
       </Select>
@@ -67,7 +68,7 @@ const BoardSelect = ({ board, setBoard }: BoardSelectProps) => {
       {modal === "create" && (
         <BoardCreate setBoard={setBoard} setModal={setModal} />
       )}
-    </>
+    </SelectContainer>
   )
 }
 
