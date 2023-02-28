@@ -13,10 +13,15 @@ const useCredentialStorage = () => {
     return localStorage.getItem("token")
   }
 
+  const deleteToken = () => {
+    localStorage.removeItem("token")
+  }
+
   return {
     token,
     updateToken,
     getToken,
+    deleteToken,
   }
 }
 

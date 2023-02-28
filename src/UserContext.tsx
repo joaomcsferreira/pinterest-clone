@@ -40,9 +40,9 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [error, setError] = React.useState("")
   const [loading, setLoading] = React.useState(false)
 
-  const { getUser, getUserData, signOut, addDoc, updateDoc } = useServices()
+  const { getUser, getUserData, addDoc, updateDoc } = useServices()
 
-  const { token, updateToken, getToken } = useCredentialStorage()
+  const { token, updateToken, getToken, deleteToken } = useCredentialStorage()
 
   const login = async (email: string, password: string) => {
     try {
@@ -144,16 +144,12 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
   }
 
   const logOut = () => {
-    try {
-      signOut()
+    deleteToken()
 
-      setUser(null)
-      setLogged(false)
-    } catch (error) {
-      const errorMessage = (error as AxiosError).response?.data as ErrorProps
-
-      setError(errorMessage.error)
-    }
+    setUser(null)
+    setError("")
+    setLoading(false)
+    setLogged(false)
   }
 
   const reUpUser = async () => {

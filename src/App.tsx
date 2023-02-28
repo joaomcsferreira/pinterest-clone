@@ -25,19 +25,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pin-builder" element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute />}>
             <Route path="/pin-builder" element={<PinBuilder />} />
-          </Route>
-          <Route path="/pin/:id" element={<ProtectedRoute />}>
             <Route path="/pin/:id" element={<PinViewer />} />
-          </Route>
-          <Route path="/:username" element={<ProtectedRoute />}>
             <Route path="/:username" element={<UserProfile />} />
-          </Route>
-          <Route path="/:username/:board" element={<ProtectedRoute />}>
             <Route path="/:username/:board" element={<BoardPins />} />
-          </Route>
-          <Route path="/settings/edit-profile" element={<ProtectedRoute />}>
             <Route
               path="/settings/edit-profile"
               element={<UserEditProfile />}
