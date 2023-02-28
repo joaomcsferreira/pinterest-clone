@@ -169,8 +169,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
       setError(errorMessage.error)
-      setLogged(false)
-      updateToken("")
+      logOut()
     } finally {
       setLoading(false)
     }

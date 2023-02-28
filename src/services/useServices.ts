@@ -26,10 +26,6 @@ const useServices = () => {
     return response.data.result
   }
 
-  const signOut = () => {
-    updateToken("")
-  }
-
   const addDoc = async (
     collection: string,
     data: WithFieldValue<any> | FormData
@@ -75,7 +71,6 @@ const useServices = () => {
   return {
     getUser,
     getUserData,
-    signOut,
     addDoc,
     getDocs,
     updateDoc,
