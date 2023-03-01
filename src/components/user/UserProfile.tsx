@@ -94,10 +94,6 @@ const UserProfile = () => {
             </ProfileActions>
 
             <ProfileActions>
-              <Button full color="--color-button-gray" textDark>
-                Share
-              </Button>
-
               {user?.username === profile.username ? (
                 <Link to={"/settings/edit-profile"}>
                   <Button full color="--color-button-gray" textDark>

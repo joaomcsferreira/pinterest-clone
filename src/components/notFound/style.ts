@@ -2,6 +2,8 @@ import styled from "styled-components"
 
 const NotImplementededContainer = styled.div`
   display: flex;
+  width: 60%;
+  margin: 5rem auto;
   flex-direction: column;
   gap: 1rem;
 `

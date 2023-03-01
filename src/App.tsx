@@ -17,6 +17,7 @@ import BoardPins from "./components/board/BoardPins"
 import UserEditProfile from "./components/user/UserEditProfile"
 import NotFound from "./components/notFound/NotFound"
 import ProtectedRoute from "./components/helper/ProtectedRoute"
+import NotImplementeded from "./components/notFound/NotImplementeded"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               path="/settings/edit-profile"
               element={<UserEditProfile />}
             />
+            <Route path="/notImplemented" element={<NotImplementeded />} />
           </Route>
           <Route path="notfound" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/notfound" replace />} />

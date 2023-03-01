@@ -50,7 +50,9 @@ const Header = () => {
                 </Logo>
               </Link>
             </NavIcon>
-            <Button color="--color-button-black">Home</Button>
+            <Link to="/">
+              <Button color="--color-button-black">Home</Button>
+            </Link>
             <Link to={"/pin-builder"}>
               <Button textDark color="--color-button-invisible">
                 Create
@@ -132,19 +134,38 @@ const Header = () => {
                     <Text padding="0.2rem 0.4rem" size={0.75}>
                       Your accounts
                     </Text>
-                    <ProfileOptionsItem>Add account</ProfileOptionsItem>
-                    <ProfileOptionsItem>Convert to business</ProfileOptionsItem>
+                    <Link to={`/notimplemented`}>
+                      <ProfileOptionsItem>Add account</ProfileOptionsItem>
+                    </Link>
+
+                    <Link to={`/notimplemented`}>
+                      <ProfileOptionsItem>
+                        Convert to business
+                      </ProfileOptionsItem>
+                    </Link>
                   </ProfileOptionsSection>
                   <ProfileOptionsSection>
                     <Text padding="0.2rem 0.4rem" size={0.75}>
                       More options
                     </Text>
-                    <ProfileOptionsItem>Settings</ProfileOptionsItem>
-                    <ProfileOptionsItem>Tune your home feed</ProfileOptionsItem>
-                    <ProfileOptionsItem>
-                      Install the Windows app
-                    </ProfileOptionsItem>
-                    <ProfileOptionsItem>Your privacy rights</ProfileOptionsItem>
+                    <Link to={`/settings/edit-profile`}>
+                      <ProfileOptionsItem>Settings</ProfileOptionsItem>
+                    </Link>
+                    <Link to={`/notimplemented`}>
+                      <ProfileOptionsItem>
+                        Tune your home feed
+                      </ProfileOptionsItem>
+                    </Link>
+                    <Link to={`/notimplemented`}>
+                      <ProfileOptionsItem>
+                        Install the Windows app
+                      </ProfileOptionsItem>
+                    </Link>
+                    <Link to={`/notimplemented`}>
+                      <ProfileOptionsItem>
+                        Your privacy rights
+                      </ProfileOptionsItem>
+                    </Link>
                     <ProfileOptionsItem
                       onClick={() => {
                         setModal("")
