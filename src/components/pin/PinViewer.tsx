@@ -25,6 +25,7 @@ import PinEdit from "./PinEdit"
 import Title from "../form/Title"
 import Text from "../form/Text"
 import ButtonFollow from "../form/ButtonFollow"
+import ButtonBack from "../helper/ButtonBack"
 
 const PinViewer = () => {
   const [modal, setModal] = React.useState("")
@@ -59,6 +60,8 @@ const PinViewer = () => {
       {pin && user && (
         <>
           <WraperPinView>
+            <ButtonBack />
+
             <PinImg
               ref={imageRef}
               src={`${process.env.REACT_APP_BASE_URL}${pin.src}`}

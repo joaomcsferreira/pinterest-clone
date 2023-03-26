@@ -103,8 +103,25 @@ const DragAreaAlert = styled.p`
 `
 const MansoryContainer = styled.div`
   width: 95vw;
+  height: auto;
   margin: 2rem auto;
   display: flex;
+`
+
+const ButtonBackContainer = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background-color: var(--g-color-red);
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 4;
+  border-radius: 50%;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `
 
 export {
@@ -119,4 +136,5 @@ export {
   DragAreaMessage,
   DragAreaAlert,
   MansoryContainer,
+  ButtonBackContainer,
 }

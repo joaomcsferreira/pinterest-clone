@@ -11,9 +11,13 @@ interface UserPublicProfileSectionProps {
   column?: boolean
 }
 
+interface UserSettingMenuContainerProps {
+  active: boolean
+}
+
 const ProfileContainer = styled.div`
-  width: 90%;
   margin: 0 auto;
+  margin-top: 2rem;
 `
 
 const ProfileInfo = styled.div`
@@ -39,10 +43,10 @@ const ProfileActions = styled.div`
 
 const ProfileModal = styled.div`
   position: absolute;
-  width: 35rem;
+  width: 80%;
   height: 35rem;
   top: calc(50% - 17.5rem);
-  left: calc(50% - 17.5rem);
+  left: 10%;
   background-color: var(--g-color-white);
   border-radius: 1rem;
   padding: 2rem 0.5rem;
@@ -50,6 +54,11 @@ const ProfileModal = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3rem;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    left: 25%;
+  }
 `
 
 const ProfileModalSection = styled.div``
@@ -79,17 +88,49 @@ const UserSettingContainer = styled.div`
   margin-bottom: 6rem;
 
   & > :nth-child(2) {
-    margin: 0 0 2rem 5rem;
-    width: 50%;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    & > :nth-child(2) {
+      margin: 0 0 2rem 5rem;
+      width: 50%;
+    }
   }
 `
 
-const UserSettingMenuContainer = styled.nav`
-  display: flex;
+const UserMenuIcon = styled.img`
+  width: 2rem;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 20;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
+const UserSettingMenuContainer = styled.nav<UserSettingMenuContainerProps>`
   flex-direction: column;
   align-items: flex-start;
   padding: 0 1rem;
   gap: 0.5rem;
+  background-color: var(--g-color-white);
+  position: fixed;
+  z-index: 4;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: ${({ active }) => (active ? "flex" : "none")};
+
+  @media (min-width: 768px) {
+    display: flex;
+    position: relative;
+    width: auto;
+    height: auto;
+  }
 `
 
 const UserEditProfileContainer = styled.div`
@@ -97,6 +138,12 @@ const UserEditProfileContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
+  grid-column: 1 / span 2;
+  padding: 0.5rem;
+
+  @media (min-width: 768px) {
+    grid-column: 2;
+  }
 `
 
 const UserEditProfileSection = styled.div<UserPublicProfileSectionProps>`
@@ -115,12 +162,16 @@ const UserChangeAvatarContainer = styled.div`
   padding: 0.8rem;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  left: calc(50% - 17.5rem);
-  top: 40%;
-  min-width: 35rem;
+  position: fixed;
+  left: 10%;
+  width: 80%;
   z-index: 7;
   border-radius: 1.2rem;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    left: 25%;
+  }
 `
 
 const UserProfileActionsContainer = styled.div`
@@ -163,4 +214,5 @@ export {
   UserChangeAvatarContainer,
   UserProfileActionsContainer,
   ErrorContainer,
+  UserMenuIcon,
 }

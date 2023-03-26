@@ -1,22 +1,30 @@
 import styled from "styled-components"
 
 const Container = styled.div`
-  width: 30.25em;
+  max-width: 30.25em;
+  width: 100%;
   background-color: var(--g-color-white);
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding-top: 20px;
   overflow: hidden;
-  top: 1vh;
-  left: calc(50% - 15em);
-  position: absolute;
   gap: 0.3rem;
   z-index: 10;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 1vh;
+    left: calc(50% - 15em);
+  }
 `
 
 const Icon = styled.img`
-  width: 2.4rem;
+  width: 4rem;
+
+  @media (min-width: 768px) {
+    width: 2.4rem;
+  }
 `
 
 const Link = styled.a`
@@ -30,10 +38,14 @@ const Link = styled.a`
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
   margin: 0 auto;
   align-items: center;
   text-align: center;
+  width: 80%;
+
+  @media (min-width: 768px) {
+    width: 70%;
+  }
 `
 
 const SectionInput = styled.div`
@@ -51,11 +63,8 @@ const SectionInput = styled.div`
 
 const Footer = styled.div`
   background-color: var(--g-colorGray100);
-  width: 30.25em;
+  width: 100%;
   height: 3.2rem;
-  position: relative;
-  bottom: -20px;
-  left: -10px;
   display: grid;
   place-items: center;
 `

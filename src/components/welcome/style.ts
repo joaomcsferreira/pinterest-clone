@@ -39,6 +39,12 @@ const animeImg = keyframes`
 `
 
 const ContainerAllPages = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
   & > :nth-child(n) {
     scroll-snap-align: start;
   }
@@ -298,6 +304,11 @@ const ThirdSectionPhotoText = styled.p`
   z-index: 1;
   width: 75%;
   margin: 65% 0 0 10%;
+  display: none;
+
+  @media (min-width: 1100px) {
+    display: inline;
+  }
 `
 
 const FourthSectionPhotos = styled(ContainerColumn)`
@@ -356,6 +367,23 @@ const FooterNavLink = styled.li`
   }
 `
 
+const ContainerMobile = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
 export {
   ContainerAllPages,
   Container,
@@ -382,4 +410,5 @@ export {
   Footer,
   FooterNav,
   FooterNavLink,
+  ContainerMobile,
 }

@@ -18,6 +18,7 @@ import {
   Footer,
   FooterNav,
   FooterNavLink,
+  ContainerMobile,
 } from "./style"
 
 import { GalleryAnimated } from "./Gallery"
@@ -29,8 +30,10 @@ import Signup from "../../components/login/Signup"
 import Title from "../form/Title"
 import Text from "../form/Text"
 import Button from "../form/Button"
+import Login from "../login/Login"
 
 const Welcome = () => {
+  const [modal, setModal] = React.useState("signup")
   const [active, setActive] = React.useState(0)
   const subtitles = [
     { id: 0, message: "summer outfit idea", color: "--g-color-celeste" },
@@ -93,157 +96,177 @@ const Welcome = () => {
   }, [])
 
   return (
-    <ContainerAllPages>
-      <ContainerFirstPage>
-        <Title size={4}>Get your next</Title>
+    <>
+      <ContainerAllPages>
+        <ContainerFirstPage>
+          <Title size={4}>Get your next</Title>
 
-        <Title size={4} color={subtitles[active].color}>
-          {subtitles[active].message}
-        </Title>
+          <Title size={4} color={subtitles[active].color}>
+            {subtitles[active].message}
+          </Title>
 
-        <NavCircle>
-          {subtitles.map((subtitle) => (
-            <NavCircleItem
-              onClick={() => {
-                setActive(subtitle.id)
-              }}
-              key={subtitle.id}
-              color={
-                subtitle.id === active
-                  ? subtitle.color
-                  : "--g-colorGray100Hovered"
-              }
-            />
-          ))}
-        </NavCircle>
-
-        <ArrowDown href="#second" color={subtitles[active].color} src={arrow} />
-
-        <GalleryAnimated />
-      </ContainerFirstPage>
-
-      {/* second page */}
-      <Container color={"--g-color-yellow"} id="second">
-        <ContainerColumn>
-          <SecondSectionPhotos>
-            {photos[0].urls.map((photo, index) => (
-              <SectionPhoto key={index} src={photo.url} alt={photo.alt} />
+          <NavCircle>
+            {subtitles.map((subtitle) => (
+              <NavCircleItem
+                onClick={() => {
+                  setActive(subtitle.id)
+                }}
+                key={subtitle.id}
+                color={
+                  subtitle.id === active
+                    ? subtitle.color
+                    : "--g-colorGray100Hovered"
+                }
+              />
             ))}
-          </SecondSectionPhotos>
+          </NavCircle>
 
-          <SecondSectionPhotosSearch>
-            <img src={magnifier} alt="" />
-            <Text size={1.3} weight={700}>
-              easy chicken dinner
+          <ArrowDown
+            href="#second"
+            color={subtitles[active].color}
+            src={arrow}
+          />
+
+          <GalleryAnimated />
+        </ContainerFirstPage>
+
+        {/* second page */}
+        <Container color={"--g-color-yellow"} id="second">
+          <ContainerColumn>
+            <SecondSectionPhotos>
+              {photos[0].urls.map((photo, index) => (
+                <SectionPhoto key={index} src={photo.url} alt={photo.alt} />
+              ))}
+            </SecondSectionPhotos>
+
+            <SecondSectionPhotosSearch>
+              <img src={magnifier} alt="" />
+              <Text size={1.3} weight={700}>
+                easy chicken dinner
+              </Text>
+            </SecondSectionPhotosSearch>
+          </ContainerColumn>
+
+          <SectionPage>
+            <Title size={4} weight={700} color={"--g-color-deepPink"}>
+              Search for an idea
+            </Title>
+            <Text size={1.5} color={"--g-color-deepPink"}>
+              What do you want to try next? Think of something you're into —
+              like “easy chicken dinner” — and see what you find.
             </Text>
-          </SecondSectionPhotosSearch>
-        </ContainerColumn>
+            <Button
+              radius={2}
+              color={"--color-button-deepPink"}
+              padding={"0.8rem 1rem"}
+            >
+              Explore
+            </Button>
+          </SectionPage>
+        </Container>
 
-        <SectionPage>
-          <Title size={4} weight={700} color={"--g-color-deepPink"}>
-            Search for an idea
-          </Title>
-          <Text size={1.5} color={"--g-color-deepPink"}>
-            What do you want to try next? Think of something you're into — like
-            “easy chicken dinner” — and see what you find.
-          </Text>
-          <Button
-            radius={2}
-            color={"--color-button-deepPink"}
-            padding={"0.8rem 1rem"}
-          >
-            Explore
-          </Button>
-        </SectionPage>
-      </Container>
+        {/* third page */}
+        <Container color="--g-color-mint">
+          <SectionPage>
+            <Title size={4} weight={700} color={"--g-color-pine"}>
+              Save ideas you like
+            </Title>
+            <Text size={1.5} color={"--g-color-pine"}>
+              Collect your favorites so you can get back to them later.
+            </Text>
+            <Button
+              radius={2}
+              color={"--color-button-pine"}
+              padding={"0.8rem 1rem"}
+            >
+              Explore
+            </Button>
+          </SectionPage>
 
-      {/* third page */}
-      <Container color="--g-color-mint">
-        <SectionPage>
-          <Title size={4} weight={700} color={"--g-color-pine"}>
-            Save ideas you like
-          </Title>
-          <Text size={1.5} color={"--g-color-pine"}>
-            Collect your favorites so you can get back to them later.
-          </Text>
-          <Button
-            radius={2}
-            color={"--color-button-pine"}
-            padding={"0.8rem 1rem"}
-          >
-            Explore
-          </Button>
-        </SectionPage>
+          <ContainerColumn>
+            <ThirdSectionPhotos>
+              {photos[1].urls.map((photo, index) => (
+                <ThirdSectionPhoto key={index}>
+                  <SectionPhoto src={photo.url} alt={photo.alt} />
+                  <ThirdSectionPhotoText>{photo.alt}</ThirdSectionPhotoText>
+                </ThirdSectionPhoto>
+              ))}
+            </ThirdSectionPhotos>
+          </ContainerColumn>
+        </Container>
 
-        <ContainerColumn>
-          <ThirdSectionPhotos>
-            {photos[1].urls.map((photo, index) => (
-              <ThirdSectionPhoto key={index}>
-                <SectionPhoto src={photo.url} alt={photo.alt} />
-                <ThirdSectionPhotoText>{photo.alt}</ThirdSectionPhotoText>
-              </ThirdSectionPhoto>
-            ))}
-          </ThirdSectionPhotos>
-        </ContainerColumn>
-      </Container>
+        {/* fourth page */}
+        <Container color="--g-color-pink">
+          <ContainerColumn>
+            <FourthSectionPhotos>
+              {photos[2].urls.map((photo, index) => (
+                <SectionPhoto key={index} src={photo.url} alt={photo.alt} />
+              ))}
+            </FourthSectionPhotos>
+          </ContainerColumn>
 
-      {/* fourth page */}
-      <Container color="--g-color-pink">
-        <ContainerColumn>
-          <FourthSectionPhotos>
-            {photos[2].urls.map((photo, index) => (
-              <SectionPhoto key={index} src={photo.url} alt={photo.alt} />
-            ))}
-          </FourthSectionPhotos>
-        </ContainerColumn>
+          <SectionPage>
+            <Title size={4} weight={700} color={"--g-color-coral"}>
+              See it, make it, try it, do it
+            </Title>
+            <Text size={1.5} color={"--g-color-coral"}>
+              The best part of Pinterest is discovering new things and ideas
+              from people around the world.
+            </Text>
+            <Button
+              radius={2}
+              color={"--color-button-coral"}
+              padding={"0.8rem 1rem"}
+            >
+              Explore
+            </Button>
+          </SectionPage>
+        </Container>
 
-        <SectionPage>
-          <Title size={4} weight={700} color={"--g-color-coral"}>
-            See it, make it, try it, do it
-          </Title>
-          <Text size={1.5} color={"--g-color-coral"}>
-            The best part of Pinterest is discovering new things and ideas from
-            people around the world.
-          </Text>
-          <Button
-            radius={2}
-            color={"--color-button-coral"}
-            padding={"0.8rem 1rem"}
-          >
-            Explore
-          </Button>
-        </SectionPage>
-      </Container>
-
-      {/* fifth page */}
-      <Container
-        style={{ background: "url(/images/background-set-photos.PNG)" }}
-        color=""
+        {/* fifth page */}
+        <Container
+          style={{ background: "url(/images/background-set-photos.PNG)" }}
+          color=""
+        >
+          <SectionPage color="--g-color-white">
+            <Title size={4} weight={700} color={"--g-color-white"}>
+              Sign up to get your ideias
+            </Title>
+          </SectionPage>
+          <ContainerColumn>
+            <Signup setModal={() => {}} />
+          </ContainerColumn>
+          <Footer>
+            <FooterNav>
+              <FooterNavLink>Terms of Service</FooterNavLink>
+              <FooterNavLink>Privacy Policy</FooterNavLink>
+              <FooterNavLink>Help</FooterNavLink>
+              <FooterNavLink>Iphone App</FooterNavLink>
+              <FooterNavLink>Android App</FooterNavLink>
+              <FooterNavLink>Users</FooterNavLink>
+              <FooterNavLink>Collections</FooterNavLink>
+              <FooterNavLink>Today</FooterNavLink>
+              <FooterNavLink>Explore</FooterNavLink>
+              <FooterNavLink>Watch</FooterNavLink>
+            </FooterNav>
+          </Footer>
+        </Container>
+      </ContainerAllPages>
+      <ContainerMobile
+        style={{
+          background: "url(/images/background-set-photos.PNG)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <SectionPage color="--g-color-white">
-          <Title size={4} weight={700} color={"--g-color-white"}>
-            Sign up to get your ideias
-          </Title>
-        </SectionPage>
-        <ContainerColumn>
-          <Signup setModal={() => {}} />
-        </ContainerColumn>
-        <Footer>
-          <FooterNav>
-            <FooterNavLink>Terms of Service</FooterNavLink>
-            <FooterNavLink>Privacy Policy</FooterNavLink>
-            <FooterNavLink>Help</FooterNavLink>
-            <FooterNavLink>Iphone App</FooterNavLink>
-            <FooterNavLink>Android App</FooterNavLink>
-            <FooterNavLink>Users</FooterNavLink>
-            <FooterNavLink>Collections</FooterNavLink>
-            <FooterNavLink>Today</FooterNavLink>
-            <FooterNavLink>Explore</FooterNavLink>
-            <FooterNavLink>Watch</FooterNavLink>
-          </FooterNav>
-        </Footer>
-      </Container>
-    </ContainerAllPages>
+        {modal === "signup" ? (
+          <Signup setModal={setModal} />
+        ) : (
+          <Login setModal={setModal} />
+        )}
+      </ContainerMobile>
+    </>
   )
 }
 

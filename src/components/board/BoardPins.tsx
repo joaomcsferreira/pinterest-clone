@@ -11,6 +11,7 @@ import Feed from "../feed/Feed"
 import FillMode from "../helper/FillMode"
 import Loading from "../helper/Loading"
 import Title from "../form/Title"
+import ButtonBack from "../helper/ButtonBack"
 
 const BoardPins = () => {
   const { username, board } = useParams()
@@ -38,6 +39,7 @@ const BoardPins = () => {
     <>
       {user && board && (
         <PinsBoardContainer>
+          <ButtonBack destiny={`/${username}`} />
           <PinsBoardSection>
             <Title capitalize>{board}</Title>
             <Avatar

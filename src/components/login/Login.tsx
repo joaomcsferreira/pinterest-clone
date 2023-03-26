@@ -28,7 +28,7 @@ const Login = ({ setModal }: LoginProps) => {
   }
 
   return (
-    <Container>
+    <Container style={{ padding: "20px 10px" }}>
       <Section>
         <Icon src={logo} />
       </Section>

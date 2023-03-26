@@ -2,6 +2,7 @@ import React from "react"
 
 import {
   ErrorContainer,
+  UserMenuIcon,
   UserProfileActionsContainer,
   UserSettingContainer,
   UserSettingMenuContainer,
@@ -19,11 +20,16 @@ import NotImplementeded from "../notFound/NotImplementeded"
 import Error from "../helper/Error"
 import FillMode from "../helper/FillMode"
 import Loading from "../helper/Loading"
+import ButtonBack from "../helper/ButtonBack"
+
+import hamburger from "../../assets/svg/hamburger.svg"
+import xmark from "../../assets/svg/xmark.svg"
 
 const UserEditProfile = () => {
   const [typeSetting, setTypeSetting] = React.useState("public")
   const [image, setImage] = React.useState<imageProps | null>(null)
   const [modal, setModal] = React.useState("")
+  const [active, setActive] = React.useState(false)
 
   const { loading, user, error, reUpUser, updateUserData } = useUserContext()
   const navigate = useNavigate()
@@ -100,13 +106,23 @@ const UserEditProfile = () => {
 
   return (
     <>
+      <UserMenuIcon
+        onClick={() => setActive((active) => !active)}
+        src={!active ? hamburger : xmark}
+      />
+
+      <ButtonBack destiny={`/${user?.username}`} />
+
       {user && (
         <UserSettingContainer>
-          <UserSettingMenuContainer>
+          <UserSettingMenuContainer active={active}>
             {typesSetting.map((type, index) => (
               <Button
                 key={index}
-                onClick={() => setTypeSetting(type.type)}
+                onClick={() => {
+                  setTypeSetting(type.type)
+                  setActive(false)
+                }}
                 active={typeSetting === type.type}
                 radius={0.5}
                 color={"--color-button-invisible"}

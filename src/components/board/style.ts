@@ -36,6 +36,7 @@ const SelectOptions = styled.div`
   padding: 0.05rem;
   text-align: center;
   overflow: hidden;
+  z-index: 5;
 `
 
 const SelectOptionsItems = styled.div`
@@ -64,9 +65,15 @@ const SelectOption = styled.p`
 
 const BoardsListContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  justify-content: center;
   margin-top: 2rem;
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 `
 
 const BoardItemContainer = styled.div`
@@ -142,18 +149,22 @@ const BoardIcon = styled.img`
 `
 
 const BoardCreateContainer = styled.div`
-  width: 40rem;
+  width: 80%;
   height: 20rem;
   background-color: var(--g-color-white);
   padding: 1rem 0 0 0;
   position: fixed;
   z-index: 7;
-  top: calc(50% - 10rem);
-  left: calc(50% - 20rem);
+  left: 10%;
   border-radius: 1rem;
   overflow: hidden;
   display: grid;
   grid-template-rows: 3fr 1fr;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    left: 25%;
+  }
 `
 
 const BoardCreateSection = styled.div`

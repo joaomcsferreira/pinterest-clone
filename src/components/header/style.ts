@@ -18,13 +18,17 @@ const animeDown = keyframes`
 
 const Container = styled.div`
   height: 5rem;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 700;
   padding: 0 1.5rem;
   gap: 1.2rem;
   position: relative;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `
 
 const Logo = styled.div`

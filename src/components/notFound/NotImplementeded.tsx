@@ -1,10 +1,12 @@
 import React from "react"
 import Text from "../form/Text"
+import ButtonBack from "../helper/ButtonBack"
 import { NotImplementededContainer } from "./style"
 
 const NotImplementeded = () => {
   return (
     <NotImplementededContainer>
+      <ButtonBack />
       <Text size={1.05} weight={500} justify={"justify"}>
         Dear user,
       </Text>

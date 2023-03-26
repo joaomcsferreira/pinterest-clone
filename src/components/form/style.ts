@@ -50,7 +50,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   height: fit-content;
   white-space: nowrap;
   position: relative;
-  z-index: 5;
+  z-index: 3;
   cursor: pointer;
 
   &:after {

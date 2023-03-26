@@ -1,7 +1,10 @@
 import React from "react"
-import PinService from "../../services/PinService"
-import Text from "../form/Text"
+
 import { BoardItemContainer, BoardItemImg, BoardItemImgGroup } from "./style"
+
+import PinService from "../../services/PinService"
+
+import Text from "../form/Text"
 
 interface BoardItemProps {
   username: string

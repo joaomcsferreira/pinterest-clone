@@ -30,10 +30,10 @@ const Wraper = styled.div`
 `
 
 const WraperPinBuilder = styled(Wraper)`
+  flex-direction: column;
   margin: 0 auto;
-  width: 70vw;
 
-  justify-content: space-around;
+  align-items: center;
 
   padding: 3rem;
 
@@ -42,14 +42,32 @@ const WraperPinBuilder = styled(Wraper)`
   }
 
   & > :nth-child(3) {
-    width: 60%;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    width: 70vw;
+
+    & > :nth-child(3) {
+      width: 60%;
+    }
   }
 `
 
 const WraperPinView = styled(Wraper)`
   margin: 5vh auto;
 
+  flex-direction: column;
+
   box-shadow: 0 0 5px 2px var(--g-colorTransparentGray20);
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
 `
 
 const WraperPinEdit = styled(WraperPinView)`
@@ -72,7 +90,7 @@ const WraperPinEdit = styled(WraperPinView)`
   }
 
   & > :nth-child(2) {
-    grid-column: 1;
+    grid-column: 1 / span 2;
   }
 
   & > :nth-child(3) {
@@ -89,6 +107,12 @@ const WraperPinEdit = styled(WraperPinView)`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  @media (min-width: 800px) {
+    & > :nth-child(2) {
+      grid-column: 1;
+    }
   }
 `
 
@@ -118,6 +142,7 @@ const ButtonSave = styled.button`
   padding: 0 1rem;
   border-radius: 0 10px 10px 0;
   z-index: 4;
+  height: 3.125rem;
   cursor: pointer;
 
   &:hover {
@@ -173,9 +198,12 @@ const InfoInput = styled.input<InfoInputProps>`
 `
 
 const PinImg = styled.img`
-  max-width: 60vw;
   max-height: 100vh;
   object-fit: cover;
+
+  @media (min-width: 800px) {
+    max-width: 60vw;
+  }
 `
 
 const PinInfo = styled.div<PinInfoProps>`
@@ -243,6 +271,11 @@ const DisplayImage = styled.div<DisplayImageProps>`
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  display: none;
+
+  @media (min-width: 800px) {
+    display: block;
+  }
 `
 
 const PinEditSection = styled.div`

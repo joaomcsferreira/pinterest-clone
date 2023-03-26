@@ -22,7 +22,7 @@ const Feed = ({ type, user, board, total }: FeedProps) => {
 
   return (
     <>
-      <MansoryLayout columnCount={5} gap={14.4}>
+      <MansoryLayout gap={14.4}>
         {pins &&
           pins.map((pin) => (
             <Link to={`/pin/${pin._id}`} key={pin._id}>

@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom"
 import BoardSelect from "../board/BoardSelect"
 import Error from "../helper/Error"
 import Text from "../form/Text"
+import ButtonBack from "../helper/ButtonBack"
 
 export interface imageProps {
   preview: string
@@ -71,6 +72,8 @@ const PinBuilder = () => {
     <>
       {logged && user && (
         <Container>
+          <ButtonBack />
+
           <WraperPinBuilder>
             <Actions>
               <ErrorPostion>{error && <Error error={error} />}</ErrorPostion>

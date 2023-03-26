@@ -22,6 +22,7 @@ import Button from "../form/Button"
 import Text from "../form/Text"
 import Title from "../form/Title"
 import FillMode from "../helper/FillMode"
+import ButtonBack from "../helper/ButtonBack"
 import ButtonFollow from "../form/ButtonFollow"
 
 const UserProfile = () => {
@@ -57,6 +58,7 @@ const UserProfile = () => {
     <>
       {profile && (
         <ProfileContainer>
+          <ButtonBack />
           <ProfileInfo>
             <Avatar
               size="8"
