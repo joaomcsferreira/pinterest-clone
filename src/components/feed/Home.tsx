@@ -63,11 +63,7 @@ const Home = () => {
             <Avatar
               onClick={() => setModal((modal) => (modal ? "" : "modal"))}
               size="1.8"
-              src={
-                user.avatar
-                  ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                  : ""
-              }
+              src={user.avatar ? `${user.avatar}` : ""}
             >
               <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
             </Avatar>

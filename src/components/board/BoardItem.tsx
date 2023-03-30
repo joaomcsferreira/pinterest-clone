@@ -24,10 +24,7 @@ const BoardItem = ({ username, name }: BoardItemProps) => {
         <BoardItemContainer>
           <BoardItemImgGroup>
             {pins.map((pin) => (
-              <BoardItemImg
-                key={pin._id}
-                src={`${process.env.REACT_APP_BASE_URL}${pin.src}`}
-              />
+              <BoardItemImg key={pin._id} src={`${pin.src}`} />
             ))}
             {pins.length < 3 &&
               Array.apply(0, Array(3 - pins.length)).map((div, index) => (

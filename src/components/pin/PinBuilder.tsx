@@ -38,6 +38,7 @@ const PinBuilder = () => {
 
   const [board, setBoard] = React.useState("")
   const [pin, setPin] = React.useState<imageProps | null>(null)
+  const [image64, setImage64] = React.useState("")
 
   const { user, logged } = useUserContext()
   const { loading, error, createPin } = PinService()
@@ -46,15 +47,27 @@ const PinBuilder = () => {
 
   const navigate = useNavigate()
 
+  const convertToBase64 = (pin: File | undefined) => {
+    if (pin) {
+      const reader = new FileReader()
+
+      reader.readAsDataURL(pin)
+
+      reader.onload = () => {
+        setImage64(`${reader.result}`)
+      }
+    }
+  }
+
   async function handleSubmit() {
     if (pin) {
-      const form = new FormData()
-
-      form.append("title", title.value)
-      form.append("description", description.value)
-      form.append("website", website.value)
-      form.append("board", board)
-      form.append("src", pin!.raw, pin!.raw.name)
+      const form = {
+        title: title.value,
+        description: description.value,
+        website: website.value,
+        board: board,
+        src: image64,
+      }
 
       const result: Pin | null = await createPin(form)
 
@@ -66,6 +79,8 @@ const PinBuilder = () => {
 
   React.useEffect(() => {
     setPinBlank(false)
+
+    convertToBase64(pin?.raw)
   }, [pin])
 
   return (
@@ -91,14 +106,7 @@ const PinBuilder = () => {
                   {...title}
                 />
                 <InfoSection>
-                  <Avatar
-                    size="3"
-                    src={
-                      user.avatar
-                        ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                        : ""
-                    }
-                  >
+                  <Avatar size="3" src={user.avatar ? `${user.avatar}` : ""}>
                     <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
                   </Avatar>
                   <Text>{user.username}</Text>

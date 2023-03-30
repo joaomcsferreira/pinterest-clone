@@ -36,7 +36,7 @@ const PinService = () => {
 
   const { addDoc, getDocs, updateDoc, deleteDoc } = useServices()
 
-  const createPin = async (form: FormData) => {
+  const createPin = async (form: WithFieldValue<string>) => {
     try {
       setError("")
       setLoading(true)

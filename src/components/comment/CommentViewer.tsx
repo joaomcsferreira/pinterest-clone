@@ -19,11 +19,7 @@ const CommentViewer = ({ comments }: CommentViewerProps) => {
             <CommentContainer key={comment._id}>
               <Avatar
                 size="2"
-                src={
-                  comment.user.avatar
-                    ? `${process.env.REACT_APP_BASE_URL}${comment.user.avatar}`
-                    : ""
-                }
+                src={comment.user.avatar ? `${comment.user.avatar}` : ""}
               >
                 <p>
                   {comment.user.avatar ? "" : comment.user.username?.charAt(0)}

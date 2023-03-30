@@ -37,14 +37,7 @@ const CommentBuilder = () => {
       {user && (
         <CommentBuilderContainer>
           <ErrorContainer>{error && <Error error={error} />}</ErrorContainer>
-          <Avatar
-            size="3"
-            src={
-              user.avatar
-                ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                : ""
-            }
-          >
+          <Avatar size="3" src={user.avatar ? `${user.avatar}` : ""}>
             <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
           </Avatar>
           <Input

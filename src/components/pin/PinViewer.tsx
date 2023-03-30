@@ -62,10 +62,7 @@ const PinViewer = () => {
           <WraperPinView>
             <ButtonBack />
 
-            <PinImg
-              ref={imageRef}
-              src={`${process.env.REACT_APP_BASE_URL}${pin.src}`}
-            />
+            <PinImg ref={imageRef} src={`${pin.src}`} />
 
             {imageRef.current && (
               <PinInfo
@@ -95,11 +92,7 @@ const PinViewer = () => {
                     >
                       <Avatar
                         size="4"
-                        src={
-                          pin.user.avatar
-                            ? `${process.env.REACT_APP_BASE_URL}${pin.user.avatar}`
-                            : ""
-                        }
+                        src={pin.user.avatar ? `${pin.user.avatar}` : ""}
                       >
                         <p>
                           {pin.user.avatar ? "" : pin.user.username?.charAt(0)}

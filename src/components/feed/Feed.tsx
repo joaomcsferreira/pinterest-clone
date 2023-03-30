@@ -27,7 +27,7 @@ const Feed = ({ type, user, board, total }: FeedProps) => {
           pins.map((pin) => (
             <Link to={`/pin/${pin._id}`} key={pin._id}>
               <ImgContainer>
-                <Img src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
+                <Img src={`${pin.src}`} />
               </ImgContainer>
             </Link>
           ))}

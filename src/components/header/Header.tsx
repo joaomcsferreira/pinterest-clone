@@ -77,14 +77,7 @@ const Header = () => {
             </NavIcon>
             <NavIcon>
               <Link to={`/${user.username}`}>
-                <Avatar
-                  size="1.8"
-                  src={
-                    user.avatar
-                      ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                      : ""
-                  }
-                >
+                <Avatar size="1.8" src={user.avatar ? `${user.avatar}` : ""}>
                   <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
                 </Avatar>
               </Link>
@@ -110,11 +103,7 @@ const Header = () => {
                       <Profile>
                         <Avatar
                           size="4"
-                          src={
-                            user.avatar
-                              ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                              : ""
-                          }
+                          src={user.avatar ? `${user.avatar}` : ""}
                         >
                           <p>{user.avatar ? "" : user.username?.charAt(0)}</p>
                         </Avatar>

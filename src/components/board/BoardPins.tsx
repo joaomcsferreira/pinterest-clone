@@ -42,14 +42,7 @@ const BoardPins = () => {
           <ButtonBack destiny={`/${username}`} />
           <PinsBoardSection>
             <Title capitalize>{board}</Title>
-            <Avatar
-              size="4"
-              src={
-                user.avatar
-                  ? `${process.env.REACT_APP_BASE_URL}${user.avatar}`
-                  : ""
-              }
-            >
+            <Avatar size="4" src={user.avatar ? `${user.avatar}` : ""}>
               <p>{user.avatar ? "" : user.username.charAt(0)}</p>
             </Avatar>
           </PinsBoardSection>

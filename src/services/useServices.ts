@@ -8,7 +8,7 @@ export type WithFieldValue<T> = {
 }
 
 const useServices = () => {
-  const { updateToken, getToken } = useCredentialStorage()
+  const { getToken } = useCredentialStorage()
 
   const getUser = async (token: string | null) => {
     if (token) {
@@ -26,13 +26,10 @@ const useServices = () => {
     return response.data.result
   }
 
-  const addDoc = async (
-    collection: string,
-    data: WithFieldValue<any> | FormData
-  ) => {
+  const addDoc = async (collection: string, data: WithFieldValue<any>) => {
     const response = await api.post(`/${collection}`, data, {
       headers: {
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
         Authorization: getToken(),
       },
     })
@@ -46,13 +43,10 @@ const useServices = () => {
     return response.data.result
   }
 
-  const updateDoc = async (
-    collection: string,
-    data: WithFieldValue<any> | FormData
-  ) => {
+  const updateDoc = async (collection: string, data: WithFieldValue<any>) => {
     const response = await api.put(`/${collection}`, data, {
       headers: {
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
         Authorization: getToken(),
       },
     })

@@ -1,7 +1,7 @@
 import React from "react"
 import { AxiosError } from "axios"
 
-import useServices from "./services/useServices"
+import useServices, { WithFieldValue } from "./services/useServices"
 
 import { ErrorProps } from "./components/helper/Error"
 import useCredentialStorage from "./services/useCredentialStorage"
@@ -20,7 +20,7 @@ export interface User {
 interface UserContextValue {
   login: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
-  updateUserData: (form: FormData) => Promise<User | null>
+  updateUserData: (form: WithFieldValue<string>) => Promise<User | null>
   updateFollowing: (username: string) => void
   updateUnfollowing: (username: string) => void
   logOut: () => void
@@ -77,7 +77,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }
   }
 
-  const updateUserData = async (form: FormData) => {
+  const updateUserData = async (form: WithFieldValue<string>) => {
     let response: User | null = null
 
     try {

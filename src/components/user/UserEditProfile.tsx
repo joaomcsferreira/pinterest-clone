@@ -28,6 +28,7 @@ import xmark from "../../assets/svg/xmark.svg"
 const UserEditProfile = () => {
   const [typeSetting, setTypeSetting] = React.useState("public")
   const [image, setImage] = React.useState<imageProps | null>(null)
+  const [image64, setImage64] = React.useState("")
   const [modal, setModal] = React.useState("")
   const [active, setActive] = React.useState(false)
 
@@ -54,6 +55,7 @@ const UserEditProfile = () => {
     image,
     setImage,
     setModal,
+    setImage64,
   }
 
   const userAccountProps = {
@@ -84,13 +86,13 @@ const UserEditProfile = () => {
   }
 
   const handleSubmit = async () => {
-    const form = new FormData()
-
-    form.append("firstName", firstName.value)
-    form.append("lastName", lastName.value)
-    form.append("username", username.value)
-    form.append("email", email.value)
-    if (image) form.append("avatar", image.raw)
+    const form = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      username: username.value,
+      email: email.value,
+      avatar: image64 ? image64 : "",
+    }
 
     const result: User | null = await updateUserData(form)
 

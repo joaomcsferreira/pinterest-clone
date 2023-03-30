@@ -60,14 +60,7 @@ const UserProfile = () => {
         <ProfileContainer>
           <ButtonBack />
           <ProfileInfo>
-            <Avatar
-              size="8"
-              src={
-                profile.avatar
-                  ? `${process.env.REACT_APP_BASE_URL}${profile.avatar}`
-                  : ""
-              }
-            >
+            <Avatar size="8" src={profile.avatar ? `${profile.avatar}` : ""}>
               <p>{profile.avatar ? "" : profile.username.charAt(0)}</p>
             </Avatar>
 
@@ -162,9 +155,7 @@ const UserProfile = () => {
                             <Avatar
                               size="4"
                               src={
-                                userFollow.avatar
-                                  ? `${process.env.REACT_APP_BASE_URL}${userFollow.avatar}`
-                                  : ""
+                                userFollow.avatar ? `${userFollow.avatar}` : ""
                               }
                             >
                               <p>
@@ -213,9 +204,7 @@ const UserProfile = () => {
                             <Avatar
                               size="4"
                               src={
-                                userFollow.avatar
-                                  ? `${process.env.REACT_APP_BASE_URL}${userFollow.avatar}`
-                                  : ""
+                                userFollow.avatar ? `${userFollow.avatar}` : ""
                               }
                             >
                               <p>

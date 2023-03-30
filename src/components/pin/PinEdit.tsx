@@ -111,7 +111,7 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
           </PinEditSection>
         </PinEditInfo>
 
-        <DisplayImage src={`${process.env.REACT_APP_BASE_URL}${pin.src}`} />
+        <DisplayImage src={`${pin.src}`} />
 
         <InfoSection style={{ justifyContent: "space-between" }}>
           <Button
