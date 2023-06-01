@@ -1,10 +1,11 @@
 import React from "react"
 import { AxiosError } from "axios"
 
-import useServices, { WithFieldValue } from "./services/useServices"
+import useServices from "./services/useServices"
 
 import { ErrorProps } from "./components/helper/Error"
 import useCredentialStorage from "./services/useCredentialStorage"
+import { useNavigate } from "react-router-dom"
 
 export interface User {
   _id: string
@@ -20,11 +21,10 @@ export interface User {
 interface UserContextValue {
   login: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
-  updateUserData: (form: WithFieldValue<string>) => Promise<User | null>
+  updateUserData: (form: FormData) => Promise<User | null>
   updateFollowing: (username: string) => void
   updateUnfollowing: (username: string) => void
   logOut: () => void
-  reUpUser: () => void
   getProfile: (username: string) => Promise<User | null>
   user: User | null
   logged: boolean
@@ -44,13 +44,19 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
   const { token, updateToken, getToken, deleteToken } = useCredentialStorage()
 
+  const navigate = useNavigate()
+
   const login = async (email: string, password: string) => {
     try {
       setError("")
       setLoading(true)
 
-      const response = await addDoc("user/token", { email, password })
-      updateToken(response)
+      const response: { token: string } = await addDoc("user/token", {
+        email,
+        password,
+      })
+
+      updateToken(response.token)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -77,7 +83,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }
   }
 
-  const updateUserData = async (form: WithFieldValue<string>) => {
+  const updateUserData = async (form: FormData) => {
     let response: User | null = null
 
     try {
@@ -85,6 +91,7 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setLoading(true)
 
       response = await updateDoc("user", form)
+      setUser(response)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -100,7 +107,11 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setError("")
       setLoading(true)
 
-      await updateDoc("follow", { usernameFollowing: username })
+      const response = await updateDoc("follow", {
+        usernameToFollow: username,
+      })
+
+      setUser(response)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -115,7 +126,11 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
       setError("")
       setLoading(true)
 
-      await updateDoc("unfollow", { usernameFollowing: username })
+      const response = await updateDoc("unfollow", {
+        usernameToUnfollow: username,
+      })
+
+      setUser(response)
     } catch (error) {
       const errorMessage = (error as AxiosError).response?.data as ErrorProps
 
@@ -150,10 +165,8 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
     setError("")
     setLoading(false)
     setLogged(false)
-  }
 
-  const reUpUser = async () => {
-    await autoLogin()
+    navigate("/")
   }
 
   const autoLogin = async () => {
@@ -189,7 +202,6 @@ export const UserProvider = ({ children }: React.PropsWithChildren<{}>) => {
         login,
         logOut,
         signUp,
-        reUpUser,
         updateUserData,
         updateFollowing,
         updateUnfollowing,

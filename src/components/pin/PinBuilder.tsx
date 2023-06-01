@@ -38,7 +38,6 @@ const PinBuilder = () => {
 
   const [board, setBoard] = React.useState("")
   const [pin, setPin] = React.useState<imageProps | null>(null)
-  const [image64, setImage64] = React.useState("")
 
   const { user, logged } = useUserContext()
   const { loading, error, createPin } = PinService()
@@ -47,27 +46,15 @@ const PinBuilder = () => {
 
   const navigate = useNavigate()
 
-  const convertToBase64 = (pin: File | undefined) => {
-    if (pin) {
-      const reader = new FileReader()
-
-      reader.readAsDataURL(pin)
-
-      reader.onload = () => {
-        setImage64(`${reader.result}`)
-      }
-    }
-  }
-
   async function handleSubmit() {
     if (pin) {
-      const form = {
-        title: title.value,
-        description: description.value,
-        website: website.value,
-        board: board,
-        src: image64,
-      }
+      const form = new FormData()
+
+      form.append("title", title.value)
+      form.append("description", description.value)
+      form.append("website", website.value)
+      form.append("board", board)
+      form.append("file", pin!.raw)
 
       const result: Pin | null = await createPin(form)
 
@@ -79,8 +66,6 @@ const PinBuilder = () => {
 
   React.useEffect(() => {
     setPinBlank(false)
-
-    convertToBase64(pin?.raw)
   }, [pin])
 
   return (

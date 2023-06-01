@@ -14,7 +14,11 @@ export interface Pin {
   board: Board
   description: string
   website: string
-  src: string
+  src: {
+    high: string
+    medium: string
+    low: string
+  }
   user: User
   comments: Comment[]
 }
@@ -26,6 +30,8 @@ interface getPinsProps {
   user?: string
   board?: string
   total?: number
+  page?: number
+  setInfinite?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PinService = () => {
@@ -36,7 +42,7 @@ const PinService = () => {
 
   const { addDoc, getDocs, updateDoc, deleteDoc } = useServices()
 
-  const createPin = async (form: WithFieldValue<string>) => {
+  const createPin = async (form: FormData) => {
     try {
       setError("")
       setLoading(true)
@@ -51,28 +57,46 @@ const PinService = () => {
     }
   }
 
-  const getPins = async ({ type, user, board, total }: getPinsProps) => {
+  const getPins = async ({
+    type,
+    user,
+    board,
+    total,
+    page,
+    setInfinite,
+  }: getPinsProps) => {
     try {
       setError("")
       setLoading(true)
+
+      total = total || 10
+      page = page || 1
 
       let config = `/pins`
 
       switch (type) {
         case "all":
-          config += `?type=all`
+          config += `?type=all&total=${total}&page=${page}`
           break
         case "board":
-          config += `?type=board&board=${board}&user=${user}`
+          config += `?type=board&board=${board}&user=${user}&total=${total}`
           break
         case "user":
-          config += `?type=user&user=${user}`
+          config += `?type=user&user=${user}&total=${total}&page=${page}`
           break
       }
 
       const pins: Pin[] = await getDocs(config)
 
-      setPins(pins)
+      if (total && pins.length < total) {
+        setInfinite && setInfinite(false)
+      }
+
+      if (page === 1) {
+        setPins(pins)
+      } else {
+        setPins((oldPins) => [...oldPins!, ...pins])
+      }
     } catch (error) {
       const err = (error as AxiosError).response?.data as ErrorProps
 

@@ -15,7 +15,7 @@ const BoardItem = ({ username, name }: BoardItemProps) => {
   const { pins, getPins } = PinService()
 
   React.useEffect(() => {
-    getPins({ type: "board", user: username, board: name, total: 3 })
+    getPins({ type: "board", user: username, board: name, page: 1, total: 3 })
   }, [])
 
   return (
@@ -24,7 +24,7 @@ const BoardItem = ({ username, name }: BoardItemProps) => {
         <BoardItemContainer>
           <BoardItemImgGroup>
             {pins.map((pin) => (
-              <BoardItemImg key={pin._id} src={`${pin.src}`} />
+              <BoardItemImg key={pin._id} src={`${pin.src.low}`} />
             ))}
             {pins.length < 3 &&
               Array.apply(0, Array(3 - pins.length)).map((div, index) => (

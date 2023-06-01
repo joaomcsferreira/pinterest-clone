@@ -17,7 +17,7 @@ const NotFound = () => {
         The page you're looking for could not be found.
       </Text>
       <Link to={"/"}>
-        <Text size={2} weight={500} color="--g-color-danger">
+        <Text isLink size={2} weight={500} color="--g-color-danger">
           Go home?
         </Text>
       </Link>

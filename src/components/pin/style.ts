@@ -211,6 +211,10 @@ const PinInfo = styled.div<PinInfoProps>`
   height: ${({ height }) => height && `${height}px`};
   display: grid;
   grid-template-rows: 1fr 10vh;
+
+  @media (min-width: 800px) {
+    height: ${({ height }) => height && `${height}px`};
+  }
 `
 
 const PinInfoSection = styled.div`

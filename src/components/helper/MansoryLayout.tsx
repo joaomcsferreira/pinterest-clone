@@ -11,7 +11,6 @@ interface MansoryLayoutProps {
 }
 
 const MansoryLayout = ({ gap, children }: MansoryLayoutProps) => {
-  // const result: Array<React.ReactNode> = []
   const [result, setResult] = React.useState<Array<React.ReactNode>>([])
 
   const [columnCount, setColumnCount] = React.useState(5)
@@ -63,14 +62,8 @@ const MansoryLayout = ({ gap, children }: MansoryLayoutProps) => {
     }
   }
 
-  return (
-    <>
-      {result.length ? <MansoryContainer>{result}</MansoryContainer> : ""}
-      <Text justify="center" padding="2rem 0 4rem 0" color="--g-colorGray175">
-        {result.length ? "There are no more posts." : "There are no posts yet."}
-      </Text>
-    </>
-  )
+  if (result.length) return <MansoryContainer>{result}</MansoryContainer>
+  return null
 }
 
 export default MansoryLayout

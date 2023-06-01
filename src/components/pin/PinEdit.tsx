@@ -111,7 +111,7 @@ const PinEdit = ({ pin, setModal }: PinEditProps) => {
           </PinEditSection>
         </PinEditInfo>
 
-        <DisplayImage src={`${pin.src}`} />
+        <DisplayImage src={`${pin.src.medium}`} />
 
         <InfoSection style={{ justifyContent: "space-between" }}>
           <Button

@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { User, useUserContext } from "../../UserContext"
 
-import BoardGroup from "../board/BoardList"
+import BoardList from "../board/BoardList"
 import Feed from "../feed/Feed"
 import Button from "../form/Button"
 import Text from "../form/Text"
@@ -27,7 +27,7 @@ import ButtonFollow from "../form/ButtonFollow"
 
 const UserProfile = () => {
   const { username } = useParams()
-  const { user, getProfile, reUpUser } = useUserContext()
+  const { user, getProfile } = useUserContext()
 
   const [feedType, setFeedType] = React.useState("created")
   const [profile, setProfile] = React.useState<User | null>(null)
@@ -48,15 +48,11 @@ const UserProfile = () => {
     }
 
     getUser()
-  }, [username, profile])
-
-  React.useEffect(() => {
-    reUpUser()
-  }, [user?.following])
+  }, [username, profile?.followers, profile?.following])
 
   return (
     <>
-      {profile && (
+      {profile && user && (
         <ProfileContainer>
           <ButtonBack />
           <ProfileInfo>
@@ -89,14 +85,14 @@ const UserProfile = () => {
             </ProfileActions>
 
             <ProfileActions>
-              {user?.username === profile.username ? (
+              {user.username === profile.username ? (
                 <Link to={"/settings/edit-profile"}>
                   <Button full color="--color-button-gray" textDark>
                     Edit Profile
                   </Button>
                 </Link>
               ) : (
-                <ButtonFollow userFollow={profile} />
+                <ButtonFollow usernameToFollow={profile.username} />
               )}
             </ProfileActions>
           </ProfileInfo>
@@ -130,7 +126,7 @@ const UserProfile = () => {
             {feedType === "created" ? (
               <Feed type="user" user={profile.username} />
             ) : (
-              <BoardGroup username={profile.username} />
+              <BoardList username={profile.username} />
             )}
 
             {modal === "following" && (
@@ -170,7 +166,12 @@ const UserProfile = () => {
                                 : userFollow.username}
                             </Text>
                           </ProfileModalSection>
-                          <ButtonFollow userFollow={userFollow} />
+
+                          {userFollow.username !== user.username && (
+                            <ButtonFollow
+                              usernameToFollow={userFollow.username}
+                            />
+                          )}
                         </ProfileModalSectionItem>
                       ))
                     ) : (
@@ -219,7 +220,12 @@ const UserProfile = () => {
                                 : userFollow.username}
                             </Text>
                           </ProfileModalSection>
-                          <ButtonFollow userFollow={userFollow} />
+
+                          {userFollow.username !== user.username && (
+                            <ButtonFollow
+                              usernameToFollow={userFollow.username}
+                            />
+                          )}
                         </ProfileModalSectionItem>
                       ))
                     ) : (

@@ -16,42 +16,50 @@ const useServices = () => {
         headers: { Authorization: token },
       })
 
-      return userToken.data.result
+      return userToken.data
     }
   }
 
   const getUserData = async (username: string) => {
     const response = await api.get(`/user/${username}`)
 
-    return response.data.result
+    return response.data
   }
 
-  const addDoc = async (collection: string, data: WithFieldValue<any>) => {
+  const addDoc = async (
+    collection: string,
+    data: WithFieldValue<any> | FormData
+  ) => {
     const response = await api.post(`/${collection}`, data, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type":
+          data instanceof FormData ? "multipart/form-data" : "application/json",
         Authorization: getToken(),
       },
     })
 
-    return response.data.result
+    return response.data
   }
 
   const getDocs = async (config: string) => {
     const response = await api.get(config)
 
-    return response.data.result
+    return response.data
   }
 
-  const updateDoc = async (collection: string, data: WithFieldValue<any>) => {
+  const updateDoc = async (
+    collection: string,
+    data: WithFieldValue<any> | FormData
+  ) => {
     const response = await api.put(`/${collection}`, data, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type":
+          data instanceof FormData ? "multipart/form-data" : "application/json",
         Authorization: getToken(),
       },
     })
 
-    return response.data.result
+    return response.data
   }
 
   const deleteDoc = async (collection: string, id: string) => {

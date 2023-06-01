@@ -15,6 +15,10 @@ interface DragzoneContainerProps {
   pinBlank: boolean
 }
 
+interface ImageProps {
+  visible?: boolean
+}
+
 const rotate = keyframes`
   to {
     transform: rotate(360deg);
@@ -102,9 +106,9 @@ const DragAreaAlert = styled.p`
   font-size: 0.9rem;
 `
 const MansoryContainer = styled.div`
-  width: 95vw;
+  width: 92vw;
   height: auto;
-  margin: 2rem auto;
+  margin: 1rem auto;
   display: flex;
 `
 
@@ -124,6 +128,44 @@ const ButtonBackContainer = styled.div`
   }
 `
 
+const ImageWrapper = styled.div<ImageProps>`
+  display: ${({ visible }) => (visible ? "grid" : "none")};
+  margin-bottom: 2rem;
+
+  & > :last-child {
+    margin-left: 0.4rem;
+  }
+`
+
+const ImageContainer = styled.div`
+  position: relative;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  cursor: zoom-in;
+
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+`
+
+const ImageItem = styled.img`
+  display: block;
+  max-width: 100%;
+  grid-area: 1/1;
+  transition: 0.2s;
+`
+
 export {
   FillContainer,
   ErrorContainer,
@@ -137,4 +179,7 @@ export {
   DragAreaAlert,
   MansoryContainer,
   ButtonBackContainer,
+  ImageWrapper,
+  ImageContainer,
+  ImageItem,
 }

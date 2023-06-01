@@ -26,7 +26,6 @@ interface UserPublicProfileProps {
   image: imageProps | null
   setModal: React.Dispatch<React.SetStateAction<string>>
   setImage: React.Dispatch<React.SetStateAction<imageProps | null>>
-  setImage64: React.Dispatch<React.SetStateAction<string>>
 }
 
 const UserPublicProfile = ({
@@ -41,7 +40,6 @@ const UserPublicProfile = ({
   image,
   setModal,
   setImage,
-  setImage64,
 }: UserPublicProfileProps) => {
   return (
     <UserEditProfileContainer>
@@ -143,13 +141,7 @@ const UserPublicProfile = ({
           {`www.pinterest.com/${username.value}`}
         </Text>
       </UserEditProfileSection>
-      {modal && (
-        <UserProfileAvatar
-          setImage64={setImage64}
-          setImage={setImage}
-          setModal={setModal}
-        />
-      )}
+      {modal && <UserProfileAvatar setImage={setImage} setModal={setModal} />}
     </UserEditProfileContainer>
   )
 }
