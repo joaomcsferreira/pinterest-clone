@@ -1,6 +1,6 @@
 # About
 
-I'm building a Pinterest clone using React and TypeScript with a focus on user experience. Users can create boards, save and organize their favorite images, and discover new content in an engaging way.
+I'm building a Pinterest clone using React and TypeScript. Users can create boards, save and organize their favorite images, and discover new content in an engaging way. You can access it by following this [Pinterest Clone](https://pinterest-clone-joaoferreira.vercel.app/).
 
 # Contents
 
